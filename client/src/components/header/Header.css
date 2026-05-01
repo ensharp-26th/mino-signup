@@ -1,0 +1,13 @@
+.header {
+    width: 416px;
+    height: 43px;
+    opacity: 1;
+
+    font-family: Pretendard Variable;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: -4%;
+    text-align: center;
+}

@@ -1,5 +1,7 @@
 .card {
     display: flex;
+    align-items: center;
+
     border-radius: 15px;
     border-width: 1px;
     padding: 50px 40px 50px 50px;
