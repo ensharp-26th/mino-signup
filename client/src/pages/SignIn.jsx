@@ -2,7 +2,9 @@ import Card from '../components/card/Card';
 
 function SignIn() {
     return (
-        <Card />
+        <form>
+            <Card page="signIn"/>
+        </form>
     );
 }
 

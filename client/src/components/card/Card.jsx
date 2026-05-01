@@ -1,11 +1,9 @@
 import './Card.css';
 
-function Card() {
+function Card({ page }) {
     return(
-        <div className="wrapper">
-            <div className="card">
+        <div className={`card ${page}`}>
             
-            </div>
         </div>
     );
 }
