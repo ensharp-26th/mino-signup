@@ -4,7 +4,6 @@ function SignIn() {
     return (
         <form>
             <Card page="signIn"/>
-            
         </form>
     );
 }
