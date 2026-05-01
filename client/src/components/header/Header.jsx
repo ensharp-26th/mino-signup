@@ -5,7 +5,7 @@ function Header({ title }) {
         <header className="header">
             {title}
         </header>
-    );
+    ); 
 }
 
 export default Header;
