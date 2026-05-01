@@ -1,6 +1,10 @@
+import Card from '../components/card/Card';
+
 function SignIn() {
     return (
-        <h1>Sign In</h1>
+        <form>
+            <Card page="signIn"/>
+        </form>
     );
 }
 
