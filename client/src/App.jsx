@@ -11,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<a href="http://localhost:5173/SignIn">Sign In</a>}></Route>
       <Route path="/SignIn" element={<SignIn />}></Route>
       <Route path="/SignUp" element={<SignUp />}></Route>
       <Route path="/FindPassword" element={<FindPassword />}></Route>
