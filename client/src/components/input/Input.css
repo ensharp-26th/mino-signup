@@ -4,6 +4,19 @@
     border-radius: 10px;
     border-width: 1px;
     opacity: 1;
-
+    font-family: "Pretendard Variable";
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -4%;
     border: 1px solid #89848466;
+}
+
+.custom-input {
+    height: auto;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 17px 18px;
 }

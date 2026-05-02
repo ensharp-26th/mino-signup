@@ -4,6 +4,7 @@ import Card from '../../components/Card/Card';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 function SignIn() {
@@ -11,8 +12,8 @@ function SignIn() {
         <Card>
             <Header title="En# SignUp!!"/>
             <div className="form">
-                <Input />
-                <Input />
+                <Input type="E-mail" className="e-mail" />
+                <Input type="Password" className="password" />
                 <div className="form-options">
                     <span className="remember-id">
                         <input type="checkbox"/><label>아이디 저장</label>
