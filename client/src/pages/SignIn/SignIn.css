@@ -13,3 +13,26 @@
     height: auto;
     gap: 16px;
 }
+
+span {
+    width: 416px;
+    height: 19px;
+    font-family: Pretendard Variable;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -4%;
+    text-align: center;
+    color: #777777;
+}
+
+.toSignIn {
+    font-weight: 600;
+    font-style: SemiBold;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    text-decoration-skip-ink: auto;
+    color: #333333;
+}
