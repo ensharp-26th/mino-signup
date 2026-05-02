@@ -1,6 +1,9 @@
+import './SignIn.css';
+
 import Card from '../../components/card/Card';
 import Header from '../../components/header/Header';
 import Input from '../../components/input/Input';
+import Button from '../../components/button/Button';
 
 function SignIn() {
     return (
@@ -11,7 +14,7 @@ function SignIn() {
                 <Input />
             </div>
             <div className="actions">
-                <Input />
+                <Button text="Login"/>
             </div>
         </Card>
     );
