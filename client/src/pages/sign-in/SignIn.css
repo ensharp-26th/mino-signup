@@ -14,15 +14,12 @@
     gap: 16px;
 }
 
-.remember {
+.remember-id {
     display: flex;
     flex-direction: row;
     width: auto;
     height: auto;
     gap: 4px;
-}
-
-.remember-text {
     font-family: Pretendard Variable;
     font-weight: 500;
     font-style: Medium;
@@ -32,7 +29,7 @@
     color: #222222;
 }
 
-.signUp-prompt {
+.sign-up-prompt {
     width: 416px;
     height: 19px;
     font-family: Pretendard Variable;
@@ -45,7 +42,7 @@
     color: #777777;
 }
 
-.toSignIn {
+.to-sign-in {
     font-weight: 600;
     font-style: SemiBold;
     text-decoration: underline;

@@ -1,6 +1,6 @@
 import './Card.css';
 
-import Header from'../header/Header';
+import Header from'../Header/Header';
 
 function Card({ children }) {
     return(
