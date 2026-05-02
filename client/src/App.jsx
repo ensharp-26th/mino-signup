@@ -2,7 +2,7 @@ import './App.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import SignIn from './pages/SignIn';
+import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp';
 import FindPassword from './pages/FindPassword';
 import MyInformation from './pages/MyInformation';
