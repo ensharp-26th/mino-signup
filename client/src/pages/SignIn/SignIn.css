@@ -14,7 +14,25 @@
     gap: 16px;
 }
 
-span {
+.remember {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    gap: 4px;
+}
+
+.remember-text {
+    font-family: Pretendard Variable;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -4%;
+    color: #222222;
+}
+
+.signUp-prompt {
     width: 416px;
     height: 19px;
     font-family: Pretendard Variable;

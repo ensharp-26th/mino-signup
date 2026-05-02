@@ -13,10 +13,15 @@ function SignIn() {
             <div className="form">
                 <Input />
                 <Input />
+                <div className="form-options">
+                    <div className="remember">
+                        <input type="checkbox"/><label className="remember-text">아이디 저장</label>
+                    </div>
+                </div>
             </div>
             <div className="actions">
                 <Button text="Login"/>
-                <span>
+                <span className="signUp-prompt">
                     계정이 없으신가요? <Link to="/SignUp" className="toSignIn">회원가입</Link>
                 </span>
             </div>
