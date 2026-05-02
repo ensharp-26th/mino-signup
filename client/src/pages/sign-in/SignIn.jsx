@@ -14,18 +14,16 @@ function SignIn() {
                 <Input />
                 <Input />
                 <div className="form-options">
-                    <div className="remember-id">
+                    <span className="remember-id">
                         <input type="checkbox"/><label>아이디 저장</label>
-                    </div>
-                    <div className="find-password-prompt">
-                        
-                    </div>
+                    </span>
+                    <Link className="to-find-password" to="/find-password">비밀번호 찾기</Link>
                 </div>
             </div>
             <div className="actions">
                 <Button text="Login"/>
                 <span className="sign-up-prompt">
-                    계정이 없으신가요? <Link to="/sign-up" className="to-sign-in">회원가입</Link>
+                    계정이 없으신가요? <Link className="to-sign-up" to="/sign-up">회원가입</Link>
                 </span>
             </div>
         </Card>
