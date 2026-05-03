@@ -1,0 +1,28 @@
+.action {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 16px;
+}
+
+.sign-up-suggest {
+    width: 416px;
+    height: 19px;
+    font-family: "Pretendard Variable";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -4%;
+    text-align: center;
+    color: #777777;
+}
+
+.to-sign-up {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    text-decoration-skip-ink: auto;
+    color: #333333;
+}
