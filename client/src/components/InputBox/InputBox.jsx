@@ -15,7 +15,7 @@ function InputBox({ type, placeholder }) {
         <div className="inputBox">
             <input type={type} placeholder={placeholder} className="input" />
             <span className="icon">
-            {icon()}
+                {icon()}
             </span>
         </div>
     );

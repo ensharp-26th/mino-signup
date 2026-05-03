@@ -1,6 +1,13 @@
+import Card from "../components/Card/Card";
+import Header from "../components/Header/Header";
+import Button from "../components/Button/Button";
+
 function MyInformation() {
     return (
-        <h1>My Information</h1>
+        <Card>
+            <Header title="내 정보" />
+            
+        </Card>
     );
 }
 

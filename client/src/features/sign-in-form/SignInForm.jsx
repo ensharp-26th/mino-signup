@@ -1,11 +1,11 @@
-import './Form.css';
+import './SignInForm.css';
 
-import InputBox from "../../../components/InputBox/InputBox";
+import InputBox from "../../components/InputBox/InputBox";
 import { Link } from 'react-router-dom';
 
-function Form() {
+function SignInForm() {
     return(
-        <div className="form">
+        <div className="sign-in-form">
             <InputBox type="text" placeholder="E-mail" />
             <InputBox type="password" placeholder="Password" />
             <span className="form-action">
@@ -18,4 +18,4 @@ function Form() {
     );
 }
 
-export default Form;
+export default SignInForm;
