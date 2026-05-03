@@ -1,4 +1,6 @@
 .inputBox {
+    display: flex;
+    flex-direction: row;
     width: 416px;
     height: 53px;
     border-radius: 10px;
@@ -22,4 +24,15 @@
     border-width: 1px;
     padding: 17px 18px;
     box-sizing: border-box;
+}
+
+input::ms-reveal {
+    display: none;
+}
+
+.icon {
+    position: relative;
+    font-size: 24px;
+    top: 11px;
+    right: 18px;
 }
