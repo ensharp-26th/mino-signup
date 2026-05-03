@@ -1,14 +1,14 @@
 import Card from '../../components/Card/Card';
 import Header from '../../components/Header/Header';
-import Form from '../../features/sign-in-layouts/Form/Form'
-import Action from '../../features/sign-in-layouts/Action/Action';
+import SignInForm from '../../features/sign-in-form/SignInForm';
+import SignInAction from '../../features/sign-in-action/SignInAction';
 
 function SignIn() {
     return (
         <Card>
             <Header title="En# SignUp!!"/>
-            <Form />
-            <Action />
+            <SignInForm />
+            <SignInAction />
         </Card>
     );
 }
