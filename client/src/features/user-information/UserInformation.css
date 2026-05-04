@@ -1,0 +1,47 @@
+.user-information {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.show-name {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.header-name {
+    font-family: "Pretendard Variable";
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: -0.04em;
+}
+
+.show-e-mail {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.header-e-mail {
+    font-family: "Pretendard Variable";
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: -0.04em;
+}
+
+.show-address {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.header-address {
+    font-family: "Pretendard Variable";
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: -0.04em;
+}
