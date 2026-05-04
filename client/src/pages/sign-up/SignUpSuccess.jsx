@@ -1,12 +1,19 @@
+import './SignUpSuccess.css';
+
 import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
+import ActionSuccess from "../../features/action-success/ActionSuccess";
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 function SignUpSuccess() {
     return(
         <Card>
             <Header text="안내" />
-            <Button text="로그인 하기" />
+            <ActionSuccess detail="회원가입 완료" />
+            <Link className="to-sign-in" to="/">
+                <Button text="로그인 하기" />
+            </Link>
         </Card>
     );
 }

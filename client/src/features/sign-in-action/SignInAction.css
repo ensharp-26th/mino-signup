@@ -6,6 +6,10 @@
     gap: 16px;
 }
 
+.to-my-information {
+    text-decoration: none;
+}
+
 .sign-up-suggest {
     width: 416px;
     height: 19px;

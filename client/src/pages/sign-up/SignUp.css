@@ -3,3 +3,7 @@
     flex-direction: column;
     gap: 24px;
 }
+
+.to-sign-up-success {
+    text-decoration: none;
+}
