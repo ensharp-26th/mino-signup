@@ -7,7 +7,7 @@ import Button from "../../components/Button/Button";
 function ResetPassword() {
     return (
         <Card>
-            <Header title="비밀번호 재설정" />
+            <Header text="비밀번호 재설정" />
             <EmailBox />
             <PasswordForm />
             <Button text="재설정" />

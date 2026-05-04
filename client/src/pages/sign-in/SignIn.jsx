@@ -6,7 +6,7 @@ import SignInAction from '../../features/sign-in-action/SignInAction';
 function SignIn() {
     return (
         <Card>
-            <Header title="En# SignUp!!"/>
+            <Header text="En# SignUp!!"/>
             <SignInForm />
             <SignInAction />
         </Card>

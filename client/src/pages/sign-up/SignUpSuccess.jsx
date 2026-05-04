@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 function SignUpSuccess() {
     return(
         <Card>
-            <Header title="안내" />
+            <Header text="안내" />
             <Button text="로그인 하기" />
         </Card>
     );

@@ -19,8 +19,8 @@
     font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 16px;
-    line-height: 100%;
-    letter-spacing: -4%;
+    line-height: 130%;
+    letter-spacing: -0.04em;
     border-radius: 10px;
     border-width: 1px;
     padding: 17px 18px;
@@ -29,6 +29,12 @@
 
 .icon {
     position: relative;
+    display: flex;
+    place-items: center;
     font-size: 24px;
-    margin: 11px 18px;
+    margin: 14px 18px;
+}
+
+::-ms-reveal {
+    display: none;
 }

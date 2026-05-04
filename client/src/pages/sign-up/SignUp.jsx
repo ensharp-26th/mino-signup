@@ -11,7 +11,7 @@ import Button from '../../components/Button/Button';
 function SignUp() {
     return (
         <Card>
-            <Header title="회원가입" />
+            <Header text="회원가입" />
             <div className="forms">
                 <EmailForm />
                 <PasswordForm />

@@ -6,7 +6,7 @@ import Button from "../../components/Button/Button";
 function FindPassword() {
     return (
         <Card>
-            <Header title="비밀번호 찾기" />
+            <Header text="비밀번호 찾기" />
             <EmailForm />
             <Button text="제출하기" />
         </Card>
