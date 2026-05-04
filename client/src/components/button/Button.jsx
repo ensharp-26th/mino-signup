@@ -2,11 +2,11 @@ import './Button.css';
 
 function Button({ text }) {
     return (
-        <div className="button">
+        <button className="button">
             <div className="text">
                 {text}
             </div>
-        </div>
+        </button>
     );
 }
 
