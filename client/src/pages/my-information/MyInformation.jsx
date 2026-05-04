@@ -6,7 +6,7 @@ import Button from "../../components/Button/Button";
 function MyInformation() {
     return (
         <Card>
-            <Header title="내 정보" />
+            <Header text="내 정보" />
             <UserInformation />
             <Button text="로그아웃" />
         </Card>
