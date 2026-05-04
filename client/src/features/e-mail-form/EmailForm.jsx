@@ -9,7 +9,7 @@ function EmailForm() {
             <span>이메일</span>
             <div className="e-mail-wrapper">
                 <InputBox type="text" placeholder="이메일" />
-                <Button text="전송" children="/find-password" />
+                <Button text="전송" br={{ borderRadius: "10px" }} />
             </div>
             <InputBox type="text" placeholder="인증번호" />
         </div>
