@@ -13,7 +13,7 @@ function UserInformation() {
             </div>
             <div className="show-address">
                 <span className="header-address">주소</span>
-                <span className="user-address">인천광역시 중구 중산동 하늘별빛로 86</span>
+                <span className="user-address">인천광역시 영종구 중산동 하늘별빛로 86</span>
             </div>
         </div>
     );
