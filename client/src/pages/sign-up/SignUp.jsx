@@ -7,6 +7,7 @@ import PasswordForm from '../../features/password-form/PasswordForm';
 import NameForm from '../../features/name-form/NameForm';
 import AddressForm from '../../features/address-form/AddressForm';
 import Button from '../../components/Button/Button';
+import { Link } from 'react-router-dom';
 
 function SignUp() {
     return (
@@ -18,7 +19,9 @@ function SignUp() {
                 <NameForm />
                 <AddressForm />
             </div>
-            <Button text="제출하기" />
+            <Link className="to-my-information" to="/my-information">
+                <Button text="제출하기" />
+            </Link>
         </Card>
     );
 }
