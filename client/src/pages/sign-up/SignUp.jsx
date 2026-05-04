@@ -19,7 +19,7 @@ function SignUp() {
                 <NameForm />
                 <AddressForm />
             </div>
-            <Link className="to-my-information" to="/my-information">
+            <Link className="to-sign-up-success" to="/sign-up/success">
                 <Button text="제출하기" />
             </Link>
         </Card>
