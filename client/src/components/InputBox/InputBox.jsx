@@ -5,7 +5,7 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import check from '../../asset/check.png';
 import fail from '../../asset/fail.png';
 
-function InputBox({ type, placeholder }) {
+function InputBox({ type, name, placeholder }) {
     const [inputValue, setInputValue] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -56,7 +56,7 @@ function InputBox({ type, placeholder }) {
 
     return(
         <div className="inputBox" style={dynamicSytle()}>
-            <input className="input" type={dynamicType} placeholder={placeholder} value={inputValue} onChange={changeInput} />
+            <input className="input" type={dynamicType} name={name} placeholder={placeholder} value={inputValue} onChange={changeInput} />
             <span className="icon">
                 {icon()}
             </span>

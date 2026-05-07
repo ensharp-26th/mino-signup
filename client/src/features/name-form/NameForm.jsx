@@ -5,7 +5,7 @@ import InputBox from '../../components/InputBox/InputBox';
 function NameForm() {
     return (
         <div className="name-form">
-            <span>이름</span>
+            <legend>이름</legend>
             <InputBox type="text" placeholder="" />
         </div>
     );

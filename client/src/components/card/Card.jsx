@@ -2,13 +2,13 @@ import './Card.css';
 
 import Header from'../Header/Header';
 
-function Card({ children }) {
+function Card({ name, children }) {
     return(
         <div className="wrapper">
             <div className="card">
-                <div className="inner">
+                <form className="inner" name={name}>
                     {children}
-                </div>
+                </form>
             </div>
         </div>
     );

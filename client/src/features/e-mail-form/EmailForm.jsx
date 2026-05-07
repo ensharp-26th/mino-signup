@@ -6,10 +6,10 @@ import Button from '../../components/Button/Button';
 function EmailForm() {
     return (
         <div className="e-mail-form">
-            <span>이메일</span>
+            <legend>이메일</legend>
             <div className="e-mail-wrapper">
                 <InputBox type="text" placeholder="이메일" />
-                <Button text="전송" br={{ borderRadius: "10px" }} />
+                <Button text="전송" style={{ borderRadius: "10px" }} />
             </div>
             <InputBox type="text" placeholder="인증번호" />
         </div>
