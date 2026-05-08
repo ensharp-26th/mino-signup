@@ -13,7 +13,7 @@ function AddressForm({ name }) {
 
     const showModal = () => {
         if (isOpened) {
-            return <SearchAddress />
+            return <SearchAddress isOpened={isOpened} setIsOpened={setIsOpened} />
         }
     }
 

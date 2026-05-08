@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 function EmailForm({ name }) {
     const [email, setEmail] = useState("");
-    const [buttonText, setButtonText] = useState("");
 
     const VerificationCodeRequest = async() => {
         const url = 'http://43.201.198.223:8080/api/v1/email-verification/request';
