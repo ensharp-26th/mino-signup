@@ -1,6 +1,6 @@
 import './ActionSuccess.css';
 
-import check72 from '../../asset/check72.png';
+import check72 from '../../assets/check72.png';
 
 function ActionSuccess({ detail }) {
     return (

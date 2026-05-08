@@ -10,7 +10,9 @@ function SignInForm() {
             <InputBox type="password" placeholder="Password" />
             <span className="form-action">
                 <span className="remember-id">
-                    <input type="checkbox"/><label>아이디 저장</label>
+                    <label>
+                        <input type="checkbox"/>아이디 저장
+                    </label>
                 </span>
                 <Link className="to-find-password" to="/find-password">비밀번호 찾기</Link>
             </span>
