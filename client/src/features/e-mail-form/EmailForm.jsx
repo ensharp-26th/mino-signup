@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 function EmailForm({ name }) {
     const [email, setEmail] = useState("");
+    const [buttonText, setButtonText] = useState("");
 
     const VerificationCodeRequest = async() => {
         const url = 'http://43.201.198.223:8080/api/v1/email-verification/request';
@@ -16,7 +17,7 @@ function EmailForm({ name }) {
                 email: email
             });
 
-            alert('인증 이메일이 발송되었습니다');
+            alert('성공');
         } catch(error) {
             alert('실패');
         }

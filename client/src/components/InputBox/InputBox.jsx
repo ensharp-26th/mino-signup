@@ -2,10 +2,10 @@ import './InputBox.css';
 
 import { useState } from 'react';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
-import check from '../../asset/check.png';
-import fail from '../../asset/fail.png';
+import check from '../../assets/check.png';
+import fail from '../../assets/fail.png';
 
-function InputBox({ type, name, placeholder, value, onChange }) {
+function InputBox({ type, name, placeholder, value, onChange, onFocus }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const changeInput = (event) => {
@@ -63,7 +63,8 @@ function InputBox({ type, name, placeholder, value, onChange }) {
                 name={name} 
                 placeholder={placeholder} 
                 value={value} 
-                onChange={changeInput} 
+                onChange={changeInput}
+                onFocus={onFocus}
             />
             <span className="icon">
                 {icon()}
