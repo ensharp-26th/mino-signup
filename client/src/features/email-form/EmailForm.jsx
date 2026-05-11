@@ -73,7 +73,7 @@ function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
     }
 
     const setButtonSytle = () => {
-        return isValidEmail() 
+        return (isValidEmail() && !isDuplicated)
             ? {
                 borderRadius: "10px"
             } 
@@ -151,7 +151,7 @@ function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
                     type="button" 
                     style={setButtonSytle()} 
                     onClick={useRequest}
-                    disabled={!isValidEmail()}
+                    disabled={!isValidEmail() || isDuplicated}
                     text={setButtonText()}
                 />
             </div>
