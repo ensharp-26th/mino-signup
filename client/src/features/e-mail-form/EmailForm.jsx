@@ -15,6 +15,7 @@ function EmailForm() {
     const [verificationCode, setVerificationCode] = useState("");
     const [isSent, setIsSent] = useState(false);
     const [isResent, setIsResent] = useState(false);
+    const [isVerified, setIsVerified] = useState(true);
 
     const useRequest = async () => {
         try {
@@ -32,12 +33,14 @@ function EmailForm() {
             alert('인증번호 전송에 실패했습니다.');
         }
     }
-    const useConfirm = async () => {
+    const useConfirm = async (code) => {
         try {
-            const response = await confirmVerificationCode(email, verificationCode);
+            const response = await confirmVerificationCode(email, code);
 
+            setIsVerified(true);
             console.log(response);
         } catch (error) {
+            setIsVerified(false);
             console.log(error);
         }
     }
@@ -93,10 +96,19 @@ function EmailForm() {
     const showEmailErrorMessage = () => {
         if (email !== "" && !isValidEmail()) {
             return (
-                <span className="email-error-message">
+                <span className="error-message">
                     유효하지 않은 메일입니다.
                 </span>
             )
+        }
+    }
+    const showErrorVerificationCode = () => {
+        if (isSent && verificationCode !== "" && !isVerified) {
+            return (
+                <span className="error-message">
+                    인증번호가 일치하지 않습니다.
+                </span>
+            );
         }
     }
 
@@ -124,10 +136,14 @@ function EmailForm() {
                 type="text" 
                 value={verificationCode}
                 placeholder="인증번호" 
-                onChange={(e) => setVerificationCode(e.target.value)}
+                onChange={(e) => {
+                        setVerificationCode(e.target.value);
+                        useConfirm(e.target.value);
+                }}
             />
             {showEmailErrorMessage()}
             {showSentMessage()}
+            {showErrorVerificationCode()}
         </div>
     );
 }
