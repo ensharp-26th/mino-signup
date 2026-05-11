@@ -1,4 +1,4 @@
-.inputBox {
+.input-box {
     display: flex;
     flex-direction: row;
     width: 416px;
@@ -7,7 +7,6 @@
     border-radius: 10px;
     border-width: 1px;
     opacity: 1;
-
     border: 1px solid #89848466;
 }
 
@@ -27,7 +26,7 @@
     box-sizing: border-box;
 }
 
-.icon {
+.input-box-icon {
     position: relative;
     display: flex;
     place-items: center;

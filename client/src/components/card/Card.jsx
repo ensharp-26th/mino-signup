@@ -1,10 +1,10 @@
 import './Card.css';
 
-function Card({ name, children }) {
+function Card({ children }) {
     return(
-        <div className="wrapper">
+        <div className="card-wrapper">
             <div className="card">
-                <div className="inner" name={name}>
+                <div className="card-inner">
                     {children}
                 </div>
             </div>

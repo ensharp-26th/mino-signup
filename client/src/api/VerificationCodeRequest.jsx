@@ -1,15 +1,12 @@
-import axios from 'axios';
+import api from './Api';
 
-const VerificationCodeRequest = async(email) => {
-    const url = 'http://43.201.198.223:8080/api/v1/email-verfication/request';
-
-    try {
-        const response = await axios.post(url, {
+export const requestVerificationCode = async (email) => {
+    const response = await api.post(
+        '/api/v1/email-verification/request',
+        { 
             email: email
-        });
+        }
+    );
 
-        alert('인증 이메일이 발송되었습니다');
-    } catch(error) {
-        alert('실패');
-    }
+    return response.data;
 }

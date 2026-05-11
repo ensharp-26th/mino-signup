@@ -8,14 +8,14 @@
     border-radius: 57px;
     gap: 10px;
     background: #E7F2FF;
-    border: 1px solid #CEDEF7
-}
+    border: 1px solid #CEDEF7;
 
-.text {
     font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 16px;
     line-height: 130%;
     letter-spacing: -0.04em;
     text-align: center;
+
+    cursor: pointer;
 }

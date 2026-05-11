@@ -1,49 +1,73 @@
 import './EmailForm.css';
 
-import InputBox from '../../components/InputBox/InputBox';
-import Button from '../../components/Button/Button';
-import axios from 'axios';
 import { useState } from 'react';
 
-function EmailForm({ name }) {
+import InputBox from '../../components/InputBox/InputBox';
+import Button from '../../components/Button/Button';
+
+import { requestVerificationCode } from '../../api/VerificationCodeRequest';
+import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
+
+function EmailForm() {
     const [email, setEmail] = useState("");
+    const [verificationCode, setVerificationCode] = useState("");
+    const [verificationError, setVerificationError] = useState("ang");
 
-    const VerificationCodeRequest = async() => {
-        const url = 'http://43.201.198.223:8080/api/v1/email-verification/request';
-
+    const request = async () => {
         try {
-            const response = await axios.post(url, {
-                email: email
-            });
+            const response = await requestVerificationCode(email);
+            
+            console.log(response);
+            alert('인증번호 전송에 성공했습니다.');
+        } catch (error) {
+            console.log(error)
+  
+            alert('인증번호 전송에 실패했습니다.');
+        }
+    }
+    const confirm = async () => {
+        try {
+            const response = await confirmVerificationCode(email, verificationCode);
 
-            alert('성공');
-        } catch(error) {
-            alert('실패');
+            console.log(response);
+
+            setVerificationError("ang");
+        } catch (error) {
+            console.log(error)
+
+            setVerificationError("인증번호가 올바르지 않습니다.");
         }
     }
 
     return (
-        <form className="e-mail-form">
+        <div className="email-form">
             <legend>이메일</legend>
-            <div className="e-mail-wrapper">
+            <div className="email-wrapper">
                 <InputBox 
                     type="text" 
-                    placeholder="이메일" 
                     value={email}
+                    placeholder="이메일" 
                     onChange={(e) => setEmail(e.target.value)} 
                 />
                 <Button 
                     type="button" 
-                    name={name} 
                     style={{ borderRadius: "10px" }} 
-                    text="전송" 
-                    onClick={VerificationCodeRequest}/>
+                    onClick={request}
+                    text="전송"
+                />
             </div>
             <InputBox 
                 type="text" 
+                value={verificationCode}
                 placeholder="인증번호" 
+                onChange={(e) => setVerificationCode(e.target.value)}
             />
-        </form>
+            {verificationError && (
+                <p className="verification-error">
+                    {verificationError}
+                </p>
+            )}
+        </div>
     );
 }
 

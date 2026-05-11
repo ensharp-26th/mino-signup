@@ -1,4 +1,4 @@
-.e-mail-form {
+.email-form {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -10,7 +10,7 @@
     color: #222222;
 }
 
-.e-mail-wrapper {
+.email-wrapper {
     display: flex;
     flex-direction: row;
     gap: 8px;

@@ -1,4 +1,4 @@
-.wrapper {
+.card-wrapper {
     display: grid;
     place-items: center;
     height: 100vh;
@@ -17,7 +17,7 @@
     box-shadow: inset;
 }
 
-.inner {
+.card-inner {
     display: flex;
     flex-direction: column;
     width: 416px;
