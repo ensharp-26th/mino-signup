@@ -13,10 +13,10 @@ import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
 function EmailForm() {
     const [email, setEmail] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
-    const [isRequested, setIsRequested] = useState(false);
+    const [isSent, setIsSent] = useState(false);
 
-    const request = async () => {
-        setIsRequested(true);
+    const useRequest = async () => {
+        setIsSent(true);
         try {
             const response = await requestVerificationCode(email);
             
@@ -57,7 +57,17 @@ function EmailForm() {
             }
     }
     const setButtonText = () => {
-        return isRequested ? "재전송" : "전송";
+        return isSent ? "재전송" : "전송";
+    }
+
+    const showEmailErrorMessage = () => {
+        if (email !== "" && !isValidEmail()) {
+            return (
+                <span className="email-error-message">
+                    유효하지 않은 메일입니다.
+                </span>
+            )
+        }
     }
 
     return (
@@ -75,7 +85,7 @@ function EmailForm() {
                 <Button 
                     type="button" 
                     style={setButtonSytle()} 
-                    onClick={request}
+                    onClick={useRequest}
                     disabled={!isValidEmail()}
                     text={setButtonText()}
                 />
@@ -86,6 +96,7 @@ function EmailForm() {
                 placeholder="인증번호" 
                 onChange={(e) => setVerificationCode(e.target.value)}
             />
+            {showEmailErrorMessage()}
         </div>
     );
 }
