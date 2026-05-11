@@ -16,6 +16,7 @@ function EmailForm() {
     const [isRequested, setIsRequested] = useState(false);
 
     const request = async () => {
+        setIsRequested(true);
         try {
             const response = await requestVerificationCode(email);
             
@@ -23,7 +24,6 @@ function EmailForm() {
             alert('인증번호 전송에 성공했습니다.');
         } catch (error) {
             console.log(error)
-  
             alert('인증번호 전송에 실패했습니다.');
         }
     }
@@ -56,6 +56,9 @@ function EmailForm() {
                 cursor: "default"
             }
     }
+    const setButtonText = () => {
+        return isRequested ? "재전송" : "전송";
+    }
 
     return (
         <div className="email-form">
@@ -74,7 +77,7 @@ function EmailForm() {
                     style={setButtonSytle()} 
                     onClick={request}
                     disabled={!isValidEmail()}
-                    text="전송"
+                    text={setButtonText()}
                 />
             </div>
             <InputBox 
