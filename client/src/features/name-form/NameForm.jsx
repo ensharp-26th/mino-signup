@@ -1,5 +1,7 @@
 import './NameForm.css';
 
+import { useState } from 'react';
+
 import InputBox from '../../components/InputBox/InputBox';
 
 function NameForm() {
