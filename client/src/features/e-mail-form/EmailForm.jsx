@@ -14,11 +14,16 @@ function EmailForm() {
     const [email, setEmail] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
     const [isSent, setIsSent] = useState(false);
+    const [isResent, setIsResent] = useState(false);
 
     const useRequest = async () => {
-        setIsSent(true);
         try {
             const response = await requestVerificationCode(email);
+
+            if (isSent) {
+                setIsResent(true);
+            }
+            setIsSent(true);
             
             console.log(response);
             alert('인증번호 전송에 성공했습니다.');
@@ -70,12 +75,19 @@ function EmailForm() {
     }
 
     const showSentMessage = () => {
-        if (isSent) {
+        if (isResent) {
+            return (
+                <span className="sent-message">
+                    인증번호가 재전송되었습니다.
+                </span>  
+            );
+        }
+        else if (isSent) {
             return (
                 <span className="sent-message">
                     인증번호가 전송되었습니다.
                 </span>
-            )
+            );
         }
     }
     const showEmailErrorMessage = () => {
