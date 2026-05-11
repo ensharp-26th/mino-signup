@@ -5,6 +5,7 @@ function InputBox({
     value, 
     placeholder,
     required, 
+    readOnly,
     onChange, 
     onFocus, 
     style, 
@@ -18,6 +19,7 @@ function InputBox({
                 value={value} 
                 placeholder={placeholder} 
                 required={required}
+                readOnly={readOnly}
                 onChange={onChange}
                 onFocus={onFocus}
             />
