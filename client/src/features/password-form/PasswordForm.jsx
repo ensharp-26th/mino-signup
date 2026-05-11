@@ -5,8 +5,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import InputBox from "../../components/InputBox/InputBox";
 
-function PasswordForm() {
-    const [password, setPassword] = useState("");
+function PasswordForm({ password, setPassword }) {
     const [subPassword, setSubPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showSubPassword, setShowSubPassword] = useState(false);

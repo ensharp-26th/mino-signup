@@ -10,12 +10,11 @@ import Button from '../../components/Button/Button';
 import { requestVerificationCode } from '../../api/VerificationCodeRequest';
 import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
 
-function EmailForm() {
-    const [email, setEmail] = useState("");
+function EmailForm({ email, setEmail }) {
     const [verificationCode, setVerificationCode] = useState("");
     const [isSent, setIsSent] = useState(false);
     const [isResent, setIsResent] = useState(false);
-    const [isVerified, setIsVerified] = useState(true);
+    const [isVerified, setIsVerified] = useState(false);
 
     const useRequest = async () => {
         try {

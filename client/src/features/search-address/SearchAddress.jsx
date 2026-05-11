@@ -3,7 +3,7 @@ import KakaoPostcodeEmbed from 'react-daum-postcode';
 import Modal from '../../components/Modal/Modal';
 import Button from '../../components/Button/Button';
 
-function SearchAddress({ showModal, setShowModal, setAddress }) {
+function SearchAddress({ showModal, setShowModal, setStreetAddress }) {
     const setSearchAddressModal = () => {
         setShowModal(!showModal);
     }
@@ -24,7 +24,7 @@ function SearchAddress({ showModal, setShowModal, setAddress }) {
             }
 
             console.log(fullAddress);
-            setAddress(fullAddress);
+            setStreetAddress(fullAddress);
         };
 
         return <KakaoPostcodeEmbed onComplete={handleComplete} />;
