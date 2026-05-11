@@ -10,16 +10,17 @@ import { login } from '../../api/LoginRequest';
 function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [canLogin, setCanLogin] = useState(false);
 
     const useRequest = async () => {
         try {
             const response = await login(email, password);
                 
             console.log(response);
-            alert('로그인에 성공했습니다.');
+            setCanLogin(true);
         } catch (error) {
             console.log(error)
-            alert('로그인에 실패했습니다.');
+            setCanLogin(false);
         }
     }
 

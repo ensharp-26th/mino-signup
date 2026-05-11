@@ -2,12 +2,22 @@ import './SignInForm.css';
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import InputBox from "../../components/InputBox/InputBox";
 
 function SignInForm({ email, setEmail, password, setPassword }) {
-    const [showPassword, setShowPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+    const setPasswordInputBoxIcon = () => {
+        return (
+            <span onClick={() => setShowPassword(!showPassword)}>
+                { showPassword ? <FaEye /> : <FaEyeSlash /> }
+            </span>
+        );
+    }
+
+    const passwordType = showPassword ? "text" : "password";
 
     return(
         <div className="sign-in-form">
@@ -16,12 +26,14 @@ function SignInForm({ email, setEmail, password, setPassword }) {
                 value={email} 
                 placeholder="E-mail"
                 onChange={(e) => setEmail(e.target.value)} 
+                icon={<FaEnvelope />}
             />
             <InputBox 
-                type="password" 
+                type={passwordType}
                 value={password} 
                 placeholder="Password" 
                 onChange={(e) => setPassword(e.target.value)}
+                icon={setPasswordInputBoxIcon()}
             />
             <span className="form-action">
                 <span className="remember-id">
