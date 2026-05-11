@@ -50,12 +50,12 @@ function EmailForm() {
         return emailRegex.test(email);
     }
 
-    const setInputBoxBorder = () => {
+    const setEmailInputBoxBorder = () => {
         if (email !== "") {
             return isValidEmail() ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
         }
     }
-    const setInputBoxIcon = () => {
+    const setEmailInputBoxIcon = () => {
         if (email !== "") {
             return isValidEmail() ? <img src={check} /> : <img src={fail} />;
         }
@@ -80,14 +80,14 @@ function EmailForm() {
     const showSentMessage = () => {
         if (isResent) {
             return (
-                <span className="sent-message">
+                <span className="success-message">
                     인증번호가 재전송되었습니다.
                 </span>  
             );
         }
         else if (isSent) {
             return (
-                <span className="sent-message">
+                <span className="success-message">
                     인증번호가 전송되었습니다.
                 </span>
             );
@@ -121,8 +121,8 @@ function EmailForm() {
                     value={email}
                     placeholder="이메일" 
                     onChange={(e) => setEmail(e.target.value)} 
-                    style={setInputBoxBorder()}
-                    icon={setInputBoxIcon()}
+                    style={setEmailInputBoxBorder()}
+                    icon={setEmailInputBoxIcon()}
                 />
                 <Button 
                     type="button" 
