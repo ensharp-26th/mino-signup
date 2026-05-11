@@ -30,12 +30,11 @@ function SearchAddress({ isOpened, setIsOpened }) {
 
         return <KakaoPostcodeEmbed onComplete={handleComplete()} />;
     };
-    // useState cnrk
 
     return (
         <Modal className="search-address">
             {Postcode()}
-            <Button type="button" text="제출하기" onClick={setModal}/>
+            <Button type="button" onClick={setModal} text="제출하기"/>
         </Modal>
     );
 }
