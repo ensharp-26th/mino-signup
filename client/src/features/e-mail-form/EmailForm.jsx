@@ -80,14 +80,14 @@ function EmailForm() {
     const showSentMessage = () => {
         if (isResent) {
             return (
-                <span className="sent-message">
+                <span className="success-message">
                     인증번호가 재전송되었습니다.
                 </span>  
             );
         }
         else if (isSent) {
             return (
-                <span className="sent-message">
+                <span className="success-message">
                     인증번호가 전송되었습니다.
                 </span>
             );

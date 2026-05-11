@@ -47,6 +47,25 @@ function PasswordForm() {
     const passwordType = showPassword ? "text" : "password";
     const subPasswordType = showSubPassword ? "text" : "password";
 
+    const showErrorInvalidPassword = () => {
+        if (password !== "" && !isValidPassword()) {
+            return (
+                <span className="error-message">
+                    8~16자의 영문 대/소문자, 숫자, 특수문자
+                </span>
+            );
+        }
+    }
+    const showErrorInvalidSubPassword = () => {
+        if (password !== "" && !isValidSubPassword()) {
+            return (
+                <span className="error-message">
+                    비밀번호가 일치하지 않습니다.
+                </span>
+            );
+        }
+    }
+
     return (
         <div className="password-form">
             <legend>비밀번호</legend>
@@ -66,6 +85,8 @@ function PasswordForm() {
                 style={setSubPasswordInputBoxBorder()}
                 icon={setSubPasswordInputBoxIcon()}
             />
+            {showErrorInvalidPassword()}
+            {showErrorInvalidSubPassword()}
         </div>
     );
 }
