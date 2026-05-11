@@ -52,7 +52,8 @@ function EmailForm() {
             : { 
                 borderRadius: "10px",
                 background: "#E3E3E3",
-                border: "1px solid #E3E3E3"
+                border: "1px solid #E3E3E3",
+                cursor: "default"
             }
     }
 
@@ -72,6 +73,7 @@ function EmailForm() {
                     type="button" 
                     style={setButtonSytle()} 
                     onClick={request}
+                    disabled={!isValidEmail()}
                     text="전송"
                 />
             </div>

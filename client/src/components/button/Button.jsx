@@ -3,6 +3,7 @@ import './Button.css';
 function Button({ 
     type, 
     onClick, 
+    disabled,
     style, 
     text 
 }) {
@@ -11,6 +12,7 @@ function Button({
             className="button"
             type={type}
             onClick={onClick}
+            disabled={disabled}
             style={style}
         >
             {text}
