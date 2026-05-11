@@ -6,6 +6,7 @@ import InputBox from "../../components/InputBox/InputBox";
 
 function PasswordForm() {
     const [password, setPassword] = useState("");
+    const [subPassword, setSubPassword] = useState("");
 
     return (
         <div className="password-form">
@@ -18,7 +19,9 @@ function PasswordForm() {
              />
             <InputBox 
                 type="password" 
+                value={subPassword}
                 placeholder="비밀번호 확인" 
+                onChange={(e) => setSubPassword(e.target.value)}
             />
         </div>
     );
