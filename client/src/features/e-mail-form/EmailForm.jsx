@@ -27,6 +27,15 @@ function EmailForm() {
             alert('인증번호 전송에 실패했습니다.');
         }
     }
+    const useConfirm = async () => {
+        try {
+            const response = await confirmVerificationCode(email, verificationCode);
+
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const isValidEmail = () => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -60,6 +69,15 @@ function EmailForm() {
         return isSent ? "재전송" : "전송";
     }
 
+    const showSentMessage = () => {
+        if (isSent) {
+            return (
+                <span className="sent-message">
+                    인증번호가 전송되었습니다.
+                </span>
+            )
+        }
+    }
     const showEmailErrorMessage = () => {
         if (email !== "" && !isValidEmail()) {
             return (
@@ -97,6 +115,7 @@ function EmailForm() {
                 onChange={(e) => setVerificationCode(e.target.value)}
             />
             {showEmailErrorMessage()}
+            {showSentMessage()}
         </div>
     );
 }

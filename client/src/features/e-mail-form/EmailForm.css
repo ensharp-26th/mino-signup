@@ -16,6 +16,12 @@
     gap: 8px;
 }
 
+.sent-message {
+    font-weight: 400;
+    font-size: 13px;
+    color: #435DEE;
+}
+
 .email-error-message {
     font-weight: 400;
     font-size: 13px;
