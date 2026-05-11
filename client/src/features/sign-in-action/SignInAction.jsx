@@ -1,7 +1,8 @@
 import './SignInAction.css';
 
-import Button from "../../components/Button/Button";
 import { Link } from 'react-router-dom';
+
+import Button from "../../components/Button/Button";
 
 function SignInAction() {
     return(

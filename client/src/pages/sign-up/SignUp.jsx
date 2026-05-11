@@ -1,6 +1,7 @@
 import './SignUp.css';
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Card from '../../components/Card/Card';
 import Header from  '../../components/Header/Header';
@@ -9,7 +10,7 @@ import PasswordForm from '../../features/password-form/PasswordForm';
 import UsernameForm from '../../features/username-form/UsernameForm';
 import AddressForm from '../../features/address-form/AddressForm';
 import Button from '../../components/Button/Button';
-import { Link } from 'react-router-dom';
+
 import { signUp } from '../../api/SignUpRequest';
 
 function SignUp() {

@@ -1,13 +1,28 @@
 import './SignInForm.css';
 
-import InputBox from "../../components/InputBox/InputBox";
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
-function SignInForm() {
+import InputBox from "../../components/InputBox/InputBox";
+
+function SignInForm({ email, setEmail, password, setPassword }) {
+    const [showPassword, setShowPassword] = useState("");
+
     return(
         <div className="sign-in-form">
-            <InputBox type="text" placeholder="E-mail" />
-            <InputBox type="password" placeholder="Password" />
+            <InputBox
+                type="text" 
+                value={email} 
+                placeholder="E-mail"
+                onChange={(e) => setEmail(e.target.value)} 
+            />
+            <InputBox 
+                type="password" 
+                value={password} 
+                placeholder="Password" 
+                onChange={(e) => setPassword(e.target.value)}
+            />
             <span className="form-action">
                 <span className="remember-id">
                     <label>

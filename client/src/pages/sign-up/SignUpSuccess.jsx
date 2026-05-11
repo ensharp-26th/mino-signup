@@ -1,10 +1,11 @@
 import './SignUpSuccess.css';
 
+import { Link } from "react-router-dom";
+
 import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
 import ActionSuccess from "../../features/action-success/ActionSuccess";
 import Button from "../../components/Button/Button";
-import { Link } from "react-router-dom";
 
 function SignUpSuccess() {
     return(
