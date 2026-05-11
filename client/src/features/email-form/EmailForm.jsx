@@ -9,11 +9,13 @@ import Button from '../../components/Button/Button';
 
 import { requestVerificationCode } from '../../api/VerificationCodeRequest';
 import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
+import { checkEmail } from '../../api/CheckEmailRequest';
 
 function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
     const [verificationCode, setVerificationCode] = useState("");
     const [isSent, setIsSent] = useState(false);
     const [isResent, setIsResent] = useState(false);
+    const [isDuplicated, setIsDuplicated] = useState(false);
 
     const useRequest = async () => {
         try {
@@ -42,6 +44,17 @@ function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
             console.log(error);
         }
     }
+    const useCheck = async (temp) => {
+        try {
+            const response = await checkEmail(temp);
+            
+            setIsDuplicated(false);
+            console.log(response);
+        } catch (error) {
+            setIsDuplicated(true);
+            console.log(error);
+        }
+    }
 
     const isValidEmail = () => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -50,12 +63,12 @@ function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
 
     const setEmailInputBoxBorder = () => {
         if (email !== "") {
-            return isValidEmail() ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
+            return (isValidEmail() && !isDuplicated) ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
         }
     }
     const setEmailInputBoxIcon = () => {
         if (email !== "") {
-            return isValidEmail() ? <img src={check} /> : <img src={fail} />;
+            return (isValidEmail() && !isDuplicated) ? <img src={check} /> : <img src={fail} />;
         }
     }
 
@@ -92,12 +105,21 @@ function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
         }
     }
     const showEmailErrorMessage = () => {
-        if (email !== "" && !isValidEmail()) {
-            return (
-                <span className="error-message">
-                    유효하지 않은 메일입니다.
-                </span>
-            )
+        if (email !== "") {
+            if (!isValidEmail()) {
+                return (
+                    <span className="error-message">
+                        유효하지 않은 메일입니다.
+                    </span>
+                )
+            }
+            else if (isDuplicated) {
+                return (
+                    <span className="error-message">
+                        중복된 메일입니다.
+                    </span>
+                )
+            }
         }
     }
     const showErrorVerificationCode = () => {
@@ -118,7 +140,10 @@ function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
                     type="text" 
                     value={email}
                     placeholder="이메일" 
-                    onChange={(e) => setEmail(e.target.value)} 
+                    onChange={(e) => {
+                        setEmail(e.target.value)
+                        useCheck(e.target.value)
+                    }} 
                     style={setEmailInputBoxBorder()}
                     icon={setEmailInputBoxIcon()}
                 />

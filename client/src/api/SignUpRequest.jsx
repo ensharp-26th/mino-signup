@@ -10,7 +10,7 @@ export const signUp = async (email, password, username, streetAddress, detailAdd
             streetAddress: streetAddress,
             detailAddress: detailAddress
         }
-    )
+    );
 
     return response.data;
 }
