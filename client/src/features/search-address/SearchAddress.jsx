@@ -28,8 +28,9 @@ function SearchAddress({ isOpened, setIsOpened }) {
             console.log(fullAddress);
         };
 
-        return <KakaoPostcodeEmbed onComplete={handleComplete("")} />;
+        return <KakaoPostcodeEmbed onComplete={handleComplete()} />;
     };
+    // useState cnrk
 
     return (
         <Modal className="search-address">

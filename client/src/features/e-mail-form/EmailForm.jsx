@@ -9,7 +9,7 @@ function EmailForm({ name }) {
     const [email, setEmail] = useState("");
 
     const VerificationCodeRequest = async() => {
-        const url = 'http://43.201.198.223:8080/api/v1/email-verification/request';
+        var url = '/api/v1/email-verification/request';
 
         try {
             const response = await axios.post(url, {
