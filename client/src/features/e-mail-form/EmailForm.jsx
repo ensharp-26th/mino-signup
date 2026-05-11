@@ -32,6 +32,9 @@ function EmailForm() {
         return emailRegex.test(email);
     }
 
+    const setInputBoxBorder = () => {
+        return isValidEmail() ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
+    }
     const setInputBoxIcon = () => {
         return isValidEmail() ? <img src={check} /> : <img src={fail} />;
     }
@@ -45,6 +48,7 @@ function EmailForm() {
                     value={email}
                     placeholder="이메일" 
                     onChange={(e) => setEmail(e.target.value)} 
+                    style={setInputBoxBorder()}
                     icon={setInputBoxIcon()}
                 />
                 <Button 
