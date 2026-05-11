@@ -13,6 +13,7 @@ import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
 function EmailForm() {
     const [email, setEmail] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
+    const [isRequested, setIsRequested] = useState(false);
 
     const request = async () => {
         try {
@@ -33,10 +34,26 @@ function EmailForm() {
     }
 
     const setInputBoxBorder = () => {
-        return isValidEmail() ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
+        if (email !== "") {
+            return isValidEmail() ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
+        }
     }
     const setInputBoxIcon = () => {
-        return isValidEmail() ? <img src={check} /> : <img src={fail} />;
+        if (email !== "") {
+            return isValidEmail() ? <img src={check} /> : <img src={fail} />;
+        }
+    }
+
+    const setButtonSytle = () => {
+        return isValidEmail() 
+            ? {
+                borderRadius: "10px"
+            } 
+            : { 
+                borderRadius: "10px",
+                background: "#E3E3E3",
+                border: "1px solid #E3E3E3"
+            }
     }
 
     return (
@@ -53,7 +70,7 @@ function EmailForm() {
                 />
                 <Button 
                     type="button" 
-                    style={{ borderRadius: "10px" }} 
+                    style={setButtonSytle()} 
                     onClick={request}
                     text="전송"
                 />
