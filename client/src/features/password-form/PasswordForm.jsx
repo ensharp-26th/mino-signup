@@ -5,10 +5,10 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import InputBox from "../../components/InputBox/InputBox";
 
-function PasswordForm({ password, setPassword }) {
+function PasswordForm({ password, setPassword, isPasswordVerified, setIsPasswordVerified }) {
     const [subPassword, setSubPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [showSubPassword, setShowSubPassword] = useState(false);
+    const [showSubPassword, setShowSubPassword] = useState(false)
 
     const isValidPassword = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]).{8,16}$/;
@@ -80,7 +80,10 @@ function PasswordForm({ password, setPassword }) {
                 type={subPasswordType}
                 value={subPassword}
                 placeholder="비밀번호 확인" 
-                onChange={(e) => setSubPassword(e.target.value)}
+                onChange={(e) => {
+                    setSubPassword(e.target.value)
+                    setIsPasswordVerified(password === e.target.value)
+                }}
                 style={setSubPasswordInputBoxBorder()}
                 icon={setSubPasswordInputBoxIcon()}
             />

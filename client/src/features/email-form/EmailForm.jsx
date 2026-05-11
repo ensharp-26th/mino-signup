@@ -10,11 +10,10 @@ import Button from '../../components/Button/Button';
 import { requestVerificationCode } from '../../api/VerificationCodeRequest';
 import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
 
-function EmailForm({ email, setEmail }) {
+function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
     const [verificationCode, setVerificationCode] = useState("");
     const [isSent, setIsSent] = useState(false);
     const [isResent, setIsResent] = useState(false);
-    const [isVerified, setIsVerified] = useState(false);
 
     const useRequest = async () => {
         try {
@@ -36,10 +35,10 @@ function EmailForm({ email, setEmail }) {
         try {
             const response = await confirmVerificationCode(email, code);
 
-            setIsVerified(true);
+            setIsEmailVerified(true);
             console.log(response);
         } catch (error) {
-            setIsVerified(false);
+            setIsEmailVerified(false);
             console.log(error);
         }
     }
@@ -102,7 +101,7 @@ function EmailForm({ email, setEmail }) {
         }
     }
     const showErrorVerificationCode = () => {
-        if (isSent && verificationCode !== "" && !isVerified) {
+        if (isSent && verificationCode !== "" && !isEmailVerified) {
             return (
                 <span className="error-message">
                     인증번호가 일치하지 않습니다.

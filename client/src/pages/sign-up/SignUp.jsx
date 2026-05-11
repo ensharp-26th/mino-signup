@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import Card from '../../components/Card/Card';
 import Header from  '../../components/Header/Header';
-import EmailForm from '../../features/e-mail-form/EmailForm';
+import EmailForm from '../../features/email-form/EmailForm';
 import PasswordForm from '../../features/password-form/PasswordForm';
 import UsernameForm from '../../features/username-form/UsernameForm';
 import AddressForm from '../../features/address-form/AddressForm';
@@ -19,6 +19,9 @@ function SignUp() {
     const [streetAddress, setStreetAddress] = useState("");
     const [detailAddress, setDetailAddress] = useState("");
 
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
+    const [isPasswordVerified, setIsPasswordVerified] = useState(false);
+
     const useRequest = async () => {
         try {
             const response = await signUp(email, password, username, streetAddress, detailAddress);
@@ -31,17 +34,28 @@ function SignUp() {
         }
     }
 
+    const isValidForms = () => {
+        return (
+            email !== "" &&
+            password !== "" &&
+            username !== "" &&
+            streetAddress !== "" &&
+            detailAddress !== "" &&
+            isEmailVerified && isPasswordVerified
+        );
+    }
+
     return (
         <Card>
             <Header text="회원가입" />
             <div className="forms">
-                <EmailForm email={email} setEmail={setEmail} />
-                <PasswordForm password={password} setPassword={setPassword} />
+                <EmailForm email={email} setEmail={setEmail} isEmailVerified={isEmailVerified} setIsEmailVerified={setIsEmailVerified} />
+                <PasswordForm password={password} setPassword={setPassword} isPasswordVerified={isPasswordVerified} setIsPasswordVerified={setIsPasswordVerified} />
                 <UsernameForm username={username} setUsername={setUsername} />
                 <AddressForm streetAddress={streetAddress} setStreetAddress={setStreetAddress} detailAddress={detailAddress} setDetailAddress={setDetailAddress} />
             </div>
             <Link className="to-sign-up-success" to="/sign-up/success">
-                <Button text="제출하기" onClick={useRequest}/>
+                <Button text="제출하기" onClick={useRequest} disabled={!isValidForms()} />
             </Link>
         </Card>
     );

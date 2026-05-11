@@ -2,7 +2,7 @@ import './FindPassword.css';
 
 import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
-import EmailForm from "../../features/e-mail-form/EmailForm";
+import EmailForm from "../../features/email-form/EmailForm";
 import Button from "../../components/Button/Button";
 import { Link } from 'react-router-dom';
 
