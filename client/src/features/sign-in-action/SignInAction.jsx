@@ -4,7 +4,15 @@ import { Link } from 'react-router-dom';
 
 import Button from "../../components/Button/Button";
 
-function SignInAction({ email, password, canLogin }) {
+function SignInAction({ email, password, canLogin, rememberEmail }) {
+    const saveEmail = () => {
+        if (rememberEmail) {
+            return (
+                localStorage.setItem("user", email)
+            );
+        }
+    }
+
     return(
         <div className="sign-in-action">
             <Link className="to-my-information" to="/my-information">

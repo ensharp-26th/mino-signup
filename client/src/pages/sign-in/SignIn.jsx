@@ -11,6 +11,7 @@ function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [canLogin, setCanLogin] = useState(false);
+    const [rememberEmail, setRememberEmail] = useState(false);
 
     useEffect(() => {
         const useRequest = async () => {
@@ -30,8 +31,8 @@ function SignIn() {
     return (
         <Card>
             <Header text="En# SignUp!!"/>
-            <SignInForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} canLogin={canLogin} />
-            <SignInAction email={email} password={password} canLogin={canLogin} />
+            <SignInForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} canLogin={canLogin} rememberEmail={rememberEmail} setRememberEmail={setRememberEmail} />
+            <SignInAction email={email} password={password} canLogin={canLogin} rememberEmail={rememberEmail} />
         </Card>
     );
 }
