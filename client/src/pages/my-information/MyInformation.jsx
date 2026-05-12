@@ -1,10 +1,11 @@
 import './MyInformation.css';
 
+import { Link } from 'react-router-dom';
+
 import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
 import UserInformation from "../../features/user-information/UserInformation";
 import Button from "../../components/Button/Button";
-import { Link } from 'react-router-dom';
 
 function MyInformation() {
     return (

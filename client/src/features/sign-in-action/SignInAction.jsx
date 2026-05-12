@@ -1,13 +1,22 @@
 import './SignInAction.css';
 
-import Button from "../../components/Button/Button";
 import { Link } from 'react-router-dom';
 
-function SignInAction() {
+import Button from "../../components/Button/Button";
+
+function SignInAction({ email, password, canLogin, rememberEmail }) {
+    const saveEmail = () => {
+        if (rememberEmail) {
+            return (
+                localStorage.setItem("user", email)
+            );
+        }
+    }
+
     return(
         <div className="sign-in-action">
             <Link className="to-my-information" to="/my-information">
-                <Button text="Login"/>
+                <Button text="Login" disabled={!canLogin} />
             </Link>
             <span className="sign-up-suggest">
                 계정이 없으신가요? <Link className="to-sign-up" to="/sign-up">회원가입</Link>
