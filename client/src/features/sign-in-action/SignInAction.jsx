@@ -1,30 +1,10 @@
 import './SignInAction.css';
 
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from "../../components/Button/Button";
 
-import { login } from '../../api/LoginRequest';
-
-function SignInAction({ email, password }) {
-    const [canLogin, setCanLogin] = useState(false);
-
-    useEffect(() => {
-        const useRequest = async () => {
-            try {
-                const response = await login(email, password);
-                
-                console.log(response);
-                setCanLogin(true);
-            } catch (error) {
-                console.log(error)
-                setCanLogin(false);
-            }
-        }
-        useRequest();
-    });
-
+function SignInAction({ email, password, canLogin }) {
     return(
         <div className="sign-in-action">
             <Link className="to-my-information" to="/my-information">

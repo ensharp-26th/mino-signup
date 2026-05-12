@@ -6,7 +6,7 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import InputBox from "../../components/InputBox/InputBox";
 
-function SignInForm({ email, setEmail, password, setPassword }) {
+function SignInForm({ email, setEmail, password, setPassword, canLogin }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const setPasswordInputBoxIcon = () => {
@@ -23,6 +23,16 @@ function SignInForm({ email, setEmail, password, setPassword }) {
     }
 
     const passwordType = showPassword ? "text" : "password";
+    
+    const showErrorInvalidAccount = () => {
+        if (email !== "" && password !== "" && !canLogin) {
+            return (
+                <span className="error-message">
+                    이메일 주소가 정확한지 확인해 주세요.
+                </span>
+            )
+        }
+    }
 
     return(
         <div className="sign-in-form">
@@ -40,6 +50,7 @@ function SignInForm({ email, setEmail, password, setPassword }) {
                 onChange={(e) => setPassword(e.target.value)}
                 icon={setPasswordInputBoxIcon()}
             />
+            {showErrorInvalidAccount()}
             <span className="form-action">
                 <span className="remember-id">
                     <label>

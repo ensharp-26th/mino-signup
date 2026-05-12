@@ -36,3 +36,9 @@
     text-decoration-skip-ink: auto;
     color: #888888;
 }
+
+.error-message {
+    font-weight: 400;
+    font-size: 13px;
+    color: #EE4346;
+}
