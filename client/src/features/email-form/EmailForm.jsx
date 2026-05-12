@@ -11,7 +11,7 @@ import { requestVerificationCode } from '../../api/VerificationCodeRequest';
 import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
 import { checkEmail } from '../../api/CheckEmailRequest';
 
-function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
+function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified }) {
     const [verificationCode, setVerificationCode] = useState("");
     const [isSent, setIsSent] = useState(false);
     const [isResent, setIsResent] = useState(false);
@@ -51,7 +51,9 @@ function EmailForm({ email, setEmail, isEmailVerified, setIsEmailVerified }) {
             setIsDuplicated(false);
             console.log(response);
         } catch (error) {
-            setIsDuplicated(true);
+            if (type === "sign-up") {
+                setIsDuplicated(true);
+            }
             console.log(error);
         }
     }
