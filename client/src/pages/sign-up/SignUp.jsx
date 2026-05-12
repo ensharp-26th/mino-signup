@@ -50,7 +50,7 @@ function SignUp() {
         <Card>
             <Header text="회원가입" />
             <div className="forms">
-                <EmailForm email={email} setEmail={setEmail} isEmailVerified={isEmailVerified} setIsEmailVerified={setIsEmailVerified} />
+                <EmailForm type="sign-up" email={email} setEmail={setEmail} isEmailVerified={isEmailVerified} setIsEmailVerified={setIsEmailVerified} />
                 <PasswordForm password={password} setPassword={setPassword} isPasswordVerified={isPasswordVerified} setIsPasswordVerified={setIsPasswordVerified} />
                 <UsernameForm username={username} setUsername={setUsername} />
                 <AddressForm streetAddress={streetAddress} setStreetAddress={setStreetAddress} detailAddress={detailAddress} setDetailAddress={setDetailAddress} />

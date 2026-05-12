@@ -1,6 +1,6 @@
 import api from './Api';
 
-export const changePassword = (email, password) => {
+export const changePassword = async (email, password) => {
     const response = await api.patch(
         '/api/v1/auth/password',
         {
