@@ -10,11 +10,16 @@ function SignInForm({ email, setEmail, password, setPassword }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const setPasswordInputBoxIcon = () => {
-        return (
-            <span onClick={() => setShowPassword(!showPassword)}>
-                { showPassword ? <FaEye /> : <FaEyeSlash /> }
-            </span>
-        );
+        if (password === "") {
+            return <FaLock />
+        }
+        else {
+            return (
+                <span onClick={() => setShowPassword(!showPassword)}>
+                    { showPassword ? <FaEye /> : <FaEyeSlash /> }
+                </span>
+            );
+        }
     }
 
     const passwordType = showPassword ? "text" : "password";
