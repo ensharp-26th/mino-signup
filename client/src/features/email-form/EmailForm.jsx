@@ -3,8 +3,8 @@ import './EmailForm.css';
 import { useState } from 'react';
 
 import InputBox from '../../components/InputBox/InputBox';
-import check from '../../assets/check.png';
-import fail from '../../assets/fail.png';
+import ValidationCheck from '../../assets/ValidationCheck.png';
+import ValidationFail from '../../assets/ValidationFail.png';
 import Button from '../../components/Button/Button';
 
 import { requestVerificationCode } from '../../api/VerificationCodeRequest';
@@ -70,7 +70,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
     }
     const setEmailInputBoxIcon = () => {
         if (email !== "") {
-            return (isValidEmail() && !isDuplicated) ? <img src={check} /> : <img src={fail} />;
+            return (isValidEmail() && !isDuplicated) ? <img src={ValidationCheck} /> : <img src={ValidationFail} />;
         }
     }
 

@@ -61,5 +61,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-// API의 결과에 상관없이 성공이라고 뜸
