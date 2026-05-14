@@ -1,6 +1,9 @@
 import './UserInformation.css';
 
-function UserInformation() {
+import { getUserInfo } from '../../api/UserInfoResponse';
+
+function UserInformation({ email }) {
+
     return (
         <div className="user-information">
             <div className="show-name">
@@ -13,7 +16,7 @@ function UserInformation() {
             </div>
             <div className="show-address">
                 <span className="header-address">주소</span>
-                <span className="user-address">인천광역시 영종구 중산동 하늘별빛로 86</span>
+                <span className="user-address">영종도</span>
             </div>
         </div>
     );

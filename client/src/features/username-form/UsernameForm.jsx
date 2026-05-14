@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import InputBox from '../../components/InputBox/InputBox';
 
-function NameForm({ username, setUsername }) {
+function UsernameForm({ username, setUsername }) {
     return (
         <div className="username-form">
             <legend>이름</legend>
@@ -18,4 +18,4 @@ function NameForm({ username, setUsername }) {
     );
 }
 
-export default NameForm;
+export default UsernameForm;

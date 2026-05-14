@@ -28,10 +28,8 @@ function SignUp() {
             const response = await signUp(email, password, username, streetAddress, detailAddress);
                 
             console.log(response);
-            alert('회원가입에 성공했습니다.');
         } catch (error) {
             console.log(error)
-            alert('회원가입에 실패했습니다.');
         }
     }
 
@@ -63,3 +61,5 @@ function SignUp() {
 }
 
 export default SignUp;
+
+// API의 결과에 상관없이 성공이라고 뜸
