@@ -13,7 +13,7 @@ function SignInAction({ email, password, canLogin, rememberEmail }) {
 
     return(
         <div className="sign-in-action">
-            <Link className="to-my-information" to="/my-information">
+            <Link className="to-my-information" to="/my-information" state={email}>
                 <Button text="Login" onClick={saveEmail()} disabled={!canLogin} />
             </Link>
             <span className="sign-up-suggest">
