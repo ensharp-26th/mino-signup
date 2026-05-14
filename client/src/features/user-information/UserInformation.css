@@ -11,6 +11,7 @@
 }
 
 .header-name {
+    white-space: nowrap;
     font-family: "Pretendard Variable";
     font-weight: 300;
     font-size: 20px;
@@ -26,13 +27,14 @@
     letter-spacing: -0.04em;
 }
 
-.show-e-mail {
+.show-email {
     display: flex;
     flex-direction: row;
     gap: 12px;
 }
 
-.header-e-mail {
+.header-email {
+    white-space: nowrap;
     font-family: "Pretendard Variable";
     font-weight: 300;
     font-size: 20px;
@@ -40,7 +42,7 @@
     letter-spacing: -0.04em;
 }
 
-.user-e-mail {
+.user-email {
     font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 20px;
@@ -56,6 +58,7 @@
 }
 
 .header-address {
+    white-space: nowrap;
     font-family: "Pretendard Variable";
     font-weight: 300;
     font-size: 20px;
