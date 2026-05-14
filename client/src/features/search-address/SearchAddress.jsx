@@ -3,11 +3,7 @@ import KakaoPostcodeEmbed from 'react-daum-postcode';
 import Modal from '../../components/Modal/Modal';
 import Button from '../../components/Button/Button';
 
-function SearchAddress({ showModal, setShowModal, setStreetAddress }) {
-    const setSearchAddressModal = () => {
-        setShowModal(!showModal);
-    }
-
+function SearchAddress({ showAddressModal, setShowAddressModal, setStreetAddress }) {
     const Postcode = () => {
         const handleComplete = (data) => {
             let fullAddress = data.address;
@@ -33,7 +29,7 @@ function SearchAddress({ showModal, setShowModal, setStreetAddress }) {
     return (
         <Modal className="search-address">
             {Postcode()}
-            <Button type="button" onClick={setSearchAddressModal} text="제출하기"/>
+            <Button type="button" onClick={() => setShowAddressModal(!showAddressModal)} text="제출하기"/>
         </Modal>
     );
 }
