@@ -1,0 +1,29 @@
+.sign-in-action {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 16px;
+}
+
+.to-my-information {
+    text-decoration: none;
+}
+
+.sign-up-suggest {
+    width: 416px;
+    height: 19px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: #777777;
+}
+
+.to-sign-up {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    text-decoration-skip-ink: auto;
+    color: #333333;
+}

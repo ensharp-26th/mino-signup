@@ -1,0 +1,26 @@
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 20px;
+    color: #222222;
+}
+
+.email-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.success-message {
+    font-weight: 400;
+    font-size: 13px;
+    color: #435DEE;
+}
+
+.error-message {
+    font-weight: 400;
+    font-size: 13px;
+    color: #EE4346;
+}

@@ -1,0 +1,56 @@
+.user-information {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.show-name {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.header-name {
+    white-space: nowrap;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.show-email {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.header-email {
+    white-space: nowrap;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.user-email {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.show-address {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.header-address {
+    white-space: nowrap;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.user-address {
+    font-weight: 500;
+    font-size: 20px;
+}

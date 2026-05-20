@@ -1,0 +1,40 @@
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 16px;
+}
+
+.form-action {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+}
+
+.remember-id {
+    width: auto;
+    height: auto;
+    gap: 4px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #222222;
+}
+
+.to-find-password {
+    width: auto;
+    height: auto;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    text-decoration-skip-ink: auto;
+    color: #888888;
+}
+
+.error-message {
+    font-weight: 400;
+    font-size: 13px;
+    color: #EE4346;
+}

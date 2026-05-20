@@ -7,9 +7,6 @@ import jakarta.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -42,10 +39,6 @@ public class User {
         this.detailAddress = detailAddress;
     }
 
-    public Long getId() {
-        return this.id;
-    }
-
     public String getEmail() {
         return this.email;
     }
@@ -60,9 +53,5 @@ public class User {
 
     public String getDetailAddress() {
         return this.detailAddress;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
