@@ -6,7 +6,7 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import InputBox from '../../../../components/InputBox/InputBox';
 
-function SignInForm({ email, setEmail, password, setPassword, canLogin, rememberEmail, setRememberEmail }) {
+function LoginForm({ email, setEmail, password, setPassword, canLogin, rememberEmail, setRememberEmail }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const setPasswordInputBoxIcon = () => {
@@ -35,7 +35,7 @@ function SignInForm({ email, setEmail, password, setPassword, canLogin, remember
     }
 
     return(
-        <div className="sign-in-form">
+        <div className="login-form">
             <InputBox
                 type="text" 
                 value={email} 
@@ -53,13 +53,11 @@ function SignInForm({ email, setEmail, password, setPassword, canLogin, remember
             {showErrorInvalidAccount()}
             <span className="form-action">
                 <span className="remember-id">
-                    <label>
-                        <input 
-                            type="checkbox"
-                            checked={rememberEmail}
-                            onChange={(e) => setRememberEmail(e.target.checked)}
-                        />아이디 저장
-                    </label>
+                    <input 
+                        type="checkbox"
+                        checked={rememberEmail}
+                        onChange={(e) => setRememberEmail(e.target.checked)}
+                    />아이디 저장
                 </span>
                 <Link className="to-find-password" to="/find-password">비밀번호 찾기</Link>
             </span>
@@ -67,4 +65,4 @@ function SignInForm({ email, setEmail, password, setPassword, canLogin, remember
     );
 }
 
-export default SignInForm;
+export default LoginForm;

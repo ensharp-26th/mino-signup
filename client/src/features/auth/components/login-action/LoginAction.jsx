@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Button from '../../../../components/Button/Button';
 
-function SignInAction({ email, password, canLogin, rememberEmail }) {
+function LoginAction({ email, password, canLogin, rememberEmail }) {
     const saveEmail = () => {
         if (canLogin && rememberEmail) {
             localStorage.setItem("email", email);
@@ -12,7 +12,7 @@ function SignInAction({ email, password, canLogin, rememberEmail }) {
     }
 
     return(
-        <div className="sign-in-action">
+        <div className="login-action">
             <Link className="to-my-information" to="/my-information" state={email}>
                 <Button text="Login" onClick={saveEmail()} disabled={!canLogin} />
             </Link>
@@ -23,4 +23,4 @@ function SignInAction({ email, password, canLogin, rememberEmail }) {
     );
 }
 
-export default SignInAction;
+export default LoginAction;

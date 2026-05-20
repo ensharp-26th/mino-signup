@@ -67,7 +67,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
 
     return (
         <div className="password-form">
-            <legend>비밀번호</legend>
+            <label>비밀번호</label>
             <InputBox
                 type={passwordType}
                 value={password}

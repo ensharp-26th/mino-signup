@@ -7,7 +7,7 @@ import InputBox from '../../../../components/InputBox/InputBox';
 function UsernameForm({ username, setUsername }) {
     return (
         <div className="username-form">
-            <legend>이름</legend>
+            <label>이름</label>
             <InputBox 
                 type="text" 
                 value={username} 
