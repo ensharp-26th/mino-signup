@@ -8,7 +8,7 @@ import FindPasswordPage from '../pages/public/find-password/FindPasswordPage';
 function PrivateRouter() {
     return (
         <Routes>
-            <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/" element={<LoginPage />}></Route>
             <Route path="/sign-up" element={<SignUpPage />}></Route>
             <Route path="/sign-up/success" element={<SignUpSuccessPage />}></Route>
             <Route path="/find-password" element={<FindPasswordPage />}></Route>

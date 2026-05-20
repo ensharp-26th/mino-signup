@@ -21,6 +21,7 @@ function AddressSearchingModal({ showAddressModal, setShowAddressModal, setStree
 
             console.log(fullAddress);
             setStreetAddress(fullAddress);
+            setShowAddressModal(!showAddressModal);
         };
 
         return <KakaoPostcodeEmbed onComplete={handleComplete} />;
@@ -28,7 +29,7 @@ function AddressSearchingModal({ showAddressModal, setShowAddressModal, setStree
 
     return (
         <Modal className="search-address">
-            {Postcode()}
+            <Postcode />
             <Button type="button" onClick={() => setShowAddressModal(!showAddressModal)} text="제출하기"/>
         </Modal>
     );
