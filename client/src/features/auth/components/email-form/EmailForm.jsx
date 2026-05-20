@@ -75,6 +75,12 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
         }
     }
 
+    const setVerificationCodeInputBoxBorder = () => {
+        if (isSent && verificationCode !== "") {
+            return (isEmailVerified) ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
+        }
+    }
+
     const setButtonSytle = () => {
         return (isValidEmail && !isDuplicated)
             ? {
@@ -174,6 +180,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                     setVerificationCode(e.target.value);
                 }}
                 onBlur={() => useConfirm(verificationCode)}
+                style={setVerificationCodeInputBoxBorder()}
             />
             {showEmailErrorMessage()}
             {showSentMessage()}
