@@ -31,7 +31,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
         return subPassword === password;
     }
     const setSubPasswordInputBoxBorder = () => {
-        if (password !== "") {
+        if (subPassword !== "" && isValidPassword()) {
             return isValidSubPassword() ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
         }
     }
@@ -56,7 +56,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
         }
     }
     const showErrorInvalidSubPassword = () => {
-        if (password !== "" && !isValidSubPassword()) {
+        if (isValidPassword() && !isValidSubPassword()) {
             return (
                 <span className="password-error-message">
                     비밀번호가 일치하지 않습니다.
