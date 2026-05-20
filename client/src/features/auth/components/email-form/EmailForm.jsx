@@ -28,10 +28,8 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
             setIsSent(true);
             
             console.log(response);
-            alert('인증번호 전송에 성공했습니다.');
         } catch (error) {
             console.log(error)
-            alert('인증번호 전송에 실패했습니다.');
         }
     }
     const useConfirm = async (code) => {
@@ -156,6 +154,9 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                     style={setButtonSytle()} 
                     onClick={() => {
                         useCheck(email)
+                        if (isValidEmail && !isDuplicated) {
+                            useRequest()
+                        }
                     }}
                     disabled={!isValidEmail || isDuplicated}
                     text={setButtonText()}
