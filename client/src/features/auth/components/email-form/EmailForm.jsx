@@ -24,11 +24,15 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
 
             setIsDuplicated(false);
             console.log(response);
+
+            return false;
         } catch (error) {
             if (type === "sign-up") {
                 setIsDuplicated(true);
             }
             console.log(error);
+
+            return true;
         }
     }
 
@@ -170,9 +174,9 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                 <Button
                     type="button"
                     style={setButtonSytle()}
-                    onClick={() => {
-                        useCheck(email)
-                        if (isValidEmail && !isDuplicated) {
+                    onClick={async () => {
+                        const temp = await useCheck(email)
+                        if (isValidEmail && !temp) {
                             useRequest()
                         }
                     }}
