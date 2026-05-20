@@ -49,7 +49,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
     const showErrorInvalidPassword = () => {
         if (password !== "" && !isValidPassword()) {
             return (
-                <span className="error-message">
+                <span className="password-error-message">
                     8~16자의 영문 대/소문자, 숫자, 특수문자
                 </span>
             );
@@ -58,7 +58,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
     const showErrorInvalidSubPassword = () => {
         if (password !== "" && !isValidSubPassword()) {
             return (
-                <span className="error-message">
+                <span className="password-error-message">
                     비밀번호가 일치하지 않습니다.
                 </span>
             );

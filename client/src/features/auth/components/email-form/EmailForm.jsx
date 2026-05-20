@@ -110,14 +110,14 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
         if (email !== "") {
             if (!isValidEmail()) {
                 return (
-                    <span className="error-message">
+                    <span className="email-error-message">
                         유효하지 않은 메일입니다.
                     </span>
                 )
             }
             else if (isDuplicated) {
                 return (
-                    <span className="error-message">
+                    <span className="email-error-message">
                         중복된 메일입니다.
                     </span>
                 )
@@ -127,7 +127,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
     const showErrorVerificationCode = () => {
         if (isSent && verificationCode !== "" && !isEmailVerified) {
             return (
-                <span className="error-message">
+                <span className="email-error-message">
                     인증번호가 일치하지 않습니다.
                 </span>
             );
