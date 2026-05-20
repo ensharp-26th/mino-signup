@@ -1,15 +1,31 @@
 import './App.css';
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import PublicRouter from './PublicRouter';
-import PrivateRouter from './PrivateRouter';
+import LoginPage from '../pages/public/login/LoginPage';
+import SignUpPage from '../pages/public/sign-up/SignUpPage';
+import SignUpSuccessPage from '../pages/public/sign-up/SignUpSuccessPage';
+import FindPasswordPage from '../pages/public/find-password/FindPasswordPage';
+
+import MyInformationPage from '../pages/private/my-information/MyInformationPage';
+import ResetPasswordPage from '../pages/private/reset-password/ResetPasswordPage';
+import ResetPasswordSuccessPage from '../pages/private/reset-password/ResetPasswordSuccessPage';
 
 function App() {
   return (
     <BrowserRouter>
-    <PublicRouter />
-    <PrivateRouter />
+      <Routes>
+        {/* public router */}
+        <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/sign-up" element={<SignUpPage />}></Route>
+        <Route path="/sign-up/success" element={<SignUpSuccessPage />}></Route>
+        <Route path="/find-password" element={<FindPasswordPage />}></Route>
+
+        {/* private router */}
+        <Route path="/my-information" element={<MyInformationPage />}></Route>
+        <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
+        <Route path="/reset-password/success" element={<ResetPasswordSuccessPage />}></Route>
+      </Routes>
     </BrowserRouter>
   )
 }
