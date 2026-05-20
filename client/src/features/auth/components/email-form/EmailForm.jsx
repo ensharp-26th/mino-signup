@@ -166,6 +166,8 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                     onChange={(e) => {
                         setEmail(e.target.value)
                         checkEmailRegex(e.target.value);
+                        setIsSent(false);
+                        setIsResent(false);
                         setIsDuplicated(false);
                     }}
                     style={setEmailInputBoxBorder()}
@@ -175,9 +177,9 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                     type="button"
                     style={setButtonSytle()}
                     onClick={async () => {
-                        const temp = await useCheck(email)
+                        const temp = await useCheck(email);
                         if (isValidEmail && !temp) {
-                            useRequest()
+                            useRequest();
                         }
                     }}
                     disabled={!isValidEmail || isDuplicated}
