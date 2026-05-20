@@ -8,7 +8,16 @@ import LoginAction from '../../../features/auth/components/login-action/LoginAct
 import { login } from '../../../features/auth/services/LoginRequest';
 
 function LoginPage() {
-    const startEmail = localStorage.getItem('email');
+    const getEmail = () => {
+        if (localStorage.getItem('email') === null) {
+            return "";
+        }
+        else {
+            return localStorage.getItem('email');
+        }
+    }
+
+    const startEmail = getEmail();
 
     const [email, setEmail] = useState(startEmail);
     const [password, setPassword] = useState("");
