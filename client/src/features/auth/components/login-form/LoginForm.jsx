@@ -6,7 +6,7 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import InputBox from '../../../../components/InputBox/InputBox';
 
-function SignInForm({ email, setEmail, password, setPassword, canLogin, rememberEmail, setRememberEmail }) {
+function LoginForm({ email, setEmail, password, setPassword, canLogin, setCanLogin, rememberEmail, setRememberEmail }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const setPasswordInputBoxIcon = () => {
@@ -27,39 +27,37 @@ function SignInForm({ email, setEmail, password, setPassword, canLogin, remember
     const showErrorInvalidAccount = () => {
         if (email !== "" && password !== "" && !canLogin) {
             return (
-                <span className="error-message">
-                    이메일 주소가 정확한지 확인해 주세요.
+                <span className="login-error-message">
+                    이메일 또는 비밀번호가 올바르지 않습니다.
                 </span>
             )
         }
     }
 
     return(
-        <div className="sign-in-form">
+        <div className="login-form">
             <InputBox
                 type="text" 
                 value={email} 
                 placeholder="E-mail"
-                onChange={(e) => setEmail(e.target.value)} 
+                onChange={(e) => {setEmail(e.target.value); setCanLogin(true);}} 
                 icon={<FaEnvelope />}
             />
             <InputBox 
                 type={passwordType}
                 value={password} 
                 placeholder="Password" 
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {setPassword(e.target.value); setCanLogin(true);}}
                 icon={setPasswordInputBoxIcon()}
             />
             {showErrorInvalidAccount()}
             <span className="form-action">
                 <span className="remember-id">
-                    <label>
-                        <input 
-                            type="checkbox"
-                            checked={rememberEmail}
-                            onChange={(e) => setRememberEmail(e.target.checked)}
-                        />아이디 저장
-                    </label>
+                    <input 
+                        type="checkbox"
+                        checked={rememberEmail}
+                        onChange={(e) => setRememberEmail(e.target.checked)}
+                    />아이디 저장
                 </span>
                 <Link className="to-find-password" to="/find-password">비밀번호 찾기</Link>
             </span>
@@ -67,4 +65,4 @@ function SignInForm({ email, setEmail, password, setPassword, canLogin, remember
     );
 }
 
-export default SignInForm;
+export default LoginForm;

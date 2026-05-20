@@ -8,6 +8,7 @@ function InputBox({
     readOnly,
     onChange, 
     onFocus, 
+    onBlur,
     style, 
     icon 
 }) {
@@ -22,6 +23,7 @@ function InputBox({
                 readOnly={readOnly}
                 onChange={onChange}
                 onFocus={onFocus}
+                onBlur={onBlur}
             />
             <span className="input-box-icon">
                 {icon}

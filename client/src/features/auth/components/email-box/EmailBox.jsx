@@ -5,7 +5,7 @@ import InputBox from '../../../../components/InputBox/InputBox';
 function EmailBox({ email }) {
     return (
         <div className="email-box">
-            <legend>이메일</legend>
+            <label>이메일</label>
             <InputBox type="text" value={email} readOnly={true} style={{ borderRadius: "10px" }}/>
         </div>
     );

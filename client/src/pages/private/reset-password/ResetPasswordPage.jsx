@@ -1,7 +1,7 @@
 import './ResetPasswordPage.css';
 
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Card from '../../../components/Card/Card';
 import Header from '../../../components/Header/Header';
@@ -12,6 +12,8 @@ import Button from '../../../components/Button/Button';
 import { changePassword } from '../../../features/auth/services/ChangePasswordRequest';
 
 function ResetPasswordPage() {
+    const navigateResetPassword = useNavigate();
+
     const location = useLocation();
     const obj = location.state;
     const emailJSON = JSON.stringify(obj);
@@ -25,6 +27,7 @@ function ResetPasswordPage() {
             const response = await changePassword(email, password);
 
             console.log(response);
+            navigateResetPassword('/');
         } catch (error) {
             console.log(error)
         }
@@ -35,9 +38,7 @@ function ResetPasswordPage() {
             <Header text="비밀번호 재설정" />
             <EmailBox email={email} />
             <PasswordForm password={password} setPassword={setPassword} isPasswordVerified={isPasswordVerified} setIsPasswordVerified={setIsPasswordVerified} />
-            <Link className="to-success" to="/reset-password/success">
-                <Button text="재설정" onClick={useRequest()} disabled={!isPasswordVerified} />
-            </Link>
+            <Button text="재설정" onClick={() => useRequest()} disabled={!isPasswordVerified} />
         </Card>
     );
 }

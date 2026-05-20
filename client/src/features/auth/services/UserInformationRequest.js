@@ -1,6 +1,6 @@
 import api from './AuthApi';
 
-export const getUserInfo = async (email) => {
+export const getUserInformation = async (email) => {
     const response = await api.get(
         '/api/v1/auth/me',
         { params: 

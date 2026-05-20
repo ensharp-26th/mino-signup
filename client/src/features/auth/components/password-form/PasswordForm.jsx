@@ -31,7 +31,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
         return subPassword === password;
     }
     const setSubPasswordInputBoxBorder = () => {
-        if (password !== "") {
+        if (subPassword !== "" && isValidPassword()) {
             return isValidSubPassword() ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
         }
     }
@@ -49,16 +49,16 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
     const showErrorInvalidPassword = () => {
         if (password !== "" && !isValidPassword()) {
             return (
-                <span className="error-message">
+                <span className="password-error-message">
                     8~16자의 영문 대/소문자, 숫자, 특수문자
                 </span>
             );
         }
     }
     const showErrorInvalidSubPassword = () => {
-        if (password !== "" && !isValidSubPassword()) {
+        if (isValidPassword() && !isValidSubPassword()) {
             return (
-                <span className="error-message">
+                <span className="password-error-message">
                     비밀번호가 일치하지 않습니다.
                 </span>
             );
@@ -67,7 +67,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
 
     return (
         <div className="password-form">
-            <legend>비밀번호</legend>
+            <label>비밀번호</label>
             <InputBox
                 type={passwordType}
                 value={password}
@@ -82,7 +82,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
                 placeholder="비밀번호 확인" 
                 onChange={(e) => {
                     setSubPassword(e.target.value)
-                    setIsPasswordVerified(password === e.target.value)
+                    setIsPasswordVerified(isValidPassword() && password === e.target.value)
                 }}
                 style={setSubPasswordInputBoxBorder()}
                 icon={setSubPasswordInputBoxIcon()}

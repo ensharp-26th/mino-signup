@@ -1,4 +1,4 @@
-.sign-in-form {
+.login-form {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -33,7 +33,7 @@
     color: #888888;
 }
 
-.error-message {
+.login-error-message {
     font-weight: 400;
     font-size: 13px;
     color: #EE4346;

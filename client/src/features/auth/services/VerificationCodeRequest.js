@@ -1,6 +1,6 @@
 import api from './AuthApi';
 
-export const requestVerificationCode = async (email) => {
+export const sendVerificationCode = async (email) => {
     const response = await api.post(
         '/api/v1/email-verification/request',
         { 

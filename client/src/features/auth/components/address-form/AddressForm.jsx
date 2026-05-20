@@ -10,7 +10,7 @@ function AddressForm({ streetAddress, setStreetAddress, detailAddress, setDetail
 
     return(
         <div className="address-form">
-            <legend>주소</legend>
+            <label>주소</label>
             <InputBox type="text" value={streetAddress} placeholder="클릭하여 주소 검색" readOnly={true} onFocus={() => setShowAddressModal(true)}/>
             {showAddressModal && (<AddressSearchingModal showAddressModal={showAddressModal} setShowAddressModal={setShowAddressModal} setStreetAddress={setStreetAddress} />)}
             <InputBox type="text" value={detailAddress} placeholder="상세주소" onChange={(e) => setDetailAddress(e.target.value)} />
