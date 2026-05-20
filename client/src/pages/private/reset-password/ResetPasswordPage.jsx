@@ -36,7 +36,7 @@ function ResetPasswordPage() {
             <EmailBox email={email} />
             <PasswordForm password={password} setPassword={setPassword} isPasswordVerified={isPasswordVerified} setIsPasswordVerified={setIsPasswordVerified} />
             <Link className="to-success" to="/reset-password/success">
-                <Button text="재설정" onClick={useRequest()} disabled={!isPasswordVerified} />
+                <Button text="재설정" onClick={() => useRequest()} disabled={!isPasswordVerified} />
             </Link>
         </Card>
     );
