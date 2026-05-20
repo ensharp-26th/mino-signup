@@ -23,14 +23,14 @@ function SignUpPage() {
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [isPasswordVerified, setIsPasswordVerified] = useState(false);
 
-    const navigate = useNavigate();
+    const navigateSignUp = useNavigate();
 
     const useRequest = async () => {
         try {
             const response = await signUp(email, password, username, streetAddress, detailAddress);
                 
             console.log(response);
-            navigate("/sign-up/success");
+            navigateSignUp("/sign-up/success");
         } catch (error) {
             console.log(error)
         }

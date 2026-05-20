@@ -177,9 +177,16 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                     type="button"
                     style={setButtonSytle()}
                     onClick={async () => {
-                        const temp = await useCheck(email);
-                        if (isValidEmail && !temp) {
-                            useRequest();
+                        if (type === "sign-up") {
+                            const temp = await useCheck(email);
+                            if (isValidEmail && !temp) {
+                                useRequest();
+                            }
+                        }
+                        else if (type === "find-password") {
+                            if (isValidEmail) {
+                                useRequest();
+                            }
                         }
                     }}
                     disabled={!isValidEmail || isDuplicated}

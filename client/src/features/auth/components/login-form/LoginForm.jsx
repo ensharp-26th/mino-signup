@@ -6,7 +6,7 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import InputBox from '../../../../components/InputBox/InputBox';
 
-function LoginForm({ email, setEmail, password, setPassword, canLogin, rememberEmail, setRememberEmail }) {
+function LoginForm({ email, setEmail, password, setPassword, canLogin, setCanLogin, rememberEmail, setRememberEmail }) {
     const [showPassword, setShowPassword] = useState(false);
 
     const setPasswordInputBoxIcon = () => {
@@ -27,8 +27,8 @@ function LoginForm({ email, setEmail, password, setPassword, canLogin, rememberE
     const showErrorInvalidAccount = () => {
         if (email !== "" && password !== "" && !canLogin) {
             return (
-                <span className="error-message">
-                    이메일 주소가 정확한지 확인해 주세요.
+                <span className="login-error-message">
+                    이메일 또는 비밀번호가 올바르지 않습니다.
                 </span>
             )
         }
@@ -40,14 +40,14 @@ function LoginForm({ email, setEmail, password, setPassword, canLogin, rememberE
                 type="text" 
                 value={email} 
                 placeholder="E-mail"
-                onChange={(e) => setEmail(e.target.value)} 
+                onChange={(e) => {setEmail(e.target.value); setCanLogin(true);}} 
                 icon={<FaEnvelope />}
             />
             <InputBox 
                 type={passwordType}
                 value={password} 
                 placeholder="Password" 
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {setPassword(e.target.value); setCanLogin(true);}}
                 icon={setPasswordInputBoxIcon()}
             />
             {showErrorInvalidAccount()}
