@@ -82,7 +82,7 @@ function PasswordForm({ password, setPassword, isPasswordVerified, setIsPassword
                 placeholder="비밀번호 확인" 
                 onChange={(e) => {
                     setSubPassword(e.target.value)
-                    setIsPasswordVerified(password === e.target.value)
+                    setIsPasswordVerified(isValidPassword() && password === e.target.value)
                 }}
                 style={setSubPasswordInputBoxBorder()}
                 icon={setSubPasswordInputBoxIcon()}

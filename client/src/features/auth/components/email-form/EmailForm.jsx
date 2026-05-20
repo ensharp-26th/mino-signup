@@ -15,6 +15,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
     const [verificationCode, setVerificationCode] = useState("");
     const [isSent, setIsSent] = useState(false);
     const [isResent, setIsResent] = useState(false);
+    const [isValidEmail, setIsValidEmail] = useState(false);
     const [isDuplicated, setIsDuplicated] = useState(false);
 
     const useRequest = async () => {
@@ -58,24 +59,24 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
         }
     }
 
-    const isValidEmail = () => {
+    const checkEmailRegex = () => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailRegex.test(email);
+        setIsValidEmail(emailRegex.test(email));
     }
 
     const setEmailInputBoxBorder = () => {
         if (email !== "") {
-            return (isValidEmail() && !isDuplicated) ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
+            return (isValidEmail && !isDuplicated) ? { border: "1px solid #435DEEA6" } : { border: "1px solid #EE4346A6" }
         }
     }
     const setEmailInputBoxIcon = () => {
         if (email !== "") {
-            return (isValidEmail() && !isDuplicated) ? <img src={ValidationCheck} /> : <img src={ValidationFail} />;
+            return (isValidEmail && !isDuplicated) ? <img src={ValidationCheck} /> : <img src={ValidationFail} />;
         }
     }
 
     const setButtonSytle = () => {
-        return (isValidEmail() && !isDuplicated)
+        return (isValidEmail && !isDuplicated)
             ? {
                 borderRadius: "10px"
             } 
@@ -108,7 +109,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
     }
     const showEmailErrorMessage = () => {
         if (email !== "") {
-            if (!isValidEmail()) {
+            if (!isValidEmail) {
                 return (
                     <span className="email-error-message">
                         유효하지 않은 메일입니다.
@@ -144,7 +145,8 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                     placeholder="이메일" 
                     onChange={(e) => {
                         setEmail(e.target.value)
-                        useCheck(e.target.value)
+                        checkEmailRegex();
+                        setIsDuplicated(false);
                     }} 
                     style={setEmailInputBoxBorder()}
                     icon={setEmailInputBoxIcon()}
@@ -152,8 +154,10 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                 <Button 
                     type="button" 
                     style={setButtonSytle()} 
-                    onClick={useRequest}
-                    disabled={!isValidEmail() || isDuplicated}
+                    onClick={() => {
+                        useCheck(email)
+                    }}
+                    disabled={!isValidEmail || isDuplicated}
                     text={setButtonText()}
                 />
             </div>
