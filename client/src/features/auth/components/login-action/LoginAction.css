@@ -13,11 +13,8 @@
 .sign-up-suggest {
     width: 416px;
     height: 19px;
-    font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 16px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
     text-align: center;
     color: #777777;
 }

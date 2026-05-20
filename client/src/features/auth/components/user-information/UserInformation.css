@@ -12,19 +12,13 @@
 
 .header-name {
     white-space: nowrap;
-    font-family: "Pretendard Variable";
     font-weight: 300;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
 }
 
 .user-name {
-    font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
 }
 
 .show-email {
@@ -35,21 +29,14 @@
 
 .header-email {
     white-space: nowrap;
-    font-family: "Pretendard Variable";
     font-weight: 300;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
 }
 
 .user-email {
-    font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
 }
-
 
 .show-address {
     display: flex;
@@ -59,17 +46,11 @@
 
 .header-address {
     white-space: nowrap;
-    font-family: "Pretendard Variable";
     font-weight: 300;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
 }
 
 .user-address {
-    font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
 }

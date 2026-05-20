@@ -4,11 +4,8 @@
     place-items: center;
     gap: 8px;
 
-    font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
     text-align: center;
 }
 

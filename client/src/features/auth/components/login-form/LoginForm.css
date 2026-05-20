@@ -17,18 +17,14 @@
     width: auto;
     height: auto;
     gap: 4px;
-    font-family: "Pretendard Variable";
     font-weight: 500;
     font-size: 16px;
-    line-height: 130%;
-    letter-spacing: -0.04em;
     color: #222222;
 }
 
 .to-find-password {
     width: auto;
     height: auto;
-    font-family: "Pretendard Variable";
     font-weight: 500;
     text-decoration: underline;
     text-decoration-style: solid;
