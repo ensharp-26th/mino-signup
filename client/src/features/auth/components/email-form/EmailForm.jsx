@@ -3,13 +3,13 @@ import './EmailForm.css';
 import { useState } from 'react';
 
 import InputBox from '../../../../components/InputBox/InputBox';
-import ValidationCheck from '../../../../assets/ValidationCheck.png';
-import ValidationFail from '../../../../assets/ValidationFail.png';
+import ValidationCheck from '../../../../assets/icons/ValidationCheck.png';
+import ValidationFail from '../../../../assets/icons/ValidationFail.png';
 import Button from '../../../../components/Button/Button';
 
-import { requestVerificationCode } from '../../services/VerificationCodeRequest';
-import { confirmVerificationCode } from '../../services/EmailVerificationRequest';
-import { checkEmail } from '../../services/EmailDuplicationCheckRequest';
+import { sendVerificationCode } from '../../services/VerificationCodeRequest';
+import { checkVerificationCode } from '../../services/EmailVerificationRequest';
+import { checkEmailDuplication } from '../../services/EmailDuplicationCheckRequest';
 
 function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified }) {
     const [verificationCode, setVerificationCode] = useState("");
@@ -19,7 +19,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
 
     const useRequest = async () => {
         try {
-            const response = await requestVerificationCode(email);
+            const response = await sendVerificationCode(email);
 
             if (isSent) {
                 setIsResent(true);
@@ -35,7 +35,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
     }
     const useConfirm = async (code) => {
         try {
-            const response = await confirmVerificationCode(email, code);
+            const response = await checkVerificationCode(email, code);
 
             setIsEmailVerified(true);
             console.log(response);
@@ -46,7 +46,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
     }
     const useCheck = async (temp) => {
         try {
-            const response = await checkEmail(temp);
+            const response = await checkEmailDuplication(temp);
             
             setIsDuplicated(false);
             console.log(response);
@@ -136,7 +136,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
 
     return (
         <div className="email-form">
-            <legend>이메일</legend>
+            <label>이메일</label>
             <div className="email-wrapper">
                 <InputBox 
                     type="text" 

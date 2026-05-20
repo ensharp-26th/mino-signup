@@ -1,6 +1,6 @@
 import './ActionSuccess.css';
 
-import SuccessCheck from '../../../../assets/SuccessCheck.png';
+import SuccessCheck from '../../../../assets/images/SuccessCheck.png';
 
 function ActionSuccess({ detail }) {
     return (

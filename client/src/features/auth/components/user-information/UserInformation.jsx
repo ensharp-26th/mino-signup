@@ -2,7 +2,7 @@ import './UserInformation.css';
 
 import { useState, useEffect } from 'react';
 
-import { getUserInfo } from '../../services/UserInformationRequest';
+import { getUserInformation } from '../../services/UserInformationRequest';
 
 function UserInformation({ email }) {
     const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ function UserInformation({ email }) {
     useEffect(() => {
         const useRequest = async () => {
             try {
-                const response = await getUserInfo(email);
+                const response = await getUserInformation(email);
 
                 setUsername(response.username);
                 setStreetAddress(response.streetAddress);
