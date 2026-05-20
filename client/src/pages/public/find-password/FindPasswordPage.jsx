@@ -3,10 +3,10 @@ import './FindPassword.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Card from "../../components/Card/Card";
-import Header from "../../components/Header/Header";
+import Card from "../../../components/Card/Card";
+import Header from "../../../components/Header/Header";
 import EmailForm from "../../features/email-form/EmailForm";
-import Button from "../../components/Button/Button";
+import Button from "../../../components/Button/Button";
 
 function FindPassword() {
     const [email, setEmail] = useState("");

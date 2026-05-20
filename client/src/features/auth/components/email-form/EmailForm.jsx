@@ -2,14 +2,14 @@ import './EmailForm.css';
 
 import { useState } from 'react';
 
-import InputBox from '../../components/InputBox/InputBox';
+import InputBox from '../../../../components/InputBox/InputBox';
 import ValidationCheck from '../../assets/ValidationCheck.png';
 import ValidationFail from '../../assets/ValidationFail.png';
-import Button from '../../components/Button/Button';
+import Button from '../../../../components/Button/Button';
 
-import { requestVerificationCode } from '../../api/VerificationCodeRequest';
-import { confirmVerificationCode } from '../../api/EmailVerificationRequest';
-import { checkEmail } from '../../api/CheckEmailRequest';
+import { requestVerificationCode } from '../../../../api/VerificationCodeRequest';
+import { confirmVerificationCode } from '../../../../api/EmailVerificationRequest';
+import { checkEmail } from '../../../../api/EmailDuplicationCheckRequest';
 
 function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified }) {
     const [verificationCode, setVerificationCode] = useState("");

@@ -2,7 +2,7 @@ import './AddressForm.css';
 
 import { useState } from 'react';
 
-import InputBox from '../../components/InputBox/InputBox';
+import InputBox from '../../../../components/InputBox/InputBox';
 import SearchAddress from '../search-address/SearchAddress';
 
 function AddressForm({ streetAddress, setStreetAddress, detailAddress, setDetailAddress }) {

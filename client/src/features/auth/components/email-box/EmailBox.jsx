@@ -1,6 +1,6 @@
 import './EmailBox.css';
 
-import InputBox from '../../components/InputBox/InputBox';
+import InputBox from '../../../../components/InputBox/InputBox';
 
 function EmailBox({ email }) {
     return (

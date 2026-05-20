@@ -2,7 +2,7 @@ import './UsernameForm.css';
 
 import { useState } from 'react';
 
-import InputBox from '../../components/InputBox/InputBox';
+import InputBox from '../../../../components/InputBox/InputBox';
 
 function UsernameForm({ username, setUsername }) {
     return (

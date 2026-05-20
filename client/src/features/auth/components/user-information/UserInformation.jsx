@@ -2,7 +2,7 @@ import './UserInformation.css';
 
 import { useState, useEffect } from 'react';
 
-import { getUserInfo } from '../../api/UserInfoResponse';
+import { getUserInfo } from '../../../../api/UserInformationRequest';
 
 function UserInformation({ email }) {
     const [username, setUsername] = useState("");

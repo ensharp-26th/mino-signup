@@ -2,10 +2,10 @@ import './MyInformation.css';
 
 import { Link, useLocation } from 'react-router-dom';
 
-import Card from "../../components/Card/Card";
-import Header from "../../components/Header/Header";
+import Card from "../../../components/Card/Card";
+import Header from "../../../components/Header/Header";
 import UserInformation from "../../features/user-information/UserInformation";
-import Button from "../../components/Button/Button";
+import Button from "../../../components/Button/Button";
 
 function MyInformation() {
     const location = useLocation();

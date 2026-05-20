@@ -1,4 +1,4 @@
-import api from '../features/auth/services/AuthApi';
+import api from './AuthApi';
 
 export const getUserInfo = async (email) => {
     const response = await api.get(

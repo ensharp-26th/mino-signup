@@ -2,7 +2,7 @@ import './SignInAction.css';
 
 import { Link } from 'react-router-dom';
 
-import Button from "../../components/Button/Button";
+import Button from "../../../../components/Button/Button";
 
 function SignInAction({ email, password, canLogin, rememberEmail }) {
     const saveEmail = () => {
