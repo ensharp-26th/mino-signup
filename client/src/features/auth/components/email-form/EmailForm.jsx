@@ -43,6 +43,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
 
             console.log(response);
         } catch (error) {
+            setIsNotExisting(true);
             console.log(error)
         }
     }
@@ -133,13 +134,20 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
             }
         }
     }
-    const showErrorVerificationCode = () => {
+    const showVerificationMessage = () => {
         if (isSent && verificationCode !== "" && !isEmailVerified) {
             return (
                 <span className="email-error-message">
                     인증번호가 일치하지 않습니다.
                 </span>
             );
+        }
+        else if (isEmailVerified) {
+            return (
+                <span className="success-message">
+                    인증번호가 확인되었습니다.
+                </span>
+            )
         }
     }
 
@@ -179,12 +187,16 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                 onChange={(e) => {
                     setVerificationCode(e.target.value);
                 }}
-                onBlur={() => useConfirm(verificationCode)}
+                onBlur={() => {
+                    if (isSent) {
+                        useConfirm(verificationCode)
+                    }
+                }}
                 style={setVerificationCodeInputBoxBorder()}
             />
             {showEmailErrorMessage()}
             {showSentMessage()}
-            {showErrorVerificationCode()}
+            {showVerificationMessage()}
         </div>
     );
 }

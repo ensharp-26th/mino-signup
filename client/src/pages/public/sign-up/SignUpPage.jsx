@@ -1,7 +1,7 @@
 import './SignUpPage.css';
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Card from '../../../components/Card/Card';
 import Header from  '../../../components/Header/Header';
@@ -23,11 +23,14 @@ function SignUpPage() {
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [isPasswordVerified, setIsPasswordVerified] = useState(false);
 
+    const navigate = useNavigate();
+
     const useRequest = async () => {
         try {
             const response = await signUp(email, password, username, streetAddress, detailAddress);
                 
             console.log(response);
+            navigate("/sign-up/success");
         } catch (error) {
             console.log(error)
         }
@@ -52,9 +55,7 @@ function SignUpPage() {
                 <UsernameForm username={username} setUsername={setUsername} />
                 <AddressForm streetAddress={streetAddress} setStreetAddress={setStreetAddress} detailAddress={detailAddress} setDetailAddress={setDetailAddress} />
             </div>
-            <Link className="to-sign-up-success" to="/sign-up/success">
-                <Button text="제출하기" onClick={useRequest} disabled={!isValidForms()} />
-            </Link>
+            <Button text="제출하기" onClick={useRequest} disabled={!isValidForms()} />
         </Card>
     );
 }
