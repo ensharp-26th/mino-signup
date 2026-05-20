@@ -3,11 +3,11 @@ import './ResetPassword.css';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import Card from "../../components/Card/Card";
-import Header from "../../components/Header/Header";
+import Card from "../../../components/Card/Card";
+import Header from "../../../components/Header/Header";
 import EmailBox from '../../features/email-box/EmailBox';
 import PasswordForm from "../../features/password-form/PasswordForm";
-import Button from "../../components/Button/Button";
+import Button from "../../../components/Button/Button";
 
 import { changePassword } from '../../api/ChangePasswordRequest';
 

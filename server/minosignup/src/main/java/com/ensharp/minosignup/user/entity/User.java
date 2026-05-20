@@ -54,8 +54,4 @@ public class User {
     public String getDetailAddress() {
         return this.detailAddress;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

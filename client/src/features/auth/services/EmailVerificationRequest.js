@@ -1,4 +1,4 @@
-import api from './Api';
+import api from '../features/auth/services/AuthApi';
 
 export const confirmVerificationCode = async (email, verificationCode) => {
     const response = await api.post(
