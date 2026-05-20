@@ -8,10 +8,14 @@ import LoginAction from '../../../features/auth/components/login-action/LoginAct
 import { login } from '../../../features/auth/services/LoginRequest';
 
 function LoginPage() {
-    const [email, setEmail] = useState("");
+    const startEmail = localStorage.getItem('email');
+
+    const [email, setEmail] = useState(startEmail);
     const [password, setPassword] = useState("");
     const [canLogin, setCanLogin] = useState(true);
-    const [rememberEmail, setRememberEmail] = useState(false);
+    const [rememberEmail, setRememberEmail] = useState(
+        localStorage.getItem('rememberEmail') === "true"
+    );
 
     return (
         <Card>

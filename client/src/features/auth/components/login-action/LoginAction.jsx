@@ -11,7 +11,14 @@ function LoginAction({ email, password, canLogin, setCanLogin, rememberEmail }) 
 
     const saveEmail = () => {
         if (rememberEmail) {
-            localStorage.setItem("email", email);
+            localStorage.setItem('email', email);
+            localStorage.setItem('rememberEmail', "true");
+        }
+        else {
+            if (localStorage.getItem('email') !== null) {
+                localStorage.removeItem('email');
+                localStorage.setItem('rememberEmail', "false");
+            }
         }
     }
 
