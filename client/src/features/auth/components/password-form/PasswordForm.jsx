@@ -3,7 +3,7 @@ import './PasswordForm.css';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-import InputBox from "../../components/InputBox/InputBox";
+import InputBox from '../../../../components/InputBox/InputBox';
 
 function PasswordForm({ password, setPassword, isPasswordVerified, setIsPasswordVerified }) {
     const [subPassword, setSubPassword] = useState("");

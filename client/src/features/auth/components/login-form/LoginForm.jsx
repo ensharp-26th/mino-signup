@@ -1,10 +1,10 @@
-import './SignInForm.css';
+import './LoginForm.css';
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
-import InputBox from "../../../../components/InputBox/InputBox";
+import InputBox from '../../../../components/InputBox/InputBox';
 
 function SignInForm({ email, setEmail, password, setPassword, canLogin, rememberEmail, setRememberEmail }) {
     const [showPassword, setShowPassword] = useState(false);

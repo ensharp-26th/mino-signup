@@ -1,19 +1,19 @@
-import './SignUp.css';
+import './SignUpPage.css';
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Card from '../../components/Card/Card';
-import Header from  '../../components/Header/Header';
-import EmailForm from '../../features/email-form/EmailForm';
-import PasswordForm from '../../features/password-form/PasswordForm';
-import UsernameForm from '../../features/username-form/UsernameForm';
-import AddressForm from '../../features/address-form/AddressForm';
-import Button from '../../components/Button/Button';
+import Card from '../../../components/Card/Card';
+import Header from  '../../../components/Header/Header';
+import EmailForm from '../../../features/auth/components/email-form/EmailForm';
+import PasswordForm from '../../../features/auth/components/password-form/PasswordForm';
+import UsernameForm from '../../../features/auth/components/username-form/UsernameForm';
+import AddressForm from '../../../features/auth/components/address-form/AddressForm';
+import Button from '../../../components/Button/Button';
 
-import { signUp } from '../../api/SignUpRequest';
+import { signUp } from '../../../features/auth/services/SignUpRequest';
 
-function SignUp() {
+function SignUpPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -60,4 +60,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default SignUpPage;

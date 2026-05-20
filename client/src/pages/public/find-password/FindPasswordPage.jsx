@@ -1,14 +1,14 @@
-import './FindPassword.css';
+import './FindPasswordPage.css';
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Card from "../../../components/Card/Card";
-import Header from "../../../components/Header/Header";
-import EmailForm from "../../features/email-form/EmailForm";
-import Button from "../../../components/Button/Button";
+import Card from '../../../components/Card/Card';
+import Header from '../../../components/Header/Header';
+import EmailForm from '../../../features/auth/components/email-form/EmailForm';
+import Button from '../../../components/Button/Button';
 
-function FindPassword() {
+function FindPasswordPage() {
     const [email, setEmail] = useState("");
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     
@@ -23,4 +23,4 @@ function FindPassword() {
     );
 }
 
-export default FindPassword;
+export default FindPasswordPage;

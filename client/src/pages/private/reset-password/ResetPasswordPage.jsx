@@ -1,17 +1,17 @@
-import './ResetPassword.css';
+import './ResetPasswordPage.css';
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import Card from "../../../components/Card/Card";
-import Header from "../../../components/Header/Header";
-import EmailBox from '../../features/email-box/EmailBox';
-import PasswordForm from "../../features/password-form/PasswordForm";
-import Button from "../../../components/Button/Button";
+import Card from '../../../components/Card/Card';
+import Header from '../../../components/Header/Header';
+import EmailBox from '../../../features/auth/components/email-box/EmailBox';
+import PasswordForm from '../../../features/auth/components/password-form/PasswordForm';
+import Button from '../../../components/Button/Button';
 
-import { changePassword } from '../../api/ChangePasswordRequest';
+import { changePassword } from '../../../features/auth/services/ChangePasswordRequest';
 
-function ResetPassword() {
+function ResetPasswordPage() {
     const location = useLocation();
     const obj = location.state;
     const emailJSON = JSON.stringify(obj);
@@ -42,4 +42,4 @@ function ResetPassword() {
     );
 }
 
-export default ResetPassword;
+export default ResetPasswordPage;

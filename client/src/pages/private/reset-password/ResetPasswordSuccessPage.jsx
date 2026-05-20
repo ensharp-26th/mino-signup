@@ -1,13 +1,13 @@
-import './ResetPasswordSuccess.css';
+import './ResetPasswordSuccessPage.css';
 
 import { Link } from "react-router-dom";
 
-import Card from "../../../components/Card/Card";
-import Header from "../../../components/Header/Header";
-import ActionSuccess from "../../../features/action-success/ActionSuccess";
-import Button from "../../../components/Button/Button";
+import Card from '../../../components/Card/Card';
+import Header from '../../../components/Header/Header';
+import ActionSuccess from '../../../features/auth/components/action-success/ActionSuccess';
+import Button from '../../../components/Button/Button';
 
-function ResetPasswordSuccess() {
+function ResetPasswordSuccessPage() {
     return(
         <Card>
             <Header text="안내" />
@@ -19,4 +19,4 @@ function ResetPasswordSuccess() {
     );
 }
 
-export default ResetPasswordSuccess;
+export default ResetPasswordSuccessPage;

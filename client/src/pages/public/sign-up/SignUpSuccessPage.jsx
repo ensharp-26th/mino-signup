@@ -1,13 +1,13 @@
-import './SignUpSuccess.css';
+import './SignUpSuccessPage.css';
 
 import { Link } from "react-router-dom";
 
-import Card from "../../../components/Card/Card";
-import Header from "../../../components/Header/Header";
-import ActionSuccess from "../../../features/auth/components/action-success/ActionSuccess";
-import Button from "../../../components/Button/Button";
+import Card from '../../../components/Card/Card';
+import Header from '../../../components/Header/Header';
+import ActionSuccess from '../../../features/auth/components/action-success/ActionSuccess';
+import Button from '../../../components/Button/Button';
 
-function SignUpSuccess() {
+function SignUpSuccessPage() {
     return(
         <Card>
             <Header text="안내" />
@@ -19,4 +19,4 @@ function SignUpSuccess() {
     );
 }
 
-export default SignUpSuccess;
+export default SignUpSuccessPage;

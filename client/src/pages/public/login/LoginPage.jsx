@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 
 import Card from '../../../components/Card/Card';
 import Header from '../../../components/Header/Header';
-import SignInForm from '../../features/sign-in-form/SignInForm';
-import SignInAction from '../../features/sign-in-action/SignInAction';
+import LoginForm from '../../../features/auth/components/login-form/LoginForm';
+import LoginAction from '../../../features/auth/components/login-action/LoginAction';
 
-import { login } from '../../api/LoginRequest';
+import { login } from '../../../features/auth/services/LoginRequest';
 
-function SignIn() {
+function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [canLogin, setCanLogin] = useState(false);
@@ -31,10 +31,10 @@ function SignIn() {
     return (
         <Card>
             <Header text="En# SignUp!!"/>
-            <SignInForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} canLogin={canLogin} rememberEmail={rememberEmail} setRememberEmail={setRememberEmail} />
-            <SignInAction email={email} password={password} canLogin={canLogin} rememberEmail={rememberEmail} />
+            <LoginForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} canLogin={canLogin} rememberEmail={rememberEmail} setRememberEmail={setRememberEmail} />
+            <LoginAction email={email} password={password} canLogin={canLogin} rememberEmail={rememberEmail} />
         </Card>
     );
 }
 
-export default SignIn;
+export default LoginPage;
