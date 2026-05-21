@@ -1,4 +1,4 @@
 package com.ensharp.minosignup.user.service;
 
-public class EmailVerificationService {
+public class UserService {
 }
