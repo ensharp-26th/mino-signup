@@ -1,5 +1,6 @@
 package com.ensharp.minosignup.admin.service;
 
+import com.ensharp.minosignup.admin.dto.request.DeleteUserRequest;
 import com.ensharp.minosignup.admin.exception.AdminException;
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
@@ -36,6 +37,15 @@ public class AdminService {
         }
 
         return allUserProfileResponse;
+
+    }
+
+    public void deleteUser(DeleteUserRequest request) {
+
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new AdminException(ErrorCode.NOT_EXISTING_EMAIL));
+
+        userRepository.delete(user);
 
     }
 
