@@ -20,6 +20,6 @@ spring:
       mail:
         smtp:
           auth: true
-          timeout: 5000
           starttls:
-            enalbe: true
+            enable: true
+            required: true
