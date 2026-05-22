@@ -2,7 +2,7 @@ spring:
   application:
     name: minosignup
   jpa:
-    database: mysql
+    database: ${JPA_DATABASE}
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -10,10 +10,10 @@ spring:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}
     password: ${DATASOURCE_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME}
   mail:
-    host: smtp.gmail.com
-    port: 587
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
     properties:
