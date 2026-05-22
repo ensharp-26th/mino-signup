@@ -53,4 +53,18 @@ public class AdminController {
 
     }
 
+    @DeleteMapping(value = "/clear-email-verification")
+    public ResponseEntity<Map<String, String>> clearEmailVerification() {
+
+        adminService.clearEmailVerification();
+
+        String message = "이메일 인증 기록을 초기화하였습니다.";
+        Map<String, String> response = Map.of("message", message);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
+
+    }
+
 }
