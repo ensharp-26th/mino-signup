@@ -16,4 +16,5 @@ public class UserException extends RuntimeException {
     public ErrorCode errorCode() {
         return errorCode;
     }
+
 }
