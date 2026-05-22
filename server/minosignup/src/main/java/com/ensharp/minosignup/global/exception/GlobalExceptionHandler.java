@@ -1,6 +1,6 @@
 package com.ensharp.minosignup.global.exception;
 
-import com.ensharp.minosignup.user.exception.DuplicateEmailException;
+import com.ensharp.minosignup.user.exception.UserException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(DuplicateEmailException.class)
-    public ResponseEntity<ErrorResponse> handleDuplicationEmailException(DuplicateEmailException e) {
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<ErrorResponse> handleUserException(UserException e) {
 
-        ErrorCode errorCode = ErrorCode.DUPLICATE_EMAIL;
+        ErrorCode errorCode = e.getErrorCode();
 
         ErrorResponse response = ErrorResponse.of(errorCode);
 

@@ -1,8 +1,9 @@
 package com.ensharp.minosignup.user.service;
 
+import com.ensharp.minosignup.global.exception.ErrorCode;
 import com.ensharp.minosignup.user.dto.request.SignUpRequest;
 import com.ensharp.minosignup.user.entity.User;
-import com.ensharp.minosignup.user.exception.DuplicateEmailException;
+import com.ensharp.minosignup.user.exception.UserException;
 import com.ensharp.minosignup.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,7 @@ public class UserService {
     public void signUp(SignUpRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
-            throw new DuplicateEmailException();
+            throw new UserException(ErrorCode.DUPLICATE_EMAIL);
         }
 
         String encryptedPassword = encryptPassword(request.password());
