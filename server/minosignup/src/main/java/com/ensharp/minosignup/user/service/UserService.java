@@ -2,11 +2,11 @@ package com.ensharp.minosignup.user.service;
 
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import com.ensharp.minosignup.user.dto.request.EmailExistsRequest;
+import com.ensharp.minosignup.user.dto.request.LoginRequest;
 import com.ensharp.minosignup.user.dto.request.SignupRequest;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.exception.UserException;
 import com.ensharp.minosignup.user.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -52,7 +52,6 @@ public class UserService {
 
     }
 
-    @Transactional
     public void signup(SignupRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
@@ -70,6 +69,19 @@ public class UserService {
                 .build();
 
         userRepository.save(user);
+
+    }
+
+    public void login(LoginRequest request) {
+
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+
+        String encryptedPassword = encryptPassword(request.password());
+
+        if (encryptedPassword != user.password()) {
+            throw new UserException(ErrorCode.INCONSISTENT_PASSWORD);
+        }
 
     }
 
