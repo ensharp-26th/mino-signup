@@ -2,6 +2,7 @@ package com.ensharp.minosignup.user.service;
 
 import com.ensharp.minosignup.user.dto.request.SignUpRequest;
 import com.ensharp.minosignup.user.entity.User;
+import com.ensharp.minosignup.user.exception.DuplicateEmailException;
 import com.ensharp.minosignup.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class UserService {
     }
 
     private String encryptPassword(String password) {
+
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
@@ -37,10 +39,16 @@ public class UserService {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("암호화 알고리즘을 찾을 수 없음");
         }
+
     }
 
     @Transactional
     public void signUp(SignUpRequest request) {
+
+        if (userRepository.existsByEmail(request.email())) {
+            throw new DuplicateEmailException();
+        }
+
         String encryptedPassword = encryptPassword(request.password());
 
         User user = new User.Builder()
@@ -52,5 +60,6 @@ public class UserService {
                 .build();
 
         userRepository.save(user);
+
     }
 }
