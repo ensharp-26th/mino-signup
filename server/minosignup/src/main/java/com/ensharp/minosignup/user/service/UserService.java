@@ -27,7 +27,7 @@ public class UserService {
     public void checkEmailExists(EmailExistsRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
-            throw new UserException(ErrorCode.EMAIL_ALREADY_EXISTS);
+            throw new UserException(ErrorCode.ALREADY_EXISTING_EMAIL);
         }
 
     }
@@ -59,7 +59,7 @@ public class UserService {
     public void signup(SignupRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
-            throw new UserException(ErrorCode.EMAIL_ALREADY_EXISTS);
+            throw new UserException(ErrorCode.ALREADY_EXISTING_EMAIL);
         }
 
         String encodedPassword = encodePassword(request.password());
@@ -79,7 +79,7 @@ public class UserService {
     public void login(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
 
         String encodedPassword = encodePassword(request.password());
 
@@ -92,7 +92,7 @@ public class UserService {
     public String getUsernameByLogin(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
 
         return user.username();
 
@@ -102,7 +102,7 @@ public class UserService {
     public void resetPassword(ResetPasswordRequest request) {
 
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
 
         String encodedNewPassword = encodePassword(request.newPassword());
 
@@ -113,7 +113,7 @@ public class UserService {
     public UserProfileResponse getUserProfile(UserProfileRequest request) {
 
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
 
 
         return new UserProfileResponse(

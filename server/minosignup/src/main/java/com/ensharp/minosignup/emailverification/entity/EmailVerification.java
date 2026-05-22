@@ -76,4 +76,9 @@ public class EmailVerification {
         }
 
     }
+
+    public void updateVerifiedState(boolean verifiedState) {
+        this.isVerified = verifiedState;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.ensharp.minosignup.emailverification.controller;
 
+import com.ensharp.minosignup.emailverification.dto.request.EmailVerifyRequest;
 import com.ensharp.minosignup.emailverification.dto.request.VerificationCodeMailRequest;
 import com.ensharp.minosignup.emailverification.service.EmailVerificationService;
 import jakarta.validation.Valid;
@@ -32,6 +33,22 @@ public class EmailVerificationController {
         emailVerificationService.sendVerificationCodeMail(request);
 
         String message = "입력하신 이메일 주소(" + request.email() +")로 인증번호 메일이 발송되었습니다.";
+        Map<String, String> response = Map.of("message", message);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
+
+    }
+
+    @PostMapping(value = "/verify-email")
+    public ResponseEntity<Map<String, String>> verifyEmail(
+            @Valid @RequestBody EmailVerifyRequest request
+    ) {
+
+        emailVerificationService.verifyEmail(request);
+
+        String message = request.email() + " 이메일 주소 인증에 성공하였습니다.";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity
