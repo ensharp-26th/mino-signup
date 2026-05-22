@@ -1,6 +1,7 @@
 package com.ensharp.minosignup.user.controller;
 
 import com.ensharp.minosignup.user.dto.request.EmailExistsRequest;
+import com.ensharp.minosignup.user.dto.request.LoginRequest;
 import com.ensharp.minosignup.user.dto.request.SignupRequest;
 import com.ensharp.minosignup.user.service.UserService;
 import jakarta.validation.Valid;
@@ -43,11 +44,25 @@ public class UserController {
 
         userService.signup(request);
 
-        String message = request.username() + "(" + request.email() + ")" +"님이 성공적으로 회원가입하였습니다.";
+        String message = request.username() + "(" + request.email() + ")" + " 님이 성공적으로 회원가입 하였습니다.";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
+                .body(response);
+
+    }
+
+    @PostMapping(value = "login")
+    public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginRequest request) {
+
+        userService.login(request);
+
+        String message = userService.getUsername(request) + "(" + request.email() + ")" + " 님이 로그인 하였습니다.";
+        Map<String, String> response = Map.of("message", message);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
                 .body(response);
 
     }

@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 
 public enum ErrorCode {
 
-    EMAIL_ALREADY_EXISTS(HttpStatus.BAD_REQUEST, "EMAIL-ALREADY-EXISTS", "이미 등록된 이메일 주소입니다.");
+    EMAIL_ALREADY_EXISTS(HttpStatus.BAD_REQUEST, "EMAIL-ALREADY-EXISTS", "이미 등록된 이메일 주소입니다."),
+    EMAIL_NOT_EXISTS(HttpStatus.BAD_REQUEST, "EMAIL-NOT-EXISTS", "등록되지 않은 이메일 주소입니다."),
+    INCONSISTENT_PASSWORD(HttpStatus.UNAUTHORIZED, "INCONSISTENT_PASSWORD", "비밀번호가 일치하지 않습니다.");
 
     private final HttpStatus status;
     private final String code;
