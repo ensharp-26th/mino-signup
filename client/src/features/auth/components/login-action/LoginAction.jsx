@@ -43,7 +43,7 @@ function LoginAction({ email, password, canLogin, setCanLogin, rememberEmail }) 
             <Button 
                 text="Login" 
                 onClick={() => {
-                    useRequest();
+                    requestLogin();
                 }} 
                  />
             <span className="sign-up-suggest">
