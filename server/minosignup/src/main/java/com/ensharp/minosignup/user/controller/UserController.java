@@ -2,15 +2,13 @@ package com.ensharp.minosignup.user.controller;
 
 import com.ensharp.minosignup.user.dto.request.EmailExistsRequest;
 import com.ensharp.minosignup.user.dto.request.LoginRequest;
+import com.ensharp.minosignup.user.dto.request.ResetPasswordRequest;
 import com.ensharp.minosignup.user.dto.request.SignupRequest;
 import com.ensharp.minosignup.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -31,7 +29,7 @@ public class UserController {
 
         userService.checkEmailExists(request);
 
-        String message = "입력하신 이메일 주소(" + request.email() +")는 등록 가능합니다.";
+        String message = "입력하신 이메일 주소(" + request.email() +")는 등록 가능합니다";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity
@@ -44,7 +42,7 @@ public class UserController {
 
         userService.signup(request);
 
-        String message = request.username() + "(" + request.email() + ")" + " 님이 성공적으로 회원가입 하였습니다.";
+        String message = request.username() + "(" + request.email() + ")" + " 님이 성공적으로 회원가입 하였습니다";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity
@@ -53,12 +51,26 @@ public class UserController {
 
     }
 
-    @PostMapping(value = "login")
+    @PostMapping(value = "/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginRequest request) {
 
         userService.login(request);
 
-        String message = userService.getUsernameByLogin(request) + "(" + request.email() + ")" + " 님이 로그인 하였습니다.";
+        String message = userService.getUsernameByLogin(request) + "(" + request.email() + ")" + " 님이 로그인 하였습니다";
+        Map<String, String> response = Map.of("message", message);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
+
+    }
+
+    @PatchMapping(value = "/reset-password")
+    public ResponseEntity<Map<String, String>> resetPassword(@RequestBody @Valid ResetPasswordRequest request) {
+
+        userService.resetPassword(request);
+
+        String message = "비밀번호 재설정에 성공하였습니다";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity
