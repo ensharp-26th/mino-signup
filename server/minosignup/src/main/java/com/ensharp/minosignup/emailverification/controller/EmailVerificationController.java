@@ -37,5 +37,6 @@ public class EmailVerificationController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
+
     }
 }
