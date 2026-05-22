@@ -1,10 +1,8 @@
 package com.ensharp.minosignup.user.service;
 
 import com.ensharp.minosignup.global.exception.ErrorCode;
-import com.ensharp.minosignup.user.dto.request.EmailExistsRequest;
-import com.ensharp.minosignup.user.dto.request.LoginRequest;
-import com.ensharp.minosignup.user.dto.request.ResetPasswordRequest;
-import com.ensharp.minosignup.user.dto.request.SignupRequest;
+import com.ensharp.minosignup.user.dto.request.*;
+import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.exception.UserException;
 import com.ensharp.minosignup.user.repository.UserRepository;
@@ -26,7 +24,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    private String encryptPassword(String password) {
+    public void checkEmailExists(EmailExistsRequest request) {
+
+        if (userRepository.existsByEmail(request.email())) {
+            throw new UserException(ErrorCode.EMAIL_ALREADY_EXISTS);
+        }
+
+    }
+
+    private String encodePassword(String password) {
 
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
@@ -46,25 +52,17 @@ public class UserService {
 
     }
 
-    public void checkEmailExists(EmailExistsRequest request) {
-
-        if (userRepository.existsByEmail(request.email())) {
-            throw new UserException(ErrorCode.EMAIL_ALREADY_EXISTS);
-        }
-
-    }
-
     public void signup(SignupRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
             throw new UserException(ErrorCode.EMAIL_ALREADY_EXISTS);
         }
 
-        String encryptedPassword = encryptPassword(request.password());
+        String encodedPassword = encodePassword(request.password());
 
         User user = new User.Builder()
                 .email(request.email())
-                .password(encryptedPassword)
+                .password(encodedPassword)
                 .username(request.username())
                 .streetAddress(request.streetAddress())
                 .detailAddress(request.detailAddress())
@@ -79,9 +77,9 @@ public class UserService {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
 
-        String encryptedPassword = encryptPassword(request.password());
+        String encodedPassword = encodePassword(request.password());
 
-        if (!encryptedPassword.equals(user.password())) {
+        if (!encodedPassword.equals(user.password())) {
             throw new UserException(ErrorCode.INCONSISTENT_PASSWORD);
         }
 
@@ -102,9 +100,24 @@ public class UserService {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
 
-        String encryptedNewPassword = encryptPassword(request.newPassword());
+        String encodedNewPassword = encodePassword(request.newPassword());
 
-        user.updatePassword(encryptedNewPassword);
+        user.updatePassword(encodedNewPassword);
+
+    }
+
+    public UserProfileResponse getUserProfile(UserProfileRequest request) {
+
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+
+
+        return new UserProfileResponse(
+                user.email(),
+                user.username(),
+                user.streetAddress(),
+                user.detailAddress()
+        );
 
     }
 
