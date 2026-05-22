@@ -11,12 +11,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ErrorResponse> handleUserException(UserException e) {
 
-        ErrorCode errorCode = e.getErrorCode();
+        ErrorCode errorCode = e.errorCode();
 
         ErrorResponse response = ErrorResponse.of(errorCode);
 
         return ResponseEntity
-                .status(errorCode.getStatus())
+                .status(errorCode.status())
                 .body(response);
     }
 

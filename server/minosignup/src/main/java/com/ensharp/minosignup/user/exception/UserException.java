@@ -9,11 +9,11 @@ public class UserException extends RuntimeException {
     public UserException(
             ErrorCode errorCode
     ) {
-        super(errorCode.getMessage());
+        super(errorCode.message());
         this.errorCode = errorCode;
     }
 
-    public ErrorCode getErrorCode() {
+    public ErrorCode errorCode() {
         return errorCode;
     }
 }

@@ -36,22 +36,22 @@ public class User {
         this.detailAddress = builder.detailAddress;
     }
 
-    public Long getId() {
+    public Long id() {
         return id;
     }
-    public String getEmail() {
+    public String email() {
         return email;
     }
-    public String getPassword() {
+    public String password() {
         return password;
     }
-    public String getUsername() {
+    public String username() {
         return username;
     }
-    public String getStreetAddress() {
+    public String streetAddress() {
         return streetAddress;
     }
-    public String getDetailAddress() {
+    public String detailAddress() {
         return detailAddress;
     }
 

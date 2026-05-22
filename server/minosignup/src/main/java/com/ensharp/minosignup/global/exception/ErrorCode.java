@@ -20,13 +20,13 @@ public enum ErrorCode {
         this.message = message;
     }
 
-    public HttpStatus getStatus() {
+    public HttpStatus status() {
         return status;
     }
-    public String getCode() {
+    public String code() {
         return code;
     }
-    public String getMessage() {
+    public String message() {
         return message;
     }
 
