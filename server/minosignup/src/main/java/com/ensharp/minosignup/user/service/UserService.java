@@ -39,7 +39,7 @@ public class UserService {
 
             return stringBuilder.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("암호화 알고리즘을 찾을 수 없음");
+            throw new RuntimeException("SHA-256 암호화 알고리즘을 찾을 수 없습니다.");
         }
 
     }
@@ -79,9 +79,18 @@ public class UserService {
 
         String encryptedPassword = encryptPassword(request.password());
 
-        if (encryptedPassword != user.password()) {
+        if (!encryptedPassword.equals(user.password())) {
             throw new UserException(ErrorCode.INCONSISTENT_PASSWORD);
         }
+
+    }
+
+    public String getUsername(LoginRequest request) {
+
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+
+        return user.username();
 
     }
 
