@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
                 .get(0)
                 .getDefaultMessage();
 
-        ErrorResponse response = new ErrorResponse("VALIDATION-Bad-Reqeust", message);
+        ErrorResponse response = new ErrorResponse("VALIDATION-ERROR", message);
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)

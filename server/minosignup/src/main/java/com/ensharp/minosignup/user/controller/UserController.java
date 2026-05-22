@@ -58,7 +58,7 @@ public class UserController {
 
         userService.login(request);
 
-        String message = userService.getUsername(request) + "(" + request.email() + ")" + " 님이 로그인 하였습니다.";
+        String message = userService.getUsernameByLogin(request) + "(" + request.email() + ")" + " 님이 로그인 하였습니다.";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity

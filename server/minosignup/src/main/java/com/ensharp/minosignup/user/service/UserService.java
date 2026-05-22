@@ -85,7 +85,7 @@ public class UserService {
 
     }
 
-    public String getUsername(LoginRequest request) {
+    public String getUsernameByLogin(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
