@@ -6,38 +6,36 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
 
+    protected User() {}
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "street_address", nullable = false)
     private String streetAddress;
 
-    @Column
+    @Column(name = "detail_address", nullable = true)
     private String detailAddress;
 
-    protected User() {}
-
     public User(Builder builder) {
-        this.id            = builder.id;
+
         this.email         = builder.email;
         this.password      = builder.password;
         this.username      = builder.username;
         this.streetAddress = builder.streetAddress;
         this.detailAddress = builder.detailAddress;
+
     }
 
-    public Long id() {
-        return id;
-    }
     public String email() {
         return email;
     }
@@ -55,17 +53,13 @@ public class User {
     }
 
     public static class Builder {
-        private Long id;
+
         private String email;
         private String password;
         private String username;
         private String streetAddress;
         private String detailAddress;
 
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
         public Builder email(String email) {
             this.email = email;
             return this;
@@ -86,9 +80,11 @@ public class User {
             this.detailAddress = detailAddress;
             return this;
         }
+
         public User build() {
             return new User(this);
         }
+
     }
 
     public void updatePassword(String newPassword) {
