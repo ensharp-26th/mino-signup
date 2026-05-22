@@ -9,19 +9,19 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "street_address", nullable = false)
     private String streetAddress;
 
-    @Column
+    @Column(name = "detail_address", nullable = true)
     private String detailAddress;
 
     protected User() {}
