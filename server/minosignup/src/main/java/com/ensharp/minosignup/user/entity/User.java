@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -90,6 +89,10 @@ public class User {
         public User build() {
             return new User(this);
         }
+    }
+
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
     }
 
 }
