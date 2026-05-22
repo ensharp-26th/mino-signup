@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 
 public enum ErrorCode {
 
-    DUPLICATE_EMAIL(HttpStatus.BAD_REQUEST, "SIGNUP-Bad-Request-001", "이미 등록된 이메일 주소입니다.");
+    EMAIL_ALREADY_EXISTS(HttpStatus.BAD_REQUEST, "EMAIL-ALREADY-EXISTS", "이미 등록된 이메일 주소입니다.");
 
     private final HttpStatus status;
     private final String code;

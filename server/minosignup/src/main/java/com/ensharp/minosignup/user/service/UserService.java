@@ -1,6 +1,7 @@
 package com.ensharp.minosignup.user.service;
 
 import com.ensharp.minosignup.global.exception.ErrorCode;
+import com.ensharp.minosignup.user.dto.request.EmailExistsRequest;
 import com.ensharp.minosignup.user.dto.request.SignupRequest;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.exception.UserException;
@@ -43,11 +44,19 @@ public class UserService {
 
     }
 
+    public void checkEmailExists(EmailExistsRequest request) {
+
+        if (userRepository.existsByEmail(request.email())) {
+            throw new UserException(ErrorCode.EMAIL_ALREADY_EXISTS);
+        }
+
+    }
+
     @Transactional
     public void signup(SignupRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
-            throw new UserException(ErrorCode.DUPLICATE_EMAIL);
+            throw new UserException(ErrorCode.EMAIL_ALREADY_EXISTS);
         }
 
         String encryptedPassword = encryptPassword(request.password());
