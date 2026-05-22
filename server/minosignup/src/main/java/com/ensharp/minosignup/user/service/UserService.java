@@ -1,5 +1,6 @@
 package com.ensharp.minosignup.user.service;
 
+import com.ensharp.minosignup.emailverification.repository.EmailVerificationRepository;
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import com.ensharp.minosignup.user.dto.request.*;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
