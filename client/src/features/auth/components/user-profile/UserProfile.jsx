@@ -1,8 +1,8 @@
-import './UserInformation.css';
+import './UserProfile.css';
 
 import { useState, useEffect } from 'react';
 
-import { getUserInformation } from '../../services/UserInformationRequest';
+import { getUserProfile } from '../../services/UserProfileRequest';
 
 function UserInformation({ email }) {
     const [username, setUsername] = useState("");
@@ -10,7 +10,7 @@ function UserInformation({ email }) {
     const [detailAddress, setDetailAddress] = useState("");
 
     useEffect(() => {
-        const useRequest = async () => {
+        const requestUserProfile = async () => {
             try {
                 const response = await getUserInformation(email);
 
@@ -23,15 +23,15 @@ function UserInformation({ email }) {
                 console.log(error);
             }
         }
-        useRequest();
+        requestUserProfile();
     });
 
 
     return (
-        <div className="user-information">
-            <div className="show-name">
-                <span className="header-name">이름</span>
-                <span className="user-name">{username}</span>
+        <div className="user-profile">
+            <div className="show-username">
+                <span className="header-username">이름</span>
+                <span className="user-username">{username}</span>
             </div>
             <div className="show-email">
                 <span className="header-email">이메일</span>

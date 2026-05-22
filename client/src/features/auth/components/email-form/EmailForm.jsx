@@ -7,9 +7,9 @@ import ValidationCheck from '../../../../assets/icons/ValidationCheck.png';
 import ValidationFail from '../../../../assets/icons/ValidationFail.png';
 import Button from '../../../../components/Button/Button';
 
-import { checkEmailDuplication } from '../../services/EmailDuplicationCheckRequest';
-import { sendVerificationCode } from '../../services/VerificationCodeRequest';
-import { checkVerificationCode } from '../../services/EmailVerificationRequest';
+import { checkEmailExist } from '../../services/CheckEmailExistsRequest';
+import { sendVerificationCodeMail } from '../../services/VerificationCodeMailRequest';
+import { verifyEmail } from '../../services/EmailVerifyRequest';
 
 function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified }) {
     const [verificationCode, setVerificationCode] = useState("");
@@ -18,9 +18,9 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
     const [isValidEmail, setIsValidEmail] = useState(false);
     const [isDuplicated, setIsDuplicated] = useState(false);
 
-    const useCheck = async (temp) => {
+    const requestCheckEmailExist = async (temp) => {
         try {
-            const response = await checkEmailDuplication(temp);
+            const response = await checkEmailExist(temp);
 
             setIsDuplicated(false);
             console.log(response);
@@ -36,9 +36,9 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
         }
     }
 
-    const useRequest = async () => {
+    const requestVerificationCodeMail = async () => {
         try {
-            const response = await sendVerificationCode(email);
+            const response = await sendVerificationCodeMail(email);
 
             if (isSent) {
                 setIsResent(true);
@@ -52,9 +52,9 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
         }
     }
 
-    const useConfirm = async (code) => {
+    const requestVerifyEmail = async (code) => {
         try {
-            const response = await checkVerificationCode(email, code);
+            const response = await verifyEmail(email, code);
 
             setIsEmailVerified(true);
             console.log(response);
@@ -178,14 +178,14 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                     style={setButtonSytle()}
                     onClick={async () => {
                         if (type === "sign-up") {
-                            const temp = await useCheck(email);
+                            const temp = await requestCheckEmailExist(email);
                             if (isValidEmail && !temp) {
-                                useRequest();
+                                requestVerificationCodeMail();
                             }
                         }
                         else if (type === "find-password") {
                             if (isValidEmail) {
-                                useRequest();
+                                requestVerificationCodeMail();
                             }
                         }
                     }}
@@ -202,7 +202,7 @@ function EmailForm({ type, email, setEmail, isEmailVerified, setIsEmailVerified 
                 }}
                 onBlur={() => {
                     if (isSent) {
-                        useConfirm(verificationCode)
+                        requestVerifyEmail(verificationCode)
                     }
                 }}
                 style={setVerificationCodeInputBoxBorder()}

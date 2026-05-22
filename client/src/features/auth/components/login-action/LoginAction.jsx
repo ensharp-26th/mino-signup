@@ -22,14 +22,14 @@ function LoginAction({ email, password, canLogin, setCanLogin, rememberEmail }) 
         }
     }
 
-    const useRequest = async () => {
+    const requestLogin = async () => {
         try {
             const response = await login(email, password);
 
             console.log(response);
             setCanLogin(true);
             saveEmail();
-            navigateLogin('/my-information', { state: email });
+            navigateLogin('/my-profile', { state: email });
         } catch (error) {
             console.log(error)
             setCanLogin(false);

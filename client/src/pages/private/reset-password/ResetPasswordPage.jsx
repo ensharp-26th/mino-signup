@@ -9,7 +9,7 @@ import EmailBox from '../../../features/auth/components/email-box/EmailBox';
 import PasswordForm from '../../../features/auth/components/password-form/PasswordForm';
 import Button from '../../../components/Button/Button';
 
-import { changePassword } from '../../../features/auth/services/ChangePasswordRequest';
+import { resetPassword } from '../../../features/auth/services/ResetPasswordRequest';
 
 function ResetPasswordPage() {
     const navigateResetPassword = useNavigate();
@@ -19,12 +19,12 @@ function ResetPasswordPage() {
     const emailJSON = JSON.stringify(obj);
     const email = emailJSON.replace(/"/g, '')
 
-    const [password, setPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
     const [isPasswordVerified, setIsPasswordVerified] = useState(false);
 
-    const useRequest = async () => {
+    const requestPasswordReset = async () => {
         try {
-            const response = await changePassword(email, password);
+            const response = await resetPassword(email, newPassword);
 
             console.log(response);
             navigateResetPassword('/');
@@ -37,8 +37,8 @@ function ResetPasswordPage() {
         <Card>
             <Header text="비밀번호 재설정" />
             <EmailBox email={email} />
-            <PasswordForm password={password} setPassword={setPassword} isPasswordVerified={isPasswordVerified} setIsPasswordVerified={setIsPasswordVerified} />
-            <Button text="재설정" onClick={() => useRequest()} disabled={!isPasswordVerified} />
+            <PasswordForm password={newPassword} setPassword={setNewPassword} isPasswordVerified={isPasswordVerified} setIsPasswordVerified={setIsPasswordVerified} />
+            <Button text="재설정" onClick={() => requestPasswordReset()} disabled={!isPasswordVerified} />
         </Card>
     );
 }

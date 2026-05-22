@@ -7,7 +7,7 @@ import SignUpPage from '../pages/public/sign-up/SignUpPage';
 import SignUpSuccessPage from '../pages/public/sign-up/SignUpSuccessPage';
 import FindPasswordPage from '../pages/public/find-password/FindPasswordPage';
 
-import MyInformationPage from '../pages/private/my-information/MyInformationPage';
+import MyProfilePage from '../pages/private/my-profile/MyProfilePage';
 import ResetPasswordPage from '../pages/private/reset-password/ResetPasswordPage';
 import ResetPasswordSuccessPage from '../pages/private/reset-password/ResetPasswordSuccessPage';
 
@@ -22,7 +22,7 @@ function App() {
         <Route path="/find-password" element={<FindPasswordPage />}></Route>
 
         {/* private router */}
-        <Route path="/my-information" element={<MyInformationPage />}></Route>
+        <Route path="/my-profile" element={<MyProfilePage />}></Route>
         <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
         <Route path="/reset-password/success" element={<ResetPasswordSuccessPage />}></Route>
       </Routes>
