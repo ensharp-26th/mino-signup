@@ -29,7 +29,7 @@ public class UserController {
 
         userService.checkEmailExists(request);
 
-        String message = "입력하신 이메일 주소(" + request.email() +")는 등록 가능합니다";
+        String message = "입력하신 이메일 주소(" + request.email() +")는 등록이 가능합니다";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity
