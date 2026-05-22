@@ -1,9 +1,7 @@
 package com.ensharp.minosignup.user.controller;
 
-import com.ensharp.minosignup.user.dto.request.EmailExistsRequest;
-import com.ensharp.minosignup.user.dto.request.LoginRequest;
-import com.ensharp.minosignup.user.dto.request.ResetPasswordRequest;
-import com.ensharp.minosignup.user.dto.request.SignupRequest;
+import com.ensharp.minosignup.user.dto.request.*;
+import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,7 +23,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/check-email-exists")
-    public ResponseEntity<Map<String, String>> checkEmailExists(@RequestBody @Valid EmailExistsRequest request) {
+    public ResponseEntity<Map<String, String>> checkEmailExists(
+            @Valid @RequestBody EmailExistsRequest request
+    ) {
 
         userService.checkEmailExists(request);
 
@@ -38,7 +38,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/signup")
-    public ResponseEntity<Map<String, String>> signup(@RequestBody @Valid SignupRequest request) {
+    public ResponseEntity<Map<String, String>> signup(
+            @Valid @RequestBody SignupRequest request
+    ) {
 
         userService.signup(request);
 
@@ -52,7 +54,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginRequest request) {
+    public ResponseEntity<Map<String, String>> login(
+            @Valid @RequestBody LoginRequest request
+    ) {
 
         userService.login(request);
 
@@ -66,7 +70,9 @@ public class UserController {
     }
 
     @PatchMapping(value = "/reset-password")
-    public ResponseEntity<Map<String, String>> resetPassword(@RequestBody @Valid ResetPasswordRequest request) {
+    public ResponseEntity<Map<String, String>> resetPassword(
+            @Valid @RequestBody ResetPasswordRequest request
+    ) {
 
         userService.resetPassword(request);
 
@@ -77,6 +83,18 @@ public class UserController {
                 .status(HttpStatus.OK)
                 .body(response);
 
+    }
+
+    @GetMapping(value = "/profile")
+    public ResponseEntity<UserProfileResponse> getUserProfile(
+            @Valid UserProfileRequest request
+    ) {
+
+        UserProfileResponse response = userService.getUserProfile(request);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
     }
 
 }

@@ -1,10 +1,8 @@
 package com.ensharp.minosignup.user.service;
 
 import com.ensharp.minosignup.global.exception.ErrorCode;
-import com.ensharp.minosignup.user.dto.request.EmailExistsRequest;
-import com.ensharp.minosignup.user.dto.request.LoginRequest;
-import com.ensharp.minosignup.user.dto.request.ResetPasswordRequest;
-import com.ensharp.minosignup.user.dto.request.SignupRequest;
+import com.ensharp.minosignup.user.dto.request.*;
+import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.exception.UserException;
 import com.ensharp.minosignup.user.repository.UserRepository;
@@ -108,5 +106,19 @@ public class UserService {
 
     }
 
+    public UserProfileResponse getUserProfile(UserProfileRequest request) {
+
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new UserException(ErrorCode.EMAIL_NOT_EXISTS));
+
+
+        return new UserProfileResponse(
+                user.email(),
+                user.username(),
+                user.streetAddress(),
+                user.detailAddress()
+        );
+
+    }
 
 }
