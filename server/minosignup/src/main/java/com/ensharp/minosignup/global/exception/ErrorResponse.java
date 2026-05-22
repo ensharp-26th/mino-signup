@@ -7,7 +7,10 @@ public record ErrorResponse(
 
     public static ErrorResponse of(ErrorCode errorCode) {
 
-        return new ErrorResponse(errorCode.code(), errorCode.message());
+        return new ErrorResponse(
+                errorCode.code(),
+                errorCode.message()
+        );
 
     }
 
