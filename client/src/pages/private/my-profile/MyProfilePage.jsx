@@ -1,10 +1,10 @@
-import './MyInformationPage.css';
+import './MyProfilePage.css';
 
 import { Link, useLocation } from 'react-router-dom';
 
 import Card from '../../../components/Card/Card';
 import Header from '../../../components/Header/Header';
-import UserInformation from '../../../features/auth/components/user-information/UserInformation';
+import UserProfile from '../../../features/auth/components/user-profile/UserProfile';
 import Button from '../../../components/Button/Button';
 
 function MyInformationPage() {
@@ -16,7 +16,7 @@ function MyInformationPage() {
     return (
         <Card>
             <Header text="내 정보" />
-            <UserInformation email={email} />
+            <UserProfile email={email} />
             <Link className="to-sign-in" to="/">
                 <Button text="로그아웃" />
             </Link>

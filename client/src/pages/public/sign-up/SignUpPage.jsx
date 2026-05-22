@@ -25,7 +25,7 @@ function SignUpPage() {
 
     const navigateSignUp = useNavigate();
 
-    const useRequest = async () => {
+    const requestSignUp = async () => {
         try {
             const response = await signUp(email, password, username, streetAddress, detailAddress);
                 
@@ -55,7 +55,7 @@ function SignUpPage() {
                 <UsernameForm username={username} setUsername={setUsername} />
                 <AddressForm streetAddress={streetAddress} setStreetAddress={setStreetAddress} detailAddress={detailAddress} setDetailAddress={setDetailAddress} />
             </div>
-            <Button text="제출하기" onClick={useRequest} disabled={!isValidForms()} />
+            <Button text="제출하기" onClick={requestSignUp} disabled={!isValidForms()} />
         </Card>
     );
 }

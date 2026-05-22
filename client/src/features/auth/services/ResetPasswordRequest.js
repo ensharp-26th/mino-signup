@@ -1,6 +1,6 @@
 import api from './AuthApi';
 
-export const changePassword = async (email, password) => {
+export const resetPassword = async (email, password) => {
     const response = await api.patch(
         '/api/v1/auth/reset-password',
         {

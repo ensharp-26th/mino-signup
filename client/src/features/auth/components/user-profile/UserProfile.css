@@ -1,22 +1,22 @@
-.user-information {
+.user-profile {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.show-name {
+.show-username {
     display: flex;
     flex-direction: row;
     gap: 12px;
 }
 
-.header-name {
+.header-username {
     white-space: nowrap;
     font-weight: 300;
     font-size: 20px;
 }
 
-.user-name {
+.user-username {
     font-weight: 500;
     font-size: 20px;
 }
