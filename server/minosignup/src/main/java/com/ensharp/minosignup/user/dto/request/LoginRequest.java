@@ -11,7 +11,10 @@ public record LoginRequest(
         String email,
 
         @NotBlank
-        @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+={}\\[\\]|\\\\:;\"'<>,.?/-]).{8,16}$")
+        @Pattern(
+                regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+={}\\[\\]|\\\\:;\"'<>,.?/-]).{8,16}$",
+                message = "올바른 형식의 비밀번호여야 합니다"
+        )
         String password
 
 ) { }
