@@ -8,6 +8,7 @@ import com.ensharp.minosignup.user.dto.request.SignupRequest;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.exception.UserException;
 import com.ensharp.minosignup.user.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -95,6 +96,7 @@ public class UserService {
 
     }
 
+    @Transactional
     public void resetPassword(ResetPasswordRequest request) {
 
         User user = userRepository.findByEmail(request.email())
