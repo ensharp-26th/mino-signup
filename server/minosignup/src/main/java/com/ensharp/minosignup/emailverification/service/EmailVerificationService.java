@@ -1,5 +1,6 @@
 package com.ensharp.minosignup.emailverification.service;
 
+import com.ensharp.minosignup.emailverification.dto.request.EmailVerifyRequest;
 import com.ensharp.minosignup.emailverification.dto.request.VerificationCodeMailRequest;
 import com.ensharp.minosignup.emailverification.entity.EmailVerification;
 import com.ensharp.minosignup.emailverification.repository.EmailVerificationRepository;
@@ -81,4 +82,11 @@ public class EmailVerificationService {
         }
 
     }
+
+    public void verifyEmail(EmailVerifyRequest request) {
+
+
+
+    }
+
 }
