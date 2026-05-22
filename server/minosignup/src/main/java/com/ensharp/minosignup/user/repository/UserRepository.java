@@ -1,4 +1,7 @@
 package com.ensharp.minosignup.user.repository;
 
-public interface UserRepository {
+import com.ensharp.minosignup.user.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
 }
