@@ -31,6 +31,7 @@ public class User {
         this.id            = builder.id;
         this.email         = builder.email;
         this.password      = builder.password;
+        this.username      = builder.username;
         this.streetAddress = builder.streetAddress;
         this.detailAddress = builder.detailAddress;
     }
