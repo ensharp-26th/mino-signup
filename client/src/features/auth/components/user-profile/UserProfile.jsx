@@ -12,7 +12,7 @@ function UserInformation({ email }) {
     useEffect(() => {
         const requestUserProfile = async () => {
             try {
-                const response = await getUserInformation(email);
+                const response = await getUserProfile(email);
 
                 setUsername(response.username);
                 setStreetAddress(response.streetAddress);
