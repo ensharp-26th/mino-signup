@@ -35,6 +35,7 @@ public class UserService {
     private String encodePassword(String password) {
 
         try {
+
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
 
@@ -46,8 +47,11 @@ public class UserService {
             }
 
             return stringBuilder.toString();
+
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-256 암호화 알고리즘을 찾을 수 없습니다.");
+
+            throw new RuntimeException("SHA-256 암호화 알고리즘을 찾을 수 없습니다.", e);
+
         }
 
     }
