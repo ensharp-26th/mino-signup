@@ -3,6 +3,7 @@ package com.ensharp.minosignup.emailverification.controller;
 import com.ensharp.minosignup.emailverification.dto.request.EmailVerifyRequest;
 import com.ensharp.minosignup.emailverification.dto.request.VerificationCodeMailRequest;
 import com.ensharp.minosignup.emailverification.service.EmailVerificationService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,10 @@ public class EmailVerificationController {
         this.emailVerificationService = emailVerificationService;
     }
 
+    @Operation(
+            summary = "인증번호 메일 전송",
+            description = "입력받은 이메일로 인증번호 메일을 전송합니다."
+    )
     @PostMapping(value = "/send-verification-code-mail")
     public ResponseEntity<Map<String, String>> sendVerificationCodeMail(
             @Valid @RequestBody VerificationCodeMailRequest request
@@ -43,6 +48,10 @@ public class EmailVerificationController {
 
     }
 
+    @Operation(
+            summary = "이메일 인증",
+            description = "입력받은 인증번호가 요청된 인증번호화 일치하는지 검증합니다."
+    )
     @PostMapping(value = "/verify-email")
     public ResponseEntity<Map<String, String>> verifyEmail(
             @Valid @RequestBody EmailVerifyRequest request

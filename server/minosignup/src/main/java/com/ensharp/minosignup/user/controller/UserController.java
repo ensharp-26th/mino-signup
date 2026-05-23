@@ -4,6 +4,7 @@ import com.ensharp.minosignup.user.dto.request.*;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,10 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Operation(
+            summary = "이메일 가입 여부 조회",
+            description = "입력된 이메일이 시스템에 등록되어 있는지 조회합니다."
+    )
     @PostMapping(value = "/check-email-exists")
     public ResponseEntity<Map<String, String>> checkEmailExists(
             @Valid @RequestBody EmailExistsRequest request
@@ -40,6 +45,10 @@ public class UserController {
                 .body(response);
     }
 
+    @Operation(
+            summary = "회원가입",
+            description = "유저 정보를 입력받아 새로운 유저를 시스템에 등록합니다."
+    )
     @PostMapping(value = "/signup")
     public ResponseEntity<Map<String, String>> signup(
             @Valid @RequestBody SignupRequest request
@@ -56,6 +65,10 @@ public class UserController {
 
     }
 
+    @Operation(
+            summary = "로그인",
+            description = "이메일과 비밀번호를 입력받아 로그인합니다."
+    )
     @PostMapping(value = "/login")
     public ResponseEntity<Map<String, String>> login(
             @Valid @RequestBody LoginRequest request
@@ -72,6 +85,10 @@ public class UserController {
 
     }
 
+    @Operation(
+            summary = "비밀번호 변경",
+            description = "새로운 비밀번호를 입력받아 비밀번호를 변경합니다."
+    )
     @PatchMapping(value = "/reset-password")
     public ResponseEntity<Map<String, String>> resetPassword(
             @Valid @RequestBody ResetPasswordRequest request
@@ -88,6 +105,10 @@ public class UserController {
 
     }
 
+    @Operation(
+            summary = "유저 프로필 조회",
+            description = "입력받은 이메일의 유저 프로필을 조회합니다."
+    )
     @GetMapping(value = "/profile")
     public ResponseEntity<UserProfileResponse> getUserProfile(
             @Valid UserProfileRequest request

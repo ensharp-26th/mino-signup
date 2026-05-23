@@ -3,6 +3,7 @@ package com.ensharp.minosignup.admin.controller;
 import com.ensharp.minosignup.admin.dto.request.DeleteUserRequest;
 import com.ensharp.minosignup.admin.service.AdminService;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,10 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+    @Operation(
+            summary = "모든 유저 프로필 조회",
+            description = "등록된 모든 유저의 유저 프로필을 조회합니다."
+    )
     @GetMapping(value = "/all-user-profile")
     public ResponseEntity<List<UserProfileResponse>> getAllUserProfile() {
 
@@ -39,6 +44,10 @@ public class AdminController {
 
     }
 
+    @Operation(
+            summary = "유저 삭제",
+            description = "입력받은 이메일의 유저를 삭제합니다."
+    )
     @DeleteMapping(value = "/delete-user")
     public ResponseEntity<Map<String, String>> deleteUser(
             @Valid DeleteUserRequest request
@@ -55,6 +64,10 @@ public class AdminController {
 
     }
 
+    @Operation(
+            summary = "이메일 인증 기록 초기화",
+            description = "이메일 인증 기록을 초기화합니디."
+    )
     @DeleteMapping(value = "/clear-email-verification")
     public ResponseEntity<Map<String, String>> clearEmailVerification() {
 
