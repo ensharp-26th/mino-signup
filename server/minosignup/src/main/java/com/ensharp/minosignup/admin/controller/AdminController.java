@@ -3,6 +3,7 @@ package com.ensharp.minosignup.admin.controller;
 import com.ensharp.minosignup.admin.dto.request.DeleteUserRequest;
 import com.ensharp.minosignup.admin.service.AdminService;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
+@Tag(name = "ADMIN", description = "관리자 관련 API")
 @RestController
 @RequestMapping(value = "/api/v1/admin")
 public class AdminController {

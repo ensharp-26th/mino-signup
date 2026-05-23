@@ -3,6 +3,7 @@ package com.ensharp.minosignup.emailverification.controller;
 import com.ensharp.minosignup.emailverification.dto.request.EmailVerifyRequest;
 import com.ensharp.minosignup.emailverification.dto.request.VerificationCodeMailRequest;
 import com.ensharp.minosignup.emailverification.service.EmailVerificationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+@Tag(name = "EMAIL-VERIFICATION", description = "이메일 인증 관련 API")
 @RestController
 @RequestMapping(value = "/api/v1/email-verification")
 public class EmailVerificationController {

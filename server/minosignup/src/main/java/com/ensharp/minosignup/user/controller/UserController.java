@@ -3,6 +3,8 @@ package com.ensharp.minosignup.user.controller;
 import com.ensharp.minosignup.user.dto.request.*;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.service.UserService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Tag(name = "USER", description = "유저 관련 API")
 @RestController
 @RequestMapping(value = "/api/v1/auth")
 public class UserController {
