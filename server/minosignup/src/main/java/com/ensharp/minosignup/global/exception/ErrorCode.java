@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 
 public enum ErrorCode {
 
-    NOT_REQUESTED_EMAIL(HttpStatus.BAD_REQUEST, "NOT_REQUESTED_EMAIL", "인증번호가 요청되지 않은 이메일 주소입니다"),
+    NOT_REQUESTED_EMAIL(HttpStatus.BAD_REQUEST, "NOT-REQUESTED-EMAIL", "인증번호가 요청되지 않은 이메일 주소입니다"),
     INCONSISTENT_VERIFICATION_CODE(HttpStatus.UNAUTHORIZED, "INCONSISTENT-VERIFICATION-CODE", "인증번호가 일치하지 않습니다"),
     ALREADY_EXISTING_EMAIL(HttpStatus.BAD_REQUEST, "EMAIL-ALREADY-EXISTS", "이미 등록된 이메일 주소입니다"),
     NOT_EXISTING_EMAIL(HttpStatus.BAD_REQUEST, "EMAIL-NOT-EXISTS", "등록되지 않은 이메일 주소입니다"),
