@@ -6,8 +6,8 @@ import com.ensharp.minosignup.user.dto.request.*;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -56,6 +56,7 @@ public class UserService {
 
     }
 
+    @Transactional
     public void signup(SignupRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
@@ -110,6 +111,7 @@ public class UserService {
 
     }
 
+    @Transactional(readOnly = true)
     public UserProfileResponse getUserProfile(UserProfileRequest request) {
 
         User user = userRepository.findByEmail(request.email())
