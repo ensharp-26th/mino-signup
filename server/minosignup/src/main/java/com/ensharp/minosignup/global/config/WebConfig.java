@@ -9,8 +9,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(final CorsRegistry corsRegistry) {
+
+        String clientURL = System.getenv("CLIENT_URL");
+
         corsRegistry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins(clientURL)
                 .allowedMethods("POST", "PATCH", "GET");
+
     }
 }
