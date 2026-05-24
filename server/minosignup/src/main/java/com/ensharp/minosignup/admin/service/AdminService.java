@@ -8,6 +8,7 @@ import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class AdminService {
         this.userRepository = userRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<UserProfileResponse> getAllUserProfile() {
 
         List<UserProfileResponse> allUserProfileResponse = new ArrayList<>();
@@ -40,6 +42,7 @@ public class AdminService {
 
     }
 
+    @Transactional
     public void deleteUser(DeleteUserRequest request) {
 
         User user = userRepository.findByEmail(request.email())
@@ -49,6 +52,7 @@ public class AdminService {
 
     }
 
+    @Transactional
     public void clearEmailVerification() {
 
         emailVerificationRepository.deleteAll();
