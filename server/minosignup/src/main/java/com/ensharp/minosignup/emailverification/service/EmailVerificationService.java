@@ -64,7 +64,7 @@ public class EmailVerificationService {
                     """.formatted(verificationCode);
 
             mimeMessageHelper.setTo(request.email());
-            mimeMessageHelper.setSubject("[En# SignUp] 이메일 인증 번호: " + verificationCode);
+            mimeMessageHelper.setSubject("[En#] 이메일 인증 번호: " + verificationCode);
             mimeMessageHelper.setText(htmlContent, true);
 
             javaMailSender.send(mimeMessage);
