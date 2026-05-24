@@ -8,5 +8,4 @@ public record EmailVerifyResponse(
 
         String message
 
-) {
-}
+) { }

@@ -40,13 +40,13 @@ public class EmailVerificationController {
         emailVerificationService.sendVerificationCodeMail(request);
 
         VerificationCodeMailResponse response = new VerificationCodeMailResponse(
-                HttpStatus.OK.value(),
+                HttpStatus.CREATED.value(),
                 "VERIFICATION_CODE_MAIL",
                 "입력하신 이메일 주소(" + request.email() + ")로 인증번호 메일이 발송되었습니다."
         );
 
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.CREATED)
                 .body(response);
 
     }
