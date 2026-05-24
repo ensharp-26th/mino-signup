@@ -67,7 +67,7 @@ public class AdminController {
 
     @Operation(
             summary = "이메일 인증 기록 초기화",
-            description = "이메일 인증 기록을 초기화합니디."
+            description = "모든 이메일 인증 기록을 초기화합니디."
     )
     @DeleteMapping(value = "/clear-email-verification")
     public ResponseEntity<ClearEmailVerificationResponse> clearEmailVerification() {
