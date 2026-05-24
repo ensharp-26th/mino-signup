@@ -1,12 +1,10 @@
-package com.ensharp.minosignup.emailverification.exception;
+package com.ensharp.minosignup.global.exception;
 
-import com.ensharp.minosignup.global.exception.ErrorCode;
-
-public class EmailVerificationException extends RuntimeException {
+public class BusinessException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
-    public EmailVerificationException(
+    public BusinessException(
             ErrorCode errorCode
     ) {
         super(errorCode.message());
