@@ -39,7 +39,7 @@ public class EmailVerificationController {
 
         emailVerificationService.sendVerificationCodeMail(request);
 
-        String message = "입력하신 이메일 주소(" + request.email() +")로 인증번호 메일이 발송되었습니다.";
+        String message = "입력하신 이메일 주소(" + request.email() + ")로 인증번호 메일이 발송되었습니다.";
         Map<String, String> response = Map.of("message", message);
 
         return ResponseEntity

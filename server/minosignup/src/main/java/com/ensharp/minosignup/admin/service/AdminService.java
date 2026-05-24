@@ -2,7 +2,6 @@ package com.ensharp.minosignup.admin.service;
 
 import com.ensharp.minosignup.admin.dto.request.DeleteUserRequest;
 import com.ensharp.minosignup.admin.exception.AdminException;
-import com.ensharp.minosignup.emailverification.entity.EmailVerification;
 import com.ensharp.minosignup.emailverification.repository.EmailVerificationRepository;
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
@@ -29,16 +28,12 @@ public class AdminService {
 
     public List<UserProfileResponse> getAllUserProfile() {
 
-        List<User> users = userRepository.findAll();
-
-        if (users.isEmpty()) {
-            throw new AdminException(ErrorCode.NO_USER);
-        }
-
         List<UserProfileResponse> allUserProfileResponse = new ArrayList<>();
 
-        for (User user : users) {
+        for (User user : userRepository.findAll()) {
+
             allUserProfileResponse.add(UserProfileResponse.from(user));
+
         }
 
         return allUserProfileResponse;

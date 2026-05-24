@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -21,7 +22,7 @@ public class GlobalExceptionHandler {
                 .get(0)
                 .getDefaultMessage();
 
-        ErrorResponse response = new ErrorResponse("VALIDATION-ERROR", message);
+        ErrorResponse response = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "INVALID_INPUT_VALUE", message);
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
