@@ -42,7 +42,7 @@ public class EmailVerificationController {
         VerificationCodeMailResponse response = new VerificationCodeMailResponse(
                 HttpStatus.CREATED.value(),
                 "VERIFICATION_CODE_MAIL",
-                "입력하신 이메일 주소(" + request.email() + ")로 인증번호 메일이 발송되었습니다."
+                "(" + request.email() + ") 인증번호 메일이 발송되었습니다."
         );
 
         return ResponseEntity
@@ -65,7 +65,7 @@ public class EmailVerificationController {
         EmailVerifyResponse response = new EmailVerifyResponse(
                 HttpStatus.OK.value(),
                 "EMAIL_VERIFY",
-                request.email() + " 이메일 주소 인증에 성공하였습니다."
+                "(" + request.email() + ") 이메일 주소 인증에 성공하였습니다."
         );
 
         return ResponseEntity

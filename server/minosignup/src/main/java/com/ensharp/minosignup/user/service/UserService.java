@@ -90,15 +90,6 @@ public class UserService {
 
     }
 
-    public String getUsernameByLogin(LoginRequest request) {
-
-        User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
-
-        return user.username();
-
-    }
-
     @Transactional
     public void resetPassword(ResetPasswordRequest request) {
 

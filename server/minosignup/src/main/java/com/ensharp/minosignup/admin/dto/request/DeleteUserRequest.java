@@ -9,5 +9,4 @@ public record DeleteUserRequest(
         @Email
         String email
 
-) {
-}
+) { }

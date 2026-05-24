@@ -56,7 +56,7 @@ public class AdminController {
         DeleteUserResponse response = new DeleteUserResponse(
                 HttpStatus.OK.value(),
                 "DELETE_USER",
-                request.email() + " 유저를 등록된 유저 목록에서 제거하였습니다"
+                "(" + request.email() + ") 등록된 유저 목록에서 제거하였습니다"
         );
 
         return ResponseEntity

@@ -38,7 +38,7 @@ public class UserController {
         EmailExistsResponse response = new EmailExistsResponse(
                 HttpStatus.OK.value(),
                 "EMAIL_EXISTS",
-                "입력하신 이메일 주소(" + request.email() +")는 등록이 가능합니다"
+                "(" + request.email() + ") 이메일 주소 등록이 가능합니다"
         );
 
         return ResponseEntity
@@ -60,7 +60,7 @@ public class UserController {
         SignupResponse response = new SignupResponse(
                 HttpStatus.CREATED.value(),
                 "SIGNUP",
-                request.username() + "(" + request.email() + ")" + " 님이 성공적으로 회원가입 하였습니다"
+                "(" + request.email() + ") 회원가입 하였습니다"
         );
 
         return ResponseEntity
@@ -83,7 +83,7 @@ public class UserController {
         LoginResponse response = new LoginResponse(
                 HttpStatus.OK.value(),
                 "LOGIN",
-                userService.getUsernameByLogin(request) + "(" + request.email() + ")" + " 님이 로그인 하였습니다"
+                "(" + request.email() + ") 로그인 하였습니다"
         );
 
         return ResponseEntity
@@ -106,7 +106,7 @@ public class UserController {
         ResetPasswordResponse response = new ResetPasswordResponse(
                 HttpStatus.OK.value(),
                 "RESET_PASSWORD",
-                request.email() + " 계정의 비밀번호 재설정에 성공하였습니다."
+                "(" + request.email() + ") 비밀번호 재설정에 성공하였습니다."
         );
 
         return ResponseEntity
