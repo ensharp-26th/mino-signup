@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "EMAIL-VERIFICATION", description = "이메일 인증 관련 API")
 @RestController
-@RequestMapping(value = "/api/v1/email-verification")
+@RequestMapping(value = "/api/v1/email-verifications")
 public class EmailVerificationController {
 
     private final EmailVerificationService emailVerificationService;
@@ -29,7 +29,7 @@ public class EmailVerificationController {
             summary = "인증번호 메일 전송",
             description = "입력받은 이메일로 인증번호 메일을 전송합니다."
     )
-    @PostMapping(value = "/send-verification-code-mail")
+    @PostMapping(value = "/send")
     public ResponseEntity<VerificationCodeMailResponse> sendVerificationCodeMail(
             @Valid @RequestBody VerificationCodeMailRequest request
     ) {
@@ -52,7 +52,7 @@ public class EmailVerificationController {
             summary = "이메일 인증",
             description = "입력받은 인증번호가 요청된 인증번호화 일치하는지 검증합니다."
     )
-    @PostMapping(value = "/verify-email")
+    @PostMapping(value = "/verify")
     public ResponseEntity<EmailVerifyResponse> verifyEmail(
             @Valid @RequestBody EmailVerifyRequest request
     ) {

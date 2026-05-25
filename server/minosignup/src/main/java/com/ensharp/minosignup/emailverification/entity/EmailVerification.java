@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "email_verification")
+@Table(name = "email_verifications")
 public class EmailVerification {
 
     protected EmailVerification() { }

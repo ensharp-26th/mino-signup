@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "USER", description = "유저 관련 API")
 @RestController
-@RequestMapping(value = "/api/v1/auth")
+@RequestMapping(value = "/api/v1/users")
 public class UserController {
 
     private final UserService userService;
@@ -28,7 +28,7 @@ public class UserController {
             summary = "이메일 가입 여부 조회",
             description = "입력된 이메일이 시스템에 등록되어 있는지 조회합니다."
     )
-    @PostMapping(value = "/check-email-exists")
+    @PostMapping(value = "/check-email")
     public ResponseEntity<EmailExistsResponse> checkEmailExists(
             @Valid @RequestBody EmailExistsRequest request
     ) {
@@ -96,7 +96,7 @@ public class UserController {
             summary = "비밀번호 변경",
             description = "새로운 비밀번호를 입력받아 비밀번호를 변경합니다."
     )
-    @PatchMapping(value = "/reset-password")
+    @PatchMapping(value = "/me/password")
     public ResponseEntity<ResetPasswordResponse> resetPassword(
             @Valid @RequestBody ResetPasswordRequest request
     ) {
@@ -119,7 +119,7 @@ public class UserController {
             summary = "유저 프로필 조회",
             description = "입력받은 이메일의 유저 프로필을 조회합니다."
     )
-    @GetMapping(value = "/profile")
+    @GetMapping(value = "/me/profile")
     public ResponseEntity<UserProfileResponse> getUserProfile(
             @Valid UserProfileRequest request
     ) {

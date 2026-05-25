@@ -31,7 +31,7 @@ public class AdminController {
             summary = "모든 유저 프로필 조회",
             description = "등록된 모든 유저의 유저 프로필을 조회합니다."
     )
-    @GetMapping(value = "/all-user-profile")
+    @GetMapping(value = "/users")
     public ResponseEntity<List<UserProfileResponse>> getAllUserProfile() {
 
         List<UserProfileResponse> response = adminService.getAllUserProfile();
@@ -46,8 +46,9 @@ public class AdminController {
             summary = "유저 삭제",
             description = "입력받은 이메일의 유저를 삭제합니다."
     )
-    @DeleteMapping(value = "/delete-user")
+    @DeleteMapping(value = "/users/{email}")
     public ResponseEntity<DeleteUserResponse> deleteUser(
+            @PathVariable(value = "email") String email,
             @Valid @RequestBody DeleteUserRequest request
     ) {
 
@@ -69,7 +70,7 @@ public class AdminController {
             summary = "이메일 인증 기록 초기화",
             description = "모든 이메일 인증 기록을 초기화합니디."
     )
-    @DeleteMapping(value = "/clear-email-verification")
+    @DeleteMapping(value = "/email-verifications")
     public ResponseEntity<ClearEmailVerificationResponse> clearEmailVerification() {
 
         adminService.clearEmailVerification();
