@@ -2,7 +2,7 @@ import api from './AuthApi';
 
 export const checkEmailExist = async (email) => {
     const response = await api.post(
-        '/api/v1/auth/check-email-exists',
+        '/api/v1/users/check-email',
         {
             email: email
         }
