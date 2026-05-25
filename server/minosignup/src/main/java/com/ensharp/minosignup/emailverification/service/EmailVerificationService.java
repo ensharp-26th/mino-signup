@@ -3,15 +3,15 @@ package com.ensharp.minosignup.emailverification.service;
 import com.ensharp.minosignup.emailverification.dto.request.EmailVerifyRequest;
 import com.ensharp.minosignup.emailverification.dto.request.VerificationCodeMailRequest;
 import com.ensharp.minosignup.emailverification.entity.EmailVerification;
-import com.ensharp.minosignup.emailverification.exception.EmailVerificationException;
 import com.ensharp.minosignup.emailverification.repository.EmailVerificationRepository;
+import com.ensharp.minosignup.global.exception.BusinessException;
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.transaction.Transactional;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -40,6 +40,7 @@ public class EmailVerificationService {
 
     }
 
+    @Transactional
     public void sendVerificationCodeMail(VerificationCodeMailRequest request) {
 
         try {
@@ -64,7 +65,7 @@ public class EmailVerificationService {
                     """.formatted(verificationCode);
 
             mimeMessageHelper.setTo(request.email());
-            mimeMessageHelper.setSubject("[En# SignUp] 이메일 인증 번호: " + verificationCode);
+            mimeMessageHelper.setSubject("[En#] 이메일 인증 번호: " + verificationCode);
             mimeMessageHelper.setText(htmlContent, true);
 
             javaMailSender.send(mimeMessage);
@@ -90,10 +91,10 @@ public class EmailVerificationService {
     public void verifyEmail(EmailVerifyRequest request) {
 
         EmailVerification emailVerification = emailVerificationRepository.findFirstByEmailOrderByRequestedAtDesc(request.email())
-                .orElseThrow(() -> new EmailVerificationException(ErrorCode.NOT_REQUESTED_EMAIL));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_REQUESTED_EMAIL));
 
         if (!request.verificationCode().equals(emailVerification.verificationCode())) {
-            throw new EmailVerificationException(ErrorCode.INCONSISTENT_VERIFICATION_CODE);
+            throw new BusinessException(ErrorCode.INCONSISTENT_VERIFICATION_CODE);
         }
 
         emailVerification.updateVerifiedState(true);

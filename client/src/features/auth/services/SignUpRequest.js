@@ -2,7 +2,7 @@ import api from './AuthApi';
 
 export const signUp = async (email, password, username, streetAddress, detailAddress) => {
     const response = await api.post(
-        '/api/v1/auth/signup',
+        '/api/v1/users/signup',
         {
             email: email,
             password: password,

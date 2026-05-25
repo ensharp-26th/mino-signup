@@ -6,6 +6,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: false
   datasource:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}

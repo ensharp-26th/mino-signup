@@ -1,14 +1,13 @@
 package com.ensharp.minosignup.user.service;
 
-import com.ensharp.minosignup.emailverification.repository.EmailVerificationRepository;
+import com.ensharp.minosignup.global.exception.BusinessException;
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import com.ensharp.minosignup.user.dto.request.*;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.entity.User;
-import com.ensharp.minosignup.user.exception.UserException;
 import com.ensharp.minosignup.user.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -28,7 +27,7 @@ public class UserService {
     public void checkEmailExists(EmailExistsRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
-            throw new UserException(ErrorCode.ALREADY_EXISTING_EMAIL);
+            throw new BusinessException(ErrorCode.ALREADY_EXISTING_EMAIL);
         }
 
     }
@@ -57,10 +56,11 @@ public class UserService {
 
     }
 
+    @Transactional
     public void signup(SignupRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
-            throw new UserException(ErrorCode.ALREADY_EXISTING_EMAIL);
+            throw new BusinessException(ErrorCode.ALREADY_EXISTING_EMAIL);
         }
 
         String encodedPassword = encodePassword(request.password());
@@ -80,22 +80,13 @@ public class UserService {
     public void login(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
 
         String encodedPassword = encodePassword(request.password());
 
         if (!encodedPassword.equals(user.password())) {
-            throw new UserException(ErrorCode.INCONSISTENT_PASSWORD);
+            throw new BusinessException(ErrorCode.INCONSISTENT_PASSWORD);
         }
-
-    }
-
-    public String getUsernameByLogin(LoginRequest request) {
-
-        User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
-
-        return user.username();
 
     }
 
@@ -103,7 +94,7 @@ public class UserService {
     public void resetPassword(ResetPasswordRequest request) {
 
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
 
         String encodedNewPassword = encodePassword(request.newPassword());
 
@@ -111,10 +102,11 @@ public class UserService {
 
     }
 
+    @Transactional(readOnly = true)
     public UserProfileResponse getUserProfile(UserProfileRequest request) {
 
         User user = userRepository.findByEmail(request.email())
-                .orElseThrow(() -> new UserException(ErrorCode.NOT_EXISTING_EMAIL));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
 
 
         return new UserProfileResponse(

@@ -2,7 +2,7 @@ import api from './AuthApi';
 
 export const getUserProfile = async (email) => {
     const response = await api.get(
-        '/api/v1/auth/profile',
+        '/api/v1/users/me/profile',
         { params: 
             {
                 email: email
