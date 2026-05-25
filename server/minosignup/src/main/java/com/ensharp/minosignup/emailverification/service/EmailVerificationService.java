@@ -8,10 +8,13 @@ import com.ensharp.minosignup.global.exception.BusinessException;
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -20,16 +23,21 @@ import java.time.LocalDateTime;
 public class EmailVerificationService {
 
     private final EmailVerificationRepository emailVerificationRepository;
+
     private final SecureRandom secureRandom;
     private final JavaMailSender javaMailSender;
+    private final TemplateEngine templateEngine;
 
     public EmailVerificationService(
             EmailVerificationRepository emailVerificationRepository,
-            JavaMailSender javaMailSender
+            JavaMailSender javaMailSender,
+            TemplateEngine templateEngine
     ) {
         this.emailVerificationRepository = emailVerificationRepository;
+
         this.secureRandom = new SecureRandom();
         this.javaMailSender = javaMailSender;
+        this.templateEngine = templateEngine;
     }
 
     private String generateVerificationCode() {
@@ -49,31 +57,28 @@ public class EmailVerificationService {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_RELATED, "UTF-8");
 
             String verificationCode = generateVerificationCode();
+            LocalDateTime requestedAt = LocalDateTime.now();
 
-            String htmlContent = """
-                    <div>
-                        <img 
-                            src="https://i.namu.wiki/i/ZwEuCR_k9AKLHHPu9zAxt-mAIIvGi8esMXOmDNyAcQCzbUpLxBIzKul3xXU57MgINZYChPpoP14jf-NreeEFcQ.webp" 
-                            style="width: 250px; height: 290px;"
-                        >
-                        <h2>이메일 인증 번호 안내</h2>
-                        <p>세종대학교 En# 동아리에 오신 것을 환영합니다.</p>
-                        <p>회원가입을 위해서는 이메일 인증이 필요합니다.</p>
-                        <p>아래의 인증번호를 인증번호 입력란에 정확히 입력해주세요.</p>
-                        <h1>%s</h1>
-                    </div>
-                    """.formatted(verificationCode);
+            Context context = new Context();
+            context.setVariable("verificationCode", verificationCode);
+            context.setVariable("expiredAt", requestedAt.plusMinutes(2));
+
+            String htmlContent = templateEngine.process("verification-mail", context);
 
             mimeMessageHelper.setTo(request.email());
             mimeMessageHelper.setSubject("[En#] 이메일 인증 번호: " + verificationCode);
             mimeMessageHelper.setText(htmlContent, true);
+
+            ClassPathResource imageResource = new ClassPathResource("static/ensharp_sejong.png");
+
+            mimeMessageHelper.addInline("ensharpLogo", imageResource);
 
             javaMailSender.send(mimeMessage);
 
             EmailVerification emailVerification = new EmailVerification.Builder()
                     .email(request.email())
                     .verificationCode(verificationCode)
-                    .requestedAt(LocalDateTime.now())
+                    .requestedAt(requestedAt)
                     .isVerified(false)
                     .build();
 
@@ -95,6 +100,10 @@ public class EmailVerificationService {
 
         if (!request.verificationCode().equals(emailVerification.verificationCode())) {
             throw new BusinessException(ErrorCode.INCONSISTENT_VERIFICATION_CODE);
+        }
+
+        if (LocalDateTime.now().isAfter(emailVerification.requestedAt().plusMinutes(2))) {
+            throw new BusinessException(ErrorCode.VERIFICATION_CODE_EXPIRED);
         }
 
         emailVerification.updateVerifiedState(true);
