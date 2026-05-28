@@ -28,7 +28,7 @@ public class UserController {
             summary = "이메일 가입 여부 조회",
             description = "입력된 이메일이 시스템에 등록되어 있는지 조회합니다."
     )
-    @PostMapping(value = "/check-email")
+    @PostMapping(value = "/email-availability")
     public ResponseEntity<EmailExistsResponse> checkEmailExists(
             @Valid @RequestBody EmailExistsRequest request
     ) {
@@ -50,7 +50,7 @@ public class UserController {
             summary = "회원가입",
             description = "유저 정보를 입력받아 새로운 유저를 시스템에 등록합니다."
     )
-    @PostMapping(value = "/signup")
+    @PostMapping(value = "/")
     public ResponseEntity<SignupResponse> signup(
             @Valid @RequestBody SignupRequest request
     ) {
@@ -119,7 +119,7 @@ public class UserController {
             summary = "유저 프로필 조회",
             description = "입력받은 이메일의 유저 프로필을 조회합니다."
     )
-    @GetMapping(value = "/me/profile")
+    @GetMapping(value = "/me")
     public ResponseEntity<UserProfileResponse> getUserProfile(
             @Valid UserProfileRequest request
     ) {
