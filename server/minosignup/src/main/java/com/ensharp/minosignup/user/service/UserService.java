@@ -6,6 +6,7 @@ import com.ensharp.minosignup.user.dto.request.*;
 import com.ensharp.minosignup.user.dto.response.UserProfileResponse;
 import com.ensharp.minosignup.user.entity.User;
 import com.ensharp.minosignup.user.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,40 +19,20 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     public UserService(
-            UserRepository userRepository
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder
     ) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void checkEmailExists(EmailExistsRequest request) {
 
         if (userRepository.existsByEmail(request.email())) {
             throw new BusinessException(ErrorCode.ALREADY_EXISTING_EMAIL);
-        }
-
-    }
-
-    private String encodePassword(String password) {
-
-        try {
-
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
-
-            byte[] hashBytes = messageDigest.digest();
-
-            StringBuilder stringBuilder = new StringBuilder();
-            for (byte b : hashBytes) {
-                stringBuilder.append(String.format("%02x", b));
-            }
-
-            return stringBuilder.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-
-            throw new RuntimeException("SHA-256 암호화 알고리즘을 찾을 수 없습니다.", e);
-
         }
 
     }
@@ -63,9 +44,12 @@ public class UserService {
             throw new BusinessException(ErrorCode.ALREADY_EXISTING_EMAIL);
         }
 
-        String encodedPassword = encodePassword(request.password());
+        String encodedPassword = passwordEncoder.encode(request.password());
+
+        String role = request.email().equals("admin@ensharp.com") ? "ROLE_ADMIN" : "ROLE_USER";
 
         User user = new User.Builder()
+                .role(role)
                 .email(request.email())
                 .password(encodedPassword)
                 .username(request.username())
@@ -82,7 +66,7 @@ public class UserService {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
 
-        String encodedPassword = encodePassword(request.password());
+        String encodedPassword = passwordEncoder.encode(request.password());
 
         if (!encodedPassword.equals(user.password())) {
             throw new BusinessException(ErrorCode.INCONSISTENT_PASSWORD);
@@ -96,7 +80,7 @@ public class UserService {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
 
-        String encodedNewPassword = encodePassword(request.newPassword());
+        String encodedNewPassword = passwordEncoder.encode(request.newPassword());
 
         user.updatePassword(encodedNewPassword);
 

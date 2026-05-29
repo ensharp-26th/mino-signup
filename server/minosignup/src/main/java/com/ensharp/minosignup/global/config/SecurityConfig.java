@@ -1,10 +1,12 @@
 package com.ensharp.minosignup.global.config;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,16 +24,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
-                .formLogin(form -> form.disable())
-                .httpBasic(basic -> basic.disable())
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/images/**", "css/**").permitAll()
-                        .requestMatchers("/api/v1/users/me", "/api/v1/users/me/password").hasRole("USER")
-                        .requestMatchers("/api/v1/admin/users", "/api/v1/admin/users/{id}","/api/v1/admin/email-verifications").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/sessions/current", "/api/v1/users/me").hasRole("USER")
+                        .requestMatchers("/api/v1/admin/users", "/api/v1/admin/user","/api/v1/admin/email-verifications").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 );
 
@@ -45,7 +46,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of("http://localhost:5173"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PATCH"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setExposedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
@@ -55,6 +56,11 @@ public class SecurityConfig {
 
         return configurationSource;
 
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
