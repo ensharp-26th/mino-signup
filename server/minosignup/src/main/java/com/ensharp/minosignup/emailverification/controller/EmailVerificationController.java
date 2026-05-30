@@ -52,7 +52,7 @@ public class EmailVerificationController {
             summary = "이메일 인증",
             description = "입력받은 인증번호가 요청된 인증번호화 일치하는지 검증합니다."
     )
-    @PostMapping(value = "/verify")
+    @PatchMapping(value = "/verify")
     public ResponseEntity<EmailVerifyResponse> verifyEmail(
             @Valid @RequestBody EmailVerifyRequest request
     ) {

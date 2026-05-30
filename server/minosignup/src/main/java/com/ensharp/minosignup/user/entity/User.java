@@ -11,6 +11,9 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "role", nullable = false)
+    private String role;
+
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
@@ -28,6 +31,7 @@ public class User {
 
     public User(Builder builder) {
 
+        this.role          = builder.role;
         this.email         = builder.email;
         this.password      = builder.password;
         this.username      = builder.username;
@@ -36,6 +40,9 @@ public class User {
 
     }
 
+    public String role() {
+        return role;
+    }
     public String email() {
         return email;
     }
@@ -54,12 +61,17 @@ public class User {
 
     public static class Builder {
 
+        private String role;
         private String email;
         private String password;
         private String username;
         private String streetAddress;
         private String detailAddress;
 
+        public Builder role(String role) {
+            this.role = role;
+            return this;
+        }
         public Builder email(String email) {
             this.email = email;
             return this;

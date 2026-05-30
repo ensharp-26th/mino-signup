@@ -28,7 +28,7 @@ public class UserController {
             summary = "이메일 가입 여부 조회",
             description = "입력된 이메일이 시스템에 등록되어 있는지 조회합니다."
     )
-    @PostMapping(value = "/check-email")
+    @PostMapping(value = "/email-availability")
     public ResponseEntity<EmailExistsResponse> checkEmailExists(
             @Valid @RequestBody EmailExistsRequest request
     ) {
@@ -44,13 +44,14 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
+
     }
 
     @Operation(
             summary = "회원가입",
             description = "유저 정보를 입력받아 새로운 유저를 시스템에 등록합니다."
     )
-    @PostMapping(value = "/signup")
+    @PostMapping
     public ResponseEntity<SignupResponse> signup(
             @Valid @RequestBody SignupRequest request
     ) {
@@ -65,29 +66,6 @@ public class UserController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(response);
-
-    }
-
-    @Operation(
-            summary = "로그인",
-            description = "이메일과 비밀번호를 입력받아 로그인합니다."
-    )
-    @PostMapping(value = "/login")
-    public ResponseEntity<LoginResponse> login(
-            @Valid @RequestBody LoginRequest request
-    ) {
-
-        userService.login(request);
-
-        LoginResponse response = new LoginResponse(
-                HttpStatus.OK.value(),
-                "LOGIN",
-                "(" + request.email() + ") 로그인 하였습니다"
-        );
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
                 .body(response);
 
     }
