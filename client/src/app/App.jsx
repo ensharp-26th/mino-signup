@@ -10,6 +10,7 @@ import FindPasswordPage from '../pages/public/find-password/FindPasswordPage';
 import MyProfilePage from '../pages/private/my-profile/MyProfilePage';
 import ResetPasswordPage from '../pages/private/reset-password/ResetPasswordPage';
 import ResetPasswordSuccessPage from '../pages/private/reset-password/ResetPasswordSuccessPage';
+import AdminPage from '../pages/private/admin/AdminPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/my-profile" element={<MyProfilePage />}></Route>
         <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
         <Route path="/reset-password/success" element={<ResetPasswordSuccessPage />}></Route>
+        <Route path="/admin" element={<AdminPage />}></Route>
       </Routes>
     </BrowserRouter>
   )

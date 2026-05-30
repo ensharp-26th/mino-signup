@@ -29,7 +29,13 @@ function LoginAction({ email, password, canLogin, setCanLogin, rememberEmail }) 
             console.log(response);
             setCanLogin(true);
             saveEmail();
-            navigateLogin('/my-profile', { state: email });
+
+            if (email === "admin@ensharp.com") {
+                navigateLogin('/admin');
+            }
+            else {
+                navigateLogin('/my-profile', { state: email });
+            }
         } catch (error) {
             console.log(error)
             setCanLogin(false);
