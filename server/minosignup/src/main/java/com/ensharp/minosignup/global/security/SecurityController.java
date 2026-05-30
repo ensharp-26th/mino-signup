@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@Tag(name = "SESSION", description = "세션 인증 관련 API")
+@Tag(name = "SECURITY", description = "세션 인증 관련 API")
 @RestController
 @RequestMapping(value = "/api/v1/sessions")
-public class SessionController {
+public class SecurityController {
 
     private final AuthenticationManager authenticationManager;
 
-    public SessionController(
+    public SecurityController(
             AuthenticationManager authenticationManager
     ) {
         this.authenticationManager = authenticationManager;
     }
 
     @PostMapping
-    public ResponseEntity<?> login(
+    public ResponseEntity<SecurityResponse> login(
             @RequestBody LoginRequest request,
             HttpServletRequest servletRequest
     ) {
@@ -47,12 +47,20 @@ public class SessionController {
         HttpSession session = servletRequest.getSession(true);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
 
-        return ResponseEntity.ok("로그인 성공 (세션 발급됨)");
+        SecurityResponse response = new SecurityResponse(
+                HttpStatus.OK.value(),
+                "LOGIN",
+                "(" + request.email() + ") 세션이 발급되었습니다."
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
 
     }
 
     @DeleteMapping(value = "/current")
-    public ResponseEntity<?> logout(
+    public ResponseEntity<SecurityResponse> logout(
             HttpServletRequest servletRequest
     ) {
 
@@ -63,29 +71,46 @@ public class SessionController {
 
         SecurityContextHolder.clearContext();
 
-        return ResponseEntity.ok("로그아웃 성공 (세션 삭제됨)");
+        SecurityResponse response = new SecurityResponse(
+                HttpStatus.OK.value(),
+                "LOGOUT",
+                "세션이 삭제되었습니다."
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
 
     }
 
     @GetMapping(value = "/current")
-    public ResponseEntity<?> checkStatus() {
+    public ResponseEntity<SecurityResponse> checkStatus() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        SecurityResponse unauthorizedResponse = new SecurityResponse(
+                HttpStatus.UNAUTHORIZED.value(), 
+                "IS_NOT_LOGGEDIN",
+                "로그인 세션이 발급되지 않은 상태입니다."
+        );
+        
         if (authentication == null || "anonymousUser".equals(authentication.getPrincipal())) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body("로그인 되지 않은 상태입니다.");
+                    .body(unauthorizedResponse);
         }
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
-        Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("isLoggedIn", true);
-        userInfo.put("email", userDetails.getUsername());
-        userInfo.put("role", userDetails.getAuthorities().iterator().next().getAuthority());
+        SecurityResponse okResponse = new SecurityResponse(
+                HttpStatus.OK.value(),
+                "IS_LOGGEDIN",
+                "로그인 세션이 발급된 상태입니다."
+        );
 
-        return ResponseEntity.ok(userInfo);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(okResponse);
 
     }
 }
