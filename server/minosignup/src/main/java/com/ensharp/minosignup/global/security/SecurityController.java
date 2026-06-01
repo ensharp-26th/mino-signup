@@ -1,6 +1,7 @@
 package com.ensharp.minosignup.global.security;
 
 import com.ensharp.minosignup.user.dto.request.LoginRequest;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -27,6 +28,10 @@ public class SecurityController {
         this.authenticationManager = authenticationManager;
     }
 
+    @Operation(
+            summary = "세션 로그인",
+            description = "아이디와 비밀번호를 확인하여 세션을 부여합니다."
+    )
     @PostMapping
     public ResponseEntity<SecurityResponse> login(
             @RequestBody LoginRequest request,
@@ -56,6 +61,10 @@ public class SecurityController {
 
     }
 
+    @Operation(
+            summary = "현재 세션 삭제",
+            description = "현재 부여된 세션을 삭제합니다."
+    )
     @DeleteMapping(value = "/current")
     public ResponseEntity<SecurityResponse> logout(
             HttpServletRequest servletRequest
@@ -80,6 +89,10 @@ public class SecurityController {
 
     }
 
+    @Operation(
+            summary = "현재 세션 조회",
+            description = "현재 사용 중인 세션을 확인합니다."
+    )
     @GetMapping(value = "/current")
     public ResponseEntity<SecurityResponse> checkStatus() {
 
