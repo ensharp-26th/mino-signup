@@ -47,7 +47,7 @@ public class UserService {
         }
 
         EmailVerification emailVerification = emailVerificationRepository.findFirstByEmailOrderByRequestedAtDesc(request.email())
-                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_VERIFIED_EMAIL));
 
         if (!emailVerification.isVerified()) {
             throw new BusinessException(ErrorCode.NOT_VERIFIED_EMAIL);

@@ -6,6 +6,8 @@ public enum ErrorCode {
 
     NOT_REQUESTED_EMAIL
             (HttpStatus.BAD_REQUEST, "NOT_REQUESTED_EMAIL", "인증을 요청받지 않은 이메일 주소입니다"),
+    FAILED_TO_SEND
+            (HttpStatus.BAD_REQUEST, "FAILED_TO_SEND", "이메일 전송에 실패하였습니다."),
     INCONSISTENT_VERIFICATION_CODE
             (HttpStatus.UNAUTHORIZED, "INCONSISTENT_VERIFICATION_CODE", "인증번호가 일치하지 않습니다"),
     VERIFICATION_CODE_EXPIRED
