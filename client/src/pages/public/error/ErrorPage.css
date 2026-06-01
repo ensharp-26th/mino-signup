@@ -1,0 +1,15 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.error-image {
+    width: 200px;
+    height: 200px;
+    align-self: center;
+}
+
+.error-phrase {
+    font-size: 20px;
+    text-align: center;
+}

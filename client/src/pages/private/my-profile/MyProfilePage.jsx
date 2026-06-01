@@ -1,6 +1,7 @@
 import './MyProfilePage.css';
 
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import Card from '../../../components/Card/Card';
 import Header from '../../../components/Header/Header';
@@ -8,8 +9,11 @@ import UserProfile from '../../../features/auth/components/user-profile/UserProf
 import Button from '../../../components/Button/Button';
 
 import { logout } from '../../../features/auth/services/LogoutReqeust';
+import { checkSession } from '../../../features/auth/services/CheckSession';
 
-function MyInformationPage() {
+function MyProfilePage() {
+    const navigateLogin = useNavigate();
+
     const location = useLocation();
     const obj = location.state;
     const emailJSON = JSON.stringify(obj);
@@ -25,6 +29,19 @@ function MyInformationPage() {
         }
     }
 
+    useEffect(() => {
+        const check = async () => {
+            try {
+                const response = await checkSession();
+
+            } catch (error) {
+                navigateLogin('/error');
+            }
+        }
+
+        check();
+    }, []);
+
     return (
         <Card>
             <Header text="내 정보" />
@@ -36,4 +53,4 @@ function MyInformationPage() {
     );
 }
 
-export default MyInformationPage;
+export default MyProfilePage;

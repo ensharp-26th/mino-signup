@@ -34,6 +34,12 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/users/me/profile").hasRole("USER")
                         .requestMatchers("/api/v1/admin/users", "/api/v1/admin/user","/api/v1/admin/email-verifications").hasRole("ADMIN")
                         .anyRequest().permitAll()
+                )
+
+                .sessionManagement(session -> session
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(true)
+                        .expiredUrl("/")
                 );
 
         return http.build();

@@ -12,6 +12,8 @@ public enum ErrorCode {
             (HttpStatus.UNAUTHORIZED, "VERIFICATION_CODE_EXPIRED", "해당 인증코드의 만료 시간이 지났습니다."),
     ALREADY_EXISTING_EMAIL
             (HttpStatus.CONFLICT, "ALREADY_EXISTING_EMAIL", "이미 등록된 이메일 주소입니다"),
+    NOT_VERIFIED_EMAIL
+            (HttpStatus.UNAUTHORIZED, "NOT_VERIFIED_EMAIL", "인증되지 않은 이메일 주소입니다."),
     NOT_EXISTING_EMAIL
             (HttpStatus.BAD_REQUEST, "NOT_EXISTING_EMAIL", "등록되지 않은 이메일 주소입니다"),
     INCONSISTENT_PASSWORD

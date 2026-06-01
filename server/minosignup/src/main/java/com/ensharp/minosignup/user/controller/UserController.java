@@ -107,6 +107,8 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
+
     }
+    // 세션안에 있는 사용자정보로 조회하기
 
 }
