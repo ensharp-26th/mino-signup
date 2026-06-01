@@ -8,6 +8,7 @@ public class User {
 
     protected User() {}
 
+    // generatedValue pk는 단순한 증감식으로 하지말고 uuid 또는 변형된 인덱스로 하는게 나을듯
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

@@ -1,5 +1,7 @@
 package com.ensharp.minosignup.user.service;
 
+import com.ensharp.minosignup.emailverification.entity.EmailVerification;
+import com.ensharp.minosignup.emailverification.repository.EmailVerificationRepository;
 import com.ensharp.minosignup.global.exception.BusinessException;
 import com.ensharp.minosignup.global.exception.ErrorCode;
 import com.ensharp.minosignup.user.dto.request.*;
@@ -10,22 +12,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
 
+    private final EmailVerificationRepository emailVerificationRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     public UserService(
             UserRepository userRepository,
+            EmailVerificationRepository emailVerificationRepository,
             PasswordEncoder passwordEncoder
     ) {
         this.userRepository = userRepository;
+        this.emailVerificationRepository = emailVerificationRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -42,6 +44,13 @@ public class UserService {
 
         if (userRepository.existsByEmail(request.email())) {
             throw new BusinessException(ErrorCode.ALREADY_EXISTING_EMAIL);
+        }
+
+        EmailVerification emailVerification = emailVerificationRepository.findFirstByEmailOrderByRequestedAtDesc(request.email())
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
+
+        if (!emailVerification.isVerified()) {
+            throw new BusinessException(ErrorCode.NOT_VERIFIED_EMAIL);
         }
 
         String encodedPassword = passwordEncoder.encode(request.password());
@@ -68,7 +77,7 @@ public class UserService {
 
         String encodedPassword = passwordEncoder.encode(request.password());
 
-        if (!encodedPassword.equals(user.password())) {
+        if (!encodedPassword.matches(user.password())) {
             throw new BusinessException(ErrorCode.INCONSISTENT_PASSWORD);
         }
 
@@ -91,7 +100,6 @@ public class UserService {
 
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
-
 
         return new UserProfileResponse(
                 user.email(),

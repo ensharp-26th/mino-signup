@@ -14,9 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Tag(name = "SECURITY", description = "세션 인증 관련 API")
 @RestController
 @RequestMapping(value = "/api/v1/sessions")
@@ -74,7 +71,7 @@ public class SecurityController {
         SecurityResponse response = new SecurityResponse(
                 HttpStatus.OK.value(),
                 "LOGOUT",
-                "세션이 삭제되었습니다."
+                "로그인 세션이 삭제되었습니다."
         );
 
         return ResponseEntity
@@ -94,7 +91,7 @@ public class SecurityController {
                 "로그인 세션이 발급되지 않은 상태입니다."
         );
         
-        if (authentication == null || "anonymousUser".equals(authentication.getPrincipal())) {
+        if (authentication == null || authentication.getPrincipal().equals("anonymousUser")) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(unauthorizedResponse);

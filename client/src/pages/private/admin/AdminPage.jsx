@@ -1,6 +1,7 @@
 import './AdminPage.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 import Card from '../../../components/Card/Card';
 import Header from '../../../components/Header/Header';
@@ -10,8 +11,12 @@ import InputBox from '../../../components/InputBox/InputBox';
 import { getAllUserProfile } from '../../../features/auth/services/AllUserProfileRequest';
 import { deleteUser } from '../../../features/auth/services/DeleteUserRequest';
 import { clearEmailVerification } from '../../../features/auth/services/ClearEmailVerificationsRequest';
+import { logout } from '../../../features/auth/services/LogoutReqeust';
+import { checkSession } from '../../../features/auth/services/CheckSession';
 
 function AdminPage() {
+    const navigateLogin = useNavigate();
+
     const [email, setEmail] = useState("");
 
     const requestAllUserProfile = async () => {
@@ -44,12 +49,35 @@ function AdminPage() {
         }
     }
 
+    const requestLogout = async () => {
+        try {
+            const response = await logout();
+
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        const check = async () => {
+            try {
+                const response = await checkSession();
+
+            } catch (error) {
+                navigateLogin('/error');
+            }
+        }
+
+        check();
+    }, []);
+
     return (
         <Card>
             <Header text="관리자 페이지" />
             <div className="all-user">
                 <label>모든 유저 조회</label>
-                <Button text="조회" onClick={requestAllUserProfile}/>
+                <Button text="조회" onClick={requestAllUserProfile} />
             </div>
             <div className="delete-user">
                 <label>유저 삭제</label>
@@ -60,6 +88,9 @@ function AdminPage() {
                 <label>이메일 인증 기록 초기화</label>
                 <Button text="초기화" onClick={requestClearEmailVerifications} />
             </div>
+            <Link className="to-sign-in" to="/">
+                <Button text="로그아웃" onClick={() => requestLogout()} />
+            </Link>
         </Card>
     );
 }
