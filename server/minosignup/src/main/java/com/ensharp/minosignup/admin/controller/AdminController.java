@@ -46,7 +46,7 @@ public class AdminController {
             summary = "유저 삭제",
             description = "입력받은 이메일의 유저를 삭제합니다."
     )
-    @DeleteMapping(value = "/user")
+    @DeleteMapping(value = "/users")
     public ResponseEntity<DeleteUserResponse> deleteUser(
             @Valid @RequestBody DeleteUserRequest request
     ) {

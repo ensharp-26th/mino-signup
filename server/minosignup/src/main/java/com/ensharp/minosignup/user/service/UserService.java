@@ -101,12 +101,7 @@ public class UserService {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_EXISTING_EMAIL));
 
-        return new UserProfileResponse(
-                user.email(),
-                user.username(),
-                user.streetAddress(),
-                user.detailAddress()
-        );
+        return UserProfileResponse.from(user);
 
     }
 

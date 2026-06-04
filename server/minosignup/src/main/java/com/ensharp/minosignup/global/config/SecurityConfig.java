@@ -39,7 +39,6 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(true)
-                        .expiredUrl("/")
                 );
 
         return http.build();

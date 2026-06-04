@@ -42,8 +42,6 @@ function LoginAction({ email, password, canLogin, setCanLogin, rememberEmail }) 
         }
     }
 
-    const navigate = useNavigate();
-
     return (
         <div className="login-action">
             <Button 
