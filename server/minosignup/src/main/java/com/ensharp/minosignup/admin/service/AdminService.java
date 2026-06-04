@@ -30,15 +30,10 @@ public class AdminService {
     @Transactional(readOnly = true)
     public List<UserProfileResponse> getAllUserProfile() {
 
-        List<UserProfileResponse> allUserProfileResponse = new ArrayList<>();
+        List<UserProfileResponse> userProfileResponses =
+                userRepository.findAll().stream().map(UserProfileResponse::from).toList();
 
-        for (User user : userRepository.findAll()) {
-
-            allUserProfileResponse.add(UserProfileResponse.from(user));
-
-        }
-
-        return allUserProfileResponse;
+        return userProfileResponses;
 
     }
 

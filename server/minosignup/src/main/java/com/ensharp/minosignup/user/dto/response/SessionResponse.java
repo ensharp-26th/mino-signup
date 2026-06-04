@@ -1,8 +1,8 @@
-package com.ensharp.minosignup.global.security;
+package com.ensharp.minosignup.user.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-public record SecurityResponse (
+public record SessionResponse(
 
         @Schema(example = "200")
         int status,
