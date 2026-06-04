@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import { getUserProfile } from '../../services/UserProfileRequest';
 
-function UserInformation({ email }) {
+function UserProfile({ email }) {
     const [username, setUsername] = useState("");
     const [streetAddress, setStreetAddress] = useState("");
     const [detailAddress, setDetailAddress] = useState("");
@@ -24,7 +24,7 @@ function UserInformation({ email }) {
             }
         }
         requestUserProfile();
-    });
+    }, []);
 
 
     return (
@@ -45,4 +45,4 @@ function UserInformation({ email }) {
     );
 }
 
-export default UserInformation;
+export default UserProfile;
