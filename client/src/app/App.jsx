@@ -8,6 +8,7 @@ import SignUpSuccessPage from '../pages/public/sign-up/SignUpSuccessPage';
 import FindPasswordPage from '../pages/public/find-password/FindPasswordPage';
 import ErrorPage from '../pages/public/error/ErrorPage';
 
+import ChatPage from '../pages/private/chat/ChatPage';
 import MyProfilePage from '../pages/private/my-profile/MyProfilePage';
 import ResetPasswordPage from '../pages/private/reset-password/ResetPasswordPage';
 import ResetPasswordSuccessPage from '../pages/private/reset-password/ResetPasswordSuccessPage';
@@ -25,6 +26,7 @@ function App() {
         <Route path="/error" element={<ErrorPage />}></Route>
 
         {/* private router */}
+        <Route path="/chat" element={<ChatPage />}></Route>
         <Route path="/my-profile" element={<MyProfilePage />}></Route>
         <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
         <Route path="/reset-password/success" element={<ResetPasswordSuccessPage />}></Route>

@@ -1,4 +1,4 @@
-import api from './AuthApi';
+import api from './Api';
 
 export const getUserProfile = async (email) => {
     const response = await api.get(

@@ -1,8 +1,8 @@
 import './Header.css';
 
-function Header({ text }) {
+function Header({ text, style }) {
     return(
-        <header className="header">
+        <header className="header" style={style}>
             {text}
         </header>
     ); 

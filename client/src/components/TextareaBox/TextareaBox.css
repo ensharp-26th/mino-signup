@@ -1,0 +1,13 @@
+.textarea-box {
+    display: flex;
+    flex-direction: row;
+    width: 416px;
+    min-width: 350px;
+    height: 53px;
+    border-radius: 5px;
+    border-width: 1px;
+    opacity: 1;
+    border: 1px solid #89848466;
+    font-family: "Pretendard Variable";
+    resize: none;
+}

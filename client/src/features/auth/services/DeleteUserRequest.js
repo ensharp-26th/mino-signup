@@ -1,4 +1,4 @@
-import api from './AuthApi';
+import api from './Api';
 
 export const deleteUser = async (email) => {
     const response = await api.delete(

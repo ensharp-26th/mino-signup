@@ -1,0 +1,28 @@
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-left: -40px;
+    margin-right: -40px;
+
+    border: 1px solid #8984842E;
+    background: #F8FBFF;
+    padding: 10px;
+    
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+
+    white-space: pre-wrap;
+}
+
+.messages {
+    gap: 8px;
+}
+
+.chat-action {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
