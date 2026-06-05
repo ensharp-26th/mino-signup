@@ -3,19 +3,15 @@ package com.ensharp.minosignup.user.controller;
 import com.ensharp.minosignup.global.security.CustomUserDetails;
 import com.ensharp.minosignup.user.dto.response.SessionResponse;
 import com.ensharp.minosignup.user.dto.request.LoginRequest;
+import com.ensharp.minosignup.user.service.SessionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "SECURITY", description = "세션 인증 관련 API")
@@ -23,12 +19,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1/sessions")
 public class SessionController {
 
-    private final AuthenticationManager authenticationManager;
+    private final SessionService sessionService;
 
     public SessionController(
-            AuthenticationManager authenticationManager
+            SessionService sessionService
     ) {
-        this.authenticationManager = authenticationManager;
+        this.sessionService = sessionService;
     }
 
     @Operation(
@@ -41,16 +37,7 @@ public class SessionController {
             HttpServletRequest servletRequest
     ) {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.email(), request.password())
-        );
-
-        SecurityContext context = SecurityContextHolder.createEmptyContext();
-        context.setAuthentication(authentication);
-        SecurityContextHolder.setContext(context);
-
-        HttpSession session = servletRequest.getSession(true);
-        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
+        sessionService.login(request, servletRequest);
 
         SessionResponse response = new SessionResponse(
                 HttpStatus.OK.value(),
@@ -73,12 +60,7 @@ public class SessionController {
             HttpServletRequest servletRequest
     ) {
 
-        HttpSession session = servletRequest.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-
-        SecurityContextHolder.clearContext();
+        sessionService.logout(servletRequest);
 
         SessionResponse response = new SessionResponse(
                 HttpStatus.OK.value(),
@@ -118,7 +100,7 @@ public class SessionController {
         SessionResponse okResponse = new SessionResponse(
                 HttpStatus.OK.value(),
                 "IS_LOGGEDIN",
-                "로그인 세션이 발급된 상태입니다."
+                "(" + userDetails.getUsername() + ") 로그인 세션이 발급된 상태입니다."
         );
 
         return ResponseEntity
