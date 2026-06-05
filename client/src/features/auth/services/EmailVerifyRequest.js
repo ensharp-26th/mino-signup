@@ -1,4 +1,4 @@
-import api from './AuthApi';
+import api from './Api';
 
 export const verifyEmail = async (email, verificationCode) => {
     const response = await api.patch(

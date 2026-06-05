@@ -1,4 +1,4 @@
-import api from './AuthApi';
+import api from './Api';
 
 export const signUp = async (email, password, username, streetAddress, detailAddress) => {
     const response = await api.post(

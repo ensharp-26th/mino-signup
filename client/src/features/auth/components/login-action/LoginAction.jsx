@@ -34,7 +34,7 @@ function LoginAction({ email, password, canLogin, setCanLogin, rememberEmail }) 
                 navigateLogin('/admin');
             }
             else {
-                navigateLogin('/my-profile', { state: email });
+                navigateLogin('/chat', { state: email });
             }
         } catch (error) {
             console.log(error)

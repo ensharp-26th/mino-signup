@@ -1,4 +1,4 @@
-import api from './AuthApi';
+import api from './Api';
 
 export const logout = async () => {
     const response = await api.delete(

@@ -1,4 +1,4 @@
-import api from './AuthApi';
+import api from './Api';
 
 export const resetPassword = async (email, password) => {
     const response = await api.patch(

@@ -1,0 +1,9 @@
+.chat-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-icon {
+    width: 60px;
+    height: 60px;
+}
