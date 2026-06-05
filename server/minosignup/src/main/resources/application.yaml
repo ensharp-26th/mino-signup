@@ -24,3 +24,5 @@ spring:
           starttls:
             enable: true
             required: true
+  gemini:
+    api-key: ${GEMINI_API_KEY}
