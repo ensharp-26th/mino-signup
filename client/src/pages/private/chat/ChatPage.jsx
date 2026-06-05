@@ -11,6 +11,7 @@ import Button from '../../../components/Button/Button';
 import ChatAction from '../../../features/auth/components/chat-action/ChatAction';
 
 import { chatGemini } from '../../../features/auth/services/ChatGeminiRequest';
+import { clearChatMessages } from '../../../features/auth/services/ClearChatMessagesReqeust';
 
 function ChatPage() {
     const location = useLocation();
@@ -49,6 +50,17 @@ function ChatPage() {
         }
     }
 
+    const reqeustClearChatMessages = async () => {
+        try {
+            const response = await clearChatMessages();
+
+            setMessages([]);
+            console.log(response);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     return (
         <Card>
             <div className="chat-header">
@@ -58,6 +70,7 @@ function ChatPage() {
             
             <ChatBox messages={messages} />
             <ChatAction content={content} setContent={setContent} sendMessage={sendMessage} />
+            <Button text="대화 내역 초기화" onClick={reqeustClearChatMessages} />
         </Card>
     );
 }
