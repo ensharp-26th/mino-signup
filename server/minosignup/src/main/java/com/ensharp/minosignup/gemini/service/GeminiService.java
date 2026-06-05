@@ -66,7 +66,7 @@ public class GeminiService {
                 );
 
         GenerateContentResponse contentResponse =
-                client.models.generateContent("gemini-3.5-flash", fullPrompt, null);
+                client.models.generateContent("gemini-3.1-flash-lite", fullPrompt, null);
 
         String content = contentResponse.text();
 
